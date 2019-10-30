@@ -1,0 +1,171 @@
+package com.github.wxiaoqi.security.common.util;
+
+import org.dom4j.*;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
+
+import java.io.IOException;
+import java.io.StringWriter;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+/**
+ * MAP和XML的相互转换
+ *
+ * @author dz
+ */
+public class MapWithXml {
+
+    private static final String ATT = "att_";
+    private static final String ROOT_NAME = "business";
+
+    /**
+     * 将MAP转化为XML
+     *
+     * @param mso
+     * @return
+     */
+    public static String mapToXML(Map<String, Object> mso) {
+        Document doc = DocumentHelper.createDocument();
+        doc.setXMLEncoding("gbk");
+        Element root = DocumentHelper.createElement(ROOT_NAME);
+        doc.add(root);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        DecimalFormat df = new DecimalFormat("0.00####");
+        generateXML(mso, root, sdf, df);
+        OutputFormat format = new OutputFormat();
+        format.setNewLineAfterDeclaration(false);
+        format.setIndentSize(2);
+        format.setNewlines(true);
+        format.setEncoding(doc.getXMLEncoding());
+        StringWriter sw = new StringWriter();
+        XMLWriter xmlW = new XMLWriter(sw, format);
+        try {
+            xmlW.write(doc);
+            xmlW.flush();
+        } catch (IOException ioe) {
+            return doc.asXML();
+        } finally {
+        }
+        return sw.toString();
+    }
+
+    /**
+     * 递归转换map 怀疑Format类无法内部线程同步，还是不能声明为static,不然恐怕会出莫名其妙错误。在参数中传递避免多次new
+     *
+     * @param df  格式化数字
+     * @param sdf 格式化日期
+     */
+    @SuppressWarnings("unchecked")
+    private static void generateXML(Map<String, Object> mso, Element parent, SimpleDateFormat sdf,
+                                    DecimalFormat df) {
+        for (Map.Entry<String, Object> me : mso.entrySet()) {
+            String key = me.getKey();
+            Object value = me.getValue();
+            if (value instanceof Collection) {
+                for (Map<String, Object> childMap : (Collection<Map<String, Object>>) value) {
+                    Element child = DocumentHelper.createElement(key);
+                    parent.add(child);
+                    generateXML(childMap, child, sdf, df);
+                }
+            } else if (value instanceof Map) {
+                Element child = DocumentHelper.createElement(key);
+                parent.add(child);
+                generateXML((Map<String, Object>) value, child, sdf, df);
+            } else if (key.startsWith(ATT)) {
+                parent.addAttribute(key.substring(ATT.length()), toString(value, sdf, df));
+            } else {
+                Element child = DocumentHelper.createElement(key);
+                parent.add(child);
+                child.setText(toString(value, sdf, df));
+            }
+        }
+    }
+
+    /**
+     * 在从map变xml时会有从object变为字符串的问题
+     *
+     * @param df
+     * @param sdf
+     */
+    private static String toString(Object value, SimpleDateFormat sdf, DecimalFormat df) {
+        if (value instanceof String) {
+            return (String) value;
+        } else if (value == null) {
+            return "";
+        } else if (value instanceof Date) {
+            return sdf.format(value);
+        } else if (value instanceof Integer || value instanceof Long || value instanceof Short
+                || value instanceof Byte) {
+            return value.toString();
+        } else if (value instanceof Number) {
+            return df.format(value);
+        } else if (value instanceof Boolean) {
+            return Boolean.TRUE.equals(value) ? "1" : "0";
+        } else {
+            return "CONVERT_ERROR";
+        }
+    }
+
+    /**
+     * 将XML转化为Map
+     *
+     * @param xml
+     * @return
+     * @throws DocumentException
+     */
+    @SuppressWarnings("unchecked")
+    public static Map<String, Object> xmlToMap(String xml) throws DocumentException {
+        Map<String, Object> mso = new LinkedHashMap<String, Object>();
+        Document doc = DocumentHelper.parseText(xml);
+        Element root = doc.getRootElement();
+        generateMap(root, mso);
+        return (Map<String, Object>) mso.get(root.getName());
+    }
+
+    /**
+     * 递归转换节点
+     */
+    @SuppressWarnings("unchecked")
+    private static void generateMap(Element parent, Map<String, Object> mso) {
+        // 所有元素
+        List<Element> le = parent.elements();
+        // 所有属性
+        List<Attribute> la = parent.attributes();
+        // 属性和元素均为空则代表该元素为类似<returncode>返回代码</returncode>的节点
+        if (le.size() == 0 && la.size() == 0) {
+            mso.put(parent.getName(), parent.getText());
+            return;
+        }
+        // 为下一代节点创建新的map
+        Map<String, Object> childMap = new LinkedHashMap<String, Object>();
+        // 对类似<group xh="1"></group><group xh="1"></group>重名的集合类型进行处理
+        String parentName = parent.getName();
+        Object alreadyIn = mso.get(parentName);
+        // 若重名多次存储到第二次及以上出现group时
+        if (alreadyIn != null) {
+            // 第二次以上
+            if (alreadyIn instanceof Collection) {
+                ((Collection<Map<String, Object>>) alreadyIn).add(childMap);
+                // 第二次
+            } else {
+                Collection<Object> co = new ArrayList<Object>();
+                co.add(alreadyIn);
+                co.add(childMap);
+                mso.put(parentName, co);
+            }
+            // 第一次
+        } else {
+            mso.put(parent.getName(), childMap);
+        }
+        // 处理属性
+        for (Attribute att : la) {
+            childMap.put(att.getName(), att.getValue());
+        }
+        // 递归处理子元素
+        for (Element e : le) {
+            generateMap(e, childMap);
+        }
+    }
+}

@@ -1,0 +1,18 @@
+package com.bwcloud.finance.center.biz;
+
+import com.bwcloud.finance.center.entity.DataAgreement;
+import com.bwcloud.finance.center.mapper.DataAgreementMapper;
+import org.springframework.stereotype.Service;
+
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+/**
+ * 
+ *
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:55
+ */
+@Service
+public class DataAgreementBiz extends BusinessBiz<DataAgreementMapper,DataAgreement> {
+}

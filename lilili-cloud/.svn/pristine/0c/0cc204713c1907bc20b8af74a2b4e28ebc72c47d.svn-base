@@ -1,0 +1,126 @@
+package com.bwcloud.finance.center.biz;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.abstractClass.AbstractInvoiceUpload;
+import com.bwcloud.finance.center.entity.*;
+import com.bwcloud.finance.center.mapper.TaxInvoiceMapper;
+import com.bwcloud.finance.center.utils.InvoiceLoanUtil;
+import com.github.wxiaoqi.security.common.constant.BwCloudConstants;
+import com.github.wxiaoqi.security.common.util.DateUtils;
+import com.github.wxiaoqi.security.common.util.MapWithXml;
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+@Service
+@Slf4j
+public class TaxInvoiceBiz {
+
+    @Autowired
+    private TaxInvoiceMapper taxInvoiceMapper;
+
+    @Autowired
+    private PjZzspdzFpmxBiz pjZzspdzFpmxBiz;
+
+    @Autowired
+    private PjZzspFpmxBiz pjZzspFpmxBiz;
+
+    @Autowired
+    private PjZzszFpmxBiz pjZzszFpmxBiz;
+
+
+    @Autowired
+    private LoanDeviceBiz loanDeviceBiz;
+
+    public String invoiceUpload(String invoiceInfo) throws Exception {
+        JSONObject invoiceJson = JSON.parseObject(invoiceInfo);
+        String sksbbh = invoiceJson.getString("sksbbh");
+        String fpscJzrq = invoiceJson.getString("fpsc_jzrq");
+        String uploadData = invoiceJson.getString("upload_data");
+        String fplxdm = invoiceJson.getString("fplxdm");
+        Map invoiceMap = MapWithXml.xmlToMap(uploadData);
+        invoiceMap.put("fplxdm", fplxdm);
+        if (BwCloudConstants.ZZS_ZY_FP.equals(fplxdm)) {
+            pjZzszFpmxBiz.insertInvoice(invoiceMap);
+        } else if (BwCloudConstants.ZZS_PT_FP.equals(fplxdm)) {
+            pjZzspFpmxBiz.insertInvoice(invoiceMap);
+        } else if (BwCloudConstants.DZ_FP.equals(fplxdm)) {
+            pjZzspdzFpmxBiz.insertInvoice(invoiceMap);
+        } else if (BwCloudConstants.JS_FP.equals(fplxdm)) {
+
+        } else if (BwCloudConstants.JDC_FP.equals(fplxdm)) {
+
+        } else if (BwCloudConstants.ESC_FP.equals(fplxdm)) {
+
+        } else if (BwCloudConstants.HY_FP.equals(fplxdm)) {
+
+        } else if (BwCloudConstants.SCSY_FP.equals(fplxdm)) {
+
+        }
+        LoanDeviceInfo loanDeviceInfo = loanDeviceBiz.getLoanDeviceInfo(sksbbh);
+        loanDeviceInfo.setId(UUIDUtils.generateUuid());
+        loanDeviceInfo.setSksbbh(sksbbh);
+        loanDeviceInfo.setFpscJlrq(fpscJzrq);
+        loanDeviceBiz.insertSelective(loanDeviceInfo);
+        return "";
+    }
+
+    public TaxDataDetailUploadReq queryInvoiceList(String nsrsbh, String nsrmc, String xfdz, String startDate, String endDate) {
+        TaxDataDetailUploadReq taxDataDetailUploadReq = new TaxDataDetailUploadReq();
+        TaxDataUploadBaseInfo taxDataUploadBaseInfo = new TaxDataUploadBaseInfo();
+        String dataDate = DateUtils.formatSfmFiles(new Date()).substring(0, 8);
+        taxDataUploadBaseInfo.setDataDate(dataDate);
+        taxDataUploadBaseInfo.setSupId(nsrsbh);
+        taxDataUploadBaseInfo.setTaxCode(nsrsbh);
+        taxDataUploadBaseInfo.setTaxName(nsrmc);
+        taxDataUploadBaseInfo.setInvAddr(xfdz);
+        taxDataUploadBaseInfo.setStartDate(startDate);
+        taxDataUploadBaseInfo.setEndDate(endDate);
+        taxDataDetailUploadReq.setBaseInfo(taxDataUploadBaseInfo);
+        ArrayList<TaxDataUploadTranInfo> taxDataUploadTranInfos = new ArrayList<>();
+        List<TaxInvoice> taxInvoiceList = taxInvoiceMapper.queryInvoiceList(nsrsbh, startDate, endDate);
+        if (taxInvoiceList.size() > 0) {
+            for (TaxInvoice taxInvoice : taxInvoiceList) {
+                TaxDataUploadTranInfo taxDataUploadTranInfo = new TaxDataUploadTranInfo();
+                taxDataUploadTranInfo.setInvType(taxInvoice.getFplxdm());
+                taxDataUploadTranInfo.setInvStatus(InvoiceLoanUtil.fpzt(taxInvoice.getFpzt()));
+                taxDataUploadTranInfo.setInvCode(taxInvoice.getFphm());
+                taxDataUploadTranInfo.setInvNo(taxInvoice.getFpdm());
+                taxDataUploadTranInfo.setTaxAmt(String.valueOf(taxInvoice.getSe()));
+                taxDataUploadTranInfo.setInvAmt(String.valueOf(taxInvoice.getHjje()));
+                taxDataUploadTranInfo.setTranAmt(String.valueOf(taxInvoice.getJshj()));
+                taxDataUploadTranInfo.setOriInvCode(taxInvoice.getYfphm());
+                taxDataUploadTranInfo.setOriInvNo(taxInvoice.getYfphm());
+                taxDataUploadTranInfo.setNotifyNo(taxInvoice.getTzdh() == null ? "" : taxInvoice.getTzdh());
+                taxDataUploadTranInfo.setInvDate(taxInvoice.getKprq().substring(0, 8));
+                taxDataUploadTranInfo.setInvalDate((taxInvoice.getZfrq() == null || taxInvoice.getZfrq().equals("")) ? "" : taxInvoice.getZfrq().substring(0, 8));
+                taxDataUploadTranInfo.setCustName(taxInvoice.getGhdwmc());
+                taxDataUploadTranInfo.setCustId(taxInvoice.getGhdwdm());
+                taxDataUploadTranInfos.add(taxDataUploadTranInfo);
+            }
+        }
+        taxDataDetailUploadReq.setTranList(taxDataUploadTranInfos);
+        ArrayList<TaxDataUploadInputInfo> taxDataUploadInputInfos = new ArrayList<>();
+        TaxDataUploadInputInfo taxDataUploadInputInfo = new TaxDataUploadInputInfo();
+        taxDataUploadInputInfo.setDataMonth(dataDate.substring(0, 5));
+        taxDataUploadInputInfo.setInputAmt("0");
+        taxDataUploadInputInfo.setInputNum("0");
+        taxDataUploadInputInfos.add(taxDataUploadInputInfo);
+        taxDataDetailUploadReq.setInputList(taxDataUploadInputInfos);
+        return taxDataDetailUploadReq;
+    }
+}

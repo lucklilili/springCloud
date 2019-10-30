@@ -1,0 +1,107 @@
+package com.bwcloud.billingCenter.invoiceInvalid.invalidServiceImpl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoiceInvalid.invalidService.InvalidService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ * Created by bs on 2018/4/2.
+ * 该类为发票作废（InvalidService）的实现类
+ */
+class InvalidServiceImpl implements InvalidService {
+    /**
+     * 接收发票作废的json字符串，并将结果进行返回
+     * @param json
+     * @return
+     */
+    @Override
+    public String invoiceInvalid(String json) {
+        String xml = json2Xml(json);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+
+    /**
+     * 该方法用于将接收来的xml报文转换为json格式
+     * @param receiveXml
+     * @return
+     */
+    private String xml2Json(String receiveXml) {
+        try{
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+
+    /**
+     * 该方法将接收到的xml报文发送到税控服务器，并返回xml格式的结果
+     * @param xml
+     * @return
+     */
+    private String sendXml(String xml) {
+        String url = "";
+       //String receiveXml = HttpUtil.httpSendPostNingbo(url, xml);
+        return url;
+    }
+
+    /**
+     * 该方法用于将json格式的字符串，转换成需要的xml报文
+     * json 转 xml
+     * @param string
+     * @return
+     */
+    private String json2Xml(String string) {
+        try {
+            JSONObject json = JSONObject.parseObject(string);
+            JSONObject business = json.getJSONObject("business");
+            String id = business.getString("id");
+            String comment = business.getString("comment");
+            JSONObject body = json.getJSONObject("body");
+            String yylxdm = body.getString("yylxdm");
+            String kpzdbs = body.getString("kpzdbs");
+            String fplxdm = body.getString("fplxdm");
+            String zflx = body.getString("zflx");
+            String fpdm = body.getString("fpdm");
+            String fphm = body.getString("fphm");
+            String hjje = body.getString("hjje");
+            String zfr = body.getString("zfr");
+            String cxtj = body.getString("cxtj");
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"");
+            stringBuffer.append(id);
+            stringBuffer.append("\" comment=\"");
+            stringBuffer.append(comment);
+            stringBuffer.append("\">\n\t<body yylxdm=\"");
+            stringBuffer.append(yylxdm);
+            stringBuffer.append("\">\n\t\t<kpzdbs>");
+            stringBuffer.append(kpzdbs);
+            stringBuffer.append("</kpzdbs>");
+            stringBuffer.append("\n\t\t<fplxdm>");
+            stringBuffer.append(fplxdm);
+            stringBuffer.append("</fplxdm>");
+            stringBuffer.append("\n\t\t<zflx>");
+            stringBuffer.append(zflx);
+            stringBuffer.append("</zflx>");
+            stringBuffer.append("\n\t\t<fpdm>");
+            stringBuffer.append(fpdm);
+            stringBuffer.append("</fpdm>");
+            stringBuffer.append("\n\t\t<fphm>");
+            stringBuffer.append(fphm);
+            stringBuffer.append("</fphm>");
+            stringBuffer.append("\n\t\t<hjje>");
+            stringBuffer.append(hjje);
+            stringBuffer.append("</hjje>");
+            stringBuffer.append("\n\t\t<zfr><![CDATA[");
+            stringBuffer.append(zfr);
+            stringBuffer.append("]]></zfr>\n\t</body>\n</business>");
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "json转xml，转换失败！";
+        }
+    }
+
+}

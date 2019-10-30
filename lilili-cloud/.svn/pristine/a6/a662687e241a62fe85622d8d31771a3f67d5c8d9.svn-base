@@ -1,0 +1,17 @@
+package com.bwcloud.finance.center.rest;
+
+import com.bwcloud.finance.center.biz.LoanRepayBiz;
+import com.bwcloud.finance.center.entity.LoanRepay;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+
+@RestController
+@RequestMapping("loanRepay")
+@CheckClientToken
+@CheckUserToken
+public class LoanRepayController extends BaseController<LoanRepayBiz,LoanRepay> {
+
+}

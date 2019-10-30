@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.device.center.mapper.TerminalInfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.device.center.entity.TerminalInfo" id="terminalInfoMap">
+        <result property="id" column="id"/>
+        <result property="jsbh" column="jsbh"/>
+        <result property="sbbh" column="sbbh"/>
+        <result property="nsrsbh" column="nsrsbh"/>
+        <result property="nsrmc" column="nsrmc"/>
+        <result property="fplxdm" column="fplxdm"/>
+        <result property="kpddm" column="kpddm"/>
+        <result property="kpdmc" column="kpdmc"/>
+        <result property="xflxfs" column="xflxfs"/>
+        <result property="xfdz" column="xfdz"/>
+        <result property="xfyhmc" column="xfyhmc"/>
+        <result property="xfyhzh" column="xfyhzh"/>
+        <result property="xfdzdh" column="xfdzdh"/>
+        <result property="khhyhzh" column="khhyhzh"/>
+        <result property="ipdz" column="ipdz"/>
+        <result property="dkh" column="dkh"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+</mapper>

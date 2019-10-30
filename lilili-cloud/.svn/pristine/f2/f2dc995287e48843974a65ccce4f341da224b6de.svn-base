@@ -1,0 +1,21 @@
+package com.bwcloud.billingCenter.netWorkApply.service;
+
+import com.bwcloud.billingCenter.netWorkApply.interfacesImpl.NetWorkApplysImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * lilili C2018/4/3.
+ */
+@Service
+public class NetWorkApplysImplService {
+
+    @Autowired
+    private NetWorkApplysImpl netWorkApplys;
+
+    public String netWorkApply(String info){
+
+        return netWorkApplys.apply(info);
+    }
+
+}

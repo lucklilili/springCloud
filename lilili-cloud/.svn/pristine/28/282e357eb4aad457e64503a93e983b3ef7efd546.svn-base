@@ -1,0 +1,71 @@
+package com.bwcloud.finance.center.bwfpd;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.bwcloud.finance.center.biz.TaxInvoiceBiz;
+import com.bwcloud.finance.center.constant.LoanCodeConstants;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.bwcloud.finance.center.entity.TaxDataDetailUploadReq;
+import com.bwcloud.finance.center.entity.TaxDataUploadResponse;
+import com.bwcloud.finance.center.utils.InvoiceLoanUtil;
+import com.github.wxiaoqi.security.common.util.GZipUtils;
+import com.github.wxiaoqi.security.common.util.HttpUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.httpclient.HttpException;
+
+/**
+ * 税务数据信息上传
+ *
+ * @author dz
+ *         Created by Administrator on 2018/3/30.
+ */
+@Slf4j
+public class TaxDataUploadTask implements Runnable {
+
+    private LoanMerchantInfo loanMerchantInfo;
+    private TaxInvoiceBiz taxInvoiceBiz;
+    private String ver;
+    private String req;
+    private String signKey;
+    private JSONObject jsonObject;
+
+    public TaxDataUploadTask(LoanMerchantInfo loanMerchantInfo, TaxInvoiceBiz taxInvoiceBiz,
+                             String ver, String req, String signKey, JSONObject jsonObject) {
+        this.loanMerchantInfo = loanMerchantInfo;
+        this.taxInvoiceBiz = taxInvoiceBiz;
+        this.ver = ver;
+        this.req = req;
+        this.signKey = signKey;
+        this.jsonObject = jsonObject;
+    }
+
+    @Override
+    public void run() {
+        String nsrsbh = loanMerchantInfo.getNsrsbh();
+        String nsrmc = loanMerchantInfo.getNsrmc();
+        String merchantid = loanMerchantInfo.getMerchantid();
+        String xfdz = loanMerchantInfo.getXfdz();
+        String startDate = jsonObject.getString("start_date");
+        String endDate = jsonObject.getString("end_date");
+        String upUrl = jsonObject.getString("up_url");
+        try {
+            log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + "开始调用宏昊企业税务数据明细上传！");
+            TaxDataDetailUploadReq taxDataDetailUploadReq = taxInvoiceBiz.queryInvoiceList(nsrsbh, nsrmc, xfdz, startDate, endDate);
+            String taxDataUploadRequest = InvoiceLoanUtil.resultJson(ver, req, signKey, taxDataDetailUploadReq);
+            log.info("调用宏昊企业税务数据明细上传接口请求报文" + taxDataUploadRequest);
+            String result = HttpUtil.httpsRequestHonghao(upUrl, GZipUtils.gzip(taxDataUploadRequest));
+            log.info("调用宏昊企业税务数据明细上传接口返回报文" + result);
+            TaxDataUploadResponse<?> taxDataUploadResponse = JSON.parseObject(result, new TypeReference<TaxDataUploadResponse<Object>>() {
+            });
+            if (!LoanCodeConstants.RESULT_SUCCESS.equals(taxDataUploadResponse.getRescd())) {
+                log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + ",调用宏昊企业税务数据明细上传接口失败，" + taxDataUploadResponse.getRescd() +
+                        ":" + taxDataUploadResponse.getResmsg());
+            }
+        } catch (HttpException e) {
+            log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + ",调用宏昊企业税务数据明细上传接口HttpClient通讯失败！", e);
+        } catch (Exception e) {
+            log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + "调用宏昊企业税务数据明细上传接口失败！", e);
+        }
+    }
+}

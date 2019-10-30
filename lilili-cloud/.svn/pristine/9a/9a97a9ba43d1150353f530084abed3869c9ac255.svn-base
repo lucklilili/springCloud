@@ -1,0 +1,303 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ */
+@Table(name = "loan_devicet_info")
+public class LoanDeviceInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private String id;
+
+    /**
+     * 税号
+     */
+    @Column(name = "nsrsbh")
+    private String nsrsbh;
+    /**
+     * 纳税人名称
+     */
+    @Column(name = "nsrmc")
+    private String nsrmc;
+    /**
+     *税控设备编号
+     */
+    @JSONField(name = "jqbh")
+    @Column(name = "sksbbh")
+    private String sksbbh;
+    /**
+     * 税务机关代码
+     */
+    @Column(name = "swjgdm")
+    private String swjgdm;
+    /**
+     *税务机关名称
+     */
+    @Column(name = "swjgmc")
+    private String swjgmc;
+    /**
+     * 发票类型代码
+     */
+    @Column(name = "fplxdm")
+    private String fplxdm;
+    /**
+     * 当前时钟
+     */
+    @Column(name = "dqsz")
+    private String dqsz;
+    /**
+     * 启用时间
+     */
+    @Column(name = "qysj")
+    private String qysj;
+    /**
+     * 版本号
+     */
+    @Column(name = "bbh")
+    private String bbh;
+    /**
+     * 固件版本号
+     */
+    @Column(name = "gjbbh")
+    private String gjbbh;
+
+    /**
+     * 开票机号
+     */
+    @Column(name = "kpjh")
+    private String kpjh;
+    /**
+     * 企业类型
+     */
+    @Column(name = "qylx")
+    private String qylx;
+
+    /**
+     * 保留信息
+     */
+    @Column(name = "blxx")
+    private String blxx;
+
+    /**
+     * 其它扩展信息
+     */
+    @Column(name = "qtkzxx")
+    private String qtkzxx;
+    /**
+     * 工作状态
+     */
+    @Column(name = "gzzt")
+    private String gzzt;
+
+    /**扩展字段1*/
+    @Column(name = "kzxx1")
+    private String kzxx1;
+
+    /**扩展字段2*/
+    @Column(name = "kzxx2")
+    private String kzxx2;
+
+    /**扩展字段3*/
+    @Column(name = "kzxx3")
+    private String kzxx3;
+
+    /**扩展字段4*/
+    @Column(name = "kzxx4")
+    private String kzxx4;
+
+    /**扩展字段5*/
+    @Column(name = "kzxx5")
+    private String kzxx5;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_date")
+    private String create_date;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getSksbbh() {
+        return sksbbh;
+    }
+
+    public void setSksbbh(String sksbbh) {
+        this.sksbbh = sksbbh;
+    }
+
+    public String getNsrsbh() {
+        return nsrsbh;
+    }
+
+    public void setNsrsbh(String nsrsbh) {
+        this.nsrsbh = nsrsbh;
+    }
+
+    public String getFplxdm() {
+        return fplxdm;
+    }
+
+    public void setFplxdm(String fplxdm) {
+        this.fplxdm = fplxdm;
+    }
+
+    public String getNsrmc() {
+        return nsrmc;
+    }
+
+    public void setNsrmc(String nsrmc) {
+        this.nsrmc = nsrmc;
+    }
+
+    public String getSwjgdm() {
+        return swjgdm;
+    }
+
+    public void setSwjgdm(String swjgdm) {
+        this.swjgdm = swjgdm;
+    }
+
+    public String getSwjgmc() {
+        return swjgmc;
+    }
+
+    public void setSwjgmc(String swjgmc) {
+        this.swjgmc = swjgmc;
+    }
+
+    public String getDqsz() {
+        return dqsz;
+    }
+
+    public void setDqsz(String dqsz) {
+        this.dqsz = dqsz;
+    }
+
+    public String getQysj() {
+        return qysj;
+    }
+
+    public void setQysj(String qysj) {
+        this.qysj = qysj;
+    }
+
+    public String getBbh() {
+        return bbh;
+    }
+
+    public void setBbh(String bbh) {
+        this.bbh = bbh;
+    }
+
+    public String getGjbbh() {
+        return gjbbh;
+    }
+
+    public void setGjbbh(String gjbbh) {
+        this.gjbbh = gjbbh;
+    }
+
+    public String getKpjh() {
+        return kpjh;
+    }
+
+    public void setKpjh(String kpjh) {
+        this.kpjh = kpjh;
+    }
+
+    public String getQylx() {
+        return qylx;
+    }
+
+    public void setQylx(String qylx) {
+        this.qylx = qylx;
+    }
+
+    public String getBlxx() {
+        return blxx;
+    }
+
+    public void setBlxx(String blxx) {
+        this.blxx = blxx;
+    }
+
+    public String getQtkzxx() {
+        return qtkzxx;
+    }
+
+    public void setQtkzxx(String qtkzxx) {
+        this.qtkzxx = qtkzxx;
+    }
+
+    public String getGzzt() {
+        return gzzt;
+    }
+
+    public void setGzzt(String gzzt) {
+        this.gzzt = gzzt;
+    }
+
+    public String getKzxx1() {
+        return kzxx1;
+    }
+
+    public void setKzxx1(String kzxx1) {
+        this.kzxx1 = kzxx1;
+    }
+
+    public String getKzxx2() {
+        return kzxx2;
+    }
+
+    public void setKzxx2(String kzxx2) {
+        this.kzxx2 = kzxx2;
+    }
+
+    public String getKzxx3() {
+        return kzxx3;
+    }
+
+    public void setKzxx3(String kzxx3) {
+        this.kzxx3 = kzxx3;
+    }
+
+    public String getKzxx4() {
+        return kzxx4;
+    }
+
+    public void setKzxx4(String kzxx4) {
+        this.kzxx4 = kzxx4;
+    }
+
+    public String getKzxx5() {
+        return kzxx5;
+    }
+
+    public void setKzxx5(String kzxx5) {
+        this.kzxx5 = kzxx5;
+    }
+
+    public String getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
+    }
+}

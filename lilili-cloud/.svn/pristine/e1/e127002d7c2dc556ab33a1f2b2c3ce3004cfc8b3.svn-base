@@ -1,0 +1,19 @@
+package com.bwcloud.finance.loan;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+/**
+ * Created by Administrator on 2018/3/22.
+ * @author dz
+ */
+@EnableEurekaClient
+@MapperScan("com.bwcloud.finance.loan.mapper")
+@SpringBootApplication
+public class LoanBootstrap {
+        public static void main(String[] args) {
+            SpringApplication.run(LoanBootstrap.class, args);
+        }
+}

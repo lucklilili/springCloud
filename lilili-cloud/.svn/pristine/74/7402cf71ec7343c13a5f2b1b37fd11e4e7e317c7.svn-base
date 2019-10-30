@@ -1,0 +1,27 @@
+package com.bwcloud.finance.center.mapper;
+
+import com.bwcloud.finance.center.entity.LoanDeviceInfo;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+public interface LoanDeviceMapper extends CommonMapper<LoanDeviceInfo> {
+
+    /**
+     * 查询设备信息
+     *
+     * @param sksbbh
+     * @param nsrsbh
+     * @return
+     */
+    public LoanDeviceInfo selectDeviceInfo(@Param("nsrsbh") String nsrsbh, @Param("sksbbh") String sksbbh);
+
+
+}

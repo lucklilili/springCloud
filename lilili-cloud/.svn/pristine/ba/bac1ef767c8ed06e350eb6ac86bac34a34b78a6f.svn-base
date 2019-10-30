@@ -1,0 +1,45 @@
+package com.github.wxiaoqi.security.common.KafkaMessages;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+
+import java.util.Properties;
+
+/**
+ * lilili 2018/4/17.
+ * kafka提供者
+ */
+public class KafkaProvider {
+    /**
+     *
+     * @param kaPrms 如调用本地Kafka无需给bean赋值
+     *  默认ip：localhost
+     *  默认端口：9092
+     *  默认topic: defaultTopic
+     *  默认组：xjbw
+     */
+    public static void send(KafKaPrms kaPrms){
+        Properties props = new Properties();
+        props.put("bootstrap.servers", kaPrms.getKafka_Ip()+":"+kaPrms.getKafka_Host());
+        props.put("key.serializer",
+                "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("value.serializer",
+                "org.apache.kafka.common.serialization.StringSerializer");
+        Producer<String, String> producer = new KafkaProducer<String, String>(props);
+        ProducerRecord record = new ProducerRecord<String, String>(kaPrms.getKafka_topic(), kaPrms.getKafka_key(), kaPrms.getKafka_value());
+        producer.send(record);
+        producer.close();
+    }
+
+    public static void main(String[] args) {
+        KafKaPrms kafKaPrms = new KafKaPrms();
+        kafKaPrms.setKafka_Ip("192.168.70.238");
+        kafKaPrms.setKafka_Host("9092");
+        kafKaPrms.setKafka_topic("mes1");
+        kafKaPrms.setKafka_key("lilili");
+        kafKaPrms.setKafka_value("lilili");
+        send(kafKaPrms);
+    }
+
+}

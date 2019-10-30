@@ -1,0 +1,28 @@
+package com.bwcloud.finance.center.biz;
+
+import com.bwcloud.finance.center.entity.TaxInvoiceDetail;
+import com.bwcloud.finance.center.mapper.TaxInvoiceDetailMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+import java.util.List;
+
+/**
+ * 
+ *
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+@Service
+public class TaxInvoiceDetailBiz extends BusinessBiz<TaxInvoiceDetailMapper,TaxInvoiceDetail> {
+
+    @Autowired
+    TaxInvoiceDetailMapper taxInvoiceDetailMapper;
+
+    public void insertTaxInvoiceDetailList(List<TaxInvoiceDetail> taxInvoiceDetailList){
+
+    }
+}

@@ -1,0 +1,39 @@
+package com.bwcloud.billingCenter.obtainData.obtaionService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * Created by bs on 2018/4/4.
+ */
+@Service
+public interface ObtainDataService {
+    /**
+     * 获取服务器基本信息
+     * @param json
+     * @return
+     */
+    String obtainSrver(String json);
+
+    /**
+     * 获取监控管理数据接
+     * @param json
+     * @return
+     */
+    String obtainSupervision(String json);
+    // String
+
+    /**
+     * 获取税种税目信息
+     * @param json
+     * @return
+     */
+    String obtainTaxCategory(String json);
+
+    /**
+     * 查询当前未开票号
+     * @param json
+     * @return
+     */
+    String obtainCurrentNoTicket(String json);
+
+}

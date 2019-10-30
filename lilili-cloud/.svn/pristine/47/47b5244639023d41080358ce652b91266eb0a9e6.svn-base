@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.TaxRiskInfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.TaxRiskInfo" id="taxRiskInfoMap">
+        <result property="id" column="id"/>
+        <result property="dataMonth" column="data_month"/>
+        <result property="valueFlag" column="value_flag"/>
+        <result property="redAmt" column="red_amt"/>
+        <result property="invalAmt" column="inval_amt"/>
+        <result property="redCnt" column="red_cnt"/>
+        <result property="invalCnt" column="inval_cnt"/>
+        <result property="sameSupAmt" column="same_sup_amt"/>
+        <result property="intCntRate" column="int_cnt_rate"/>
+        <result property="intAmtRate" column="int_amt_rate"/>
+        <result property="createTime" column="create_time"/>
+        <result property="supId" column="sup_id"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+</mapper>

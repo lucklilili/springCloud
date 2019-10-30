@@ -1,0 +1,59 @@
+package com.bwcloud.finance.center.servlet;
+
+import com.github.wxiaoqi.security.common.exception.base.BusinessException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * @author dz
+ *         Created by Administrator on 2018/3/31.
+ */
+@WebServlet(urlPatterns = "")
+@Slf4j
+public class Servlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("-----------doGet----------------");
+        doPost(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("-----------doPost----------------");
+        String result = null;
+        String xml = "";
+        String id = "";
+        try {
+            // 接收报文并解密，解析，然后进行相应操作
+            xml = IOUtils.toString(req.getInputStream(), "utf-8");
+            log.info("客户==>>接口传入报文为：" + xml);
+        } catch (BusinessException be) {
+
+        } catch (IOException e) {
+            log.error("客户==>>接收接口传入报文IO异常：" + e);
+        } catch (Exception e) {
+            log.error("{}操作失败;失败原因：{}", id, e);
+        }
+        // 返回报文
+        log.info("客户==>>接口返回报文:" + result);
+        resp.setContentType("text/plain;charset=utf-8");
+        resp.setCharacterEncoding("UTF-8");
+        try {
+            resp.getWriter().write(result);
+        } catch (IOException e) {
+            log.error("http返回报文出错：" + e);
+        }
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
+}

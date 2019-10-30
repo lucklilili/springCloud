@@ -1,0 +1,64 @@
+package com.bwcloud.billingCenter.utlis;
+
+import java.util.Collection;
+import java.util.Map;
+
+/**
+ * 共用的校验
+ * Created by guodong on 2018/3/27.
+ */
+public class CheckHelper {
+    /**
+     * 为空或者为null则返回true
+     *
+     * @param pObj
+     * @return
+     */
+    public static boolean isEmpty(Object pObj) {
+        if (pObj == null)
+            return true;
+        if (pObj == "")
+            return true;
+        if (pObj instanceof String) {
+            if (((String) pObj).length() == 0) {
+                return true;
+            }
+        } else if (pObj instanceof Collection) {
+            if (((Collection) pObj).size() == 0) {
+                return true;
+            }
+        } else if (pObj instanceof Map) {
+            if (((Map) pObj).size() == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 不为空或者不为null则返回true
+     *
+     * @param pObj
+     * @return
+     */
+    public static boolean isNotEmpty(Object pObj) {
+        if (pObj == null)
+            return false;
+        if (pObj == "")
+            return false;
+        if (pObj instanceof String) {
+            if (((String) pObj).length() == 0) {
+                return false;
+            }
+        } else if (pObj instanceof Collection) {
+            if (((Collection) pObj).size() == 0) {
+                return false;
+            }
+        } else if (pObj instanceof Map) {
+            if (((Map) pObj).size() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}

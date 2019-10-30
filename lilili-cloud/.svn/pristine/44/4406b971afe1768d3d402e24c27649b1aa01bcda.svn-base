@@ -1,0 +1,93 @@
+package com.bwcloud.billingCenter.rubricInfoTable.queryService.impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.rubricInfoTable.queryService.InfoTableQueryService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ * InfoTableQueryService 接口的实现类
+ * Created by bs on 2018/4/12.
+ */
+public class InfoTableQueryServiceImpl implements InfoTableQueryService{
+    /**
+     * 查询已申请的红字信息表。
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String informationQuery(String string) {
+        String xml = informationQuery2Xml(string);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+
+    String informationQuery2Xml(String string) {
+        try {
+            JSONObject json = JSONObject.parseObject(string);
+            JSONObject business = json.getJSONObject("business");
+            String id = business.getString("id");
+            String comment = business.getString("comment");
+            JSONObject body = business.getJSONObject("body");
+            String yylxdm = body.getString("yylxdm");
+            String sqlsh = body.getString("sqlsh");
+            String xxbbh = body.getString("xxbbh");
+            String yfpdm = body.getString("yfpdm");
+            String yfphm = body.getString("yfphm");
+            String fhqxx = body.getString("fhqxx");
+
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"");
+            stringBuffer.append(id);
+            stringBuffer.append("\" comment=\"");
+            stringBuffer.append(comment);
+            stringBuffer.append("\">\n\t<body yylxdm=\"");
+            stringBuffer.append(yylxdm);
+            stringBuffer.append("\">\n\t\t<sqlsh>");
+            stringBuffer.append(sqlsh);
+            stringBuffer.append("</sqlsh>");
+            stringBuffer.append("\n\t\t<xxbbh>");
+            stringBuffer.append(xxbbh);
+            stringBuffer.append("</xxbbh>");
+            stringBuffer.append("\n\t\t<yfpdm>");
+            stringBuffer.append(yfpdm);
+            stringBuffer.append("</yfpdm>");
+            stringBuffer.append("\n\t\t<yfphm>");
+            stringBuffer.append(yfphm);
+            stringBuffer.append("</yfphm>");
+            stringBuffer.append("\n\t\t<fhqxx>");
+            stringBuffer.append(fhqxx);
+            stringBuffer.append("</fhqxx>");
+            stringBuffer.append("\n\t</body>");
+            stringBuffer.append("\n</business>");
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "json转xml，转换失败！";
+        }
+    }
+
+    /**
+     * 向税控服务器发送xml
+     * @param string
+     * @return
+     */
+    String sendXml(String string){
+        return "";
+    }
+
+    /**
+     * xml 转 json
+     * @param receiveXml
+     * @return
+     */
+    String xml2Json(String receiveXml){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

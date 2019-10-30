@@ -1,0 +1,43 @@
+package com.bwcloud.finance.loan.timer;
+
+import com.bwcloud.finance.loan.biz.LoanMerchantBiz;
+import com.bwcloud.finance.loan.entity.LoanMerchantInfo;
+import com.github.wxiaoqi.security.common.util.HttpUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+
+import java.net.ConnectException;
+import java.util.List;
+
+/**
+ * 发票上传timer
+ *
+ * @author dz
+ *         Created by Administrator on 2018/3/26.
+ */
+@Slf4j
+public class invoiceUploadTimer {
+
+    @Autowired
+    LoanMerchantBiz loanMerchantBiz;
+
+    @Scheduled(cron = "0 0/1 * * * ?")
+    public void invoiceUpload() {
+        log.info("上传数据检查定时器开始");
+        List<LoanMerchantInfo> list = loanMerchantBiz.selectListAll();
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                LoanMerchantInfo loanMerchantInfo = list.get(i);
+                String nsrsbh = loanMerchantInfo.getNsrsbh();
+                try {
+                    HttpUtil.httpRequestHonghao("","","");
+                } catch (ConnectException ce) {
+                    log.error("Weixin server connection timed out." + ce);
+                } catch (Exception e) {
+                    log.error("https request error:{}" + e);
+                }
+            }
+        }
+    }
+}

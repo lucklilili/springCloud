@@ -1,0 +1,21 @@
+package com.bwcloud.billingCenter.invoiceQuery.invoiceQueryService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * Created by bs on 2018/3/29.
+ *
+ * 该接口用于发票查询
+ */
+@Service
+public interface InvoiceQueryService {
+
+    /**
+     *
+     * @param json 接收发票查询传来的json字符串
+     * @return     返回发票查询的json
+     */
+    String invoiceQuery(String json);
+
+
+}

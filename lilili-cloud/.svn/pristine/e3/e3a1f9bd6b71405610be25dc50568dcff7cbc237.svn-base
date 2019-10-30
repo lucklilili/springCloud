@@ -1,0 +1,22 @@
+package com.github.wxiaoqi.security.common.util;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+/**
+ * @author  dongzhen
+ */
+public class MD5Util {
+	public static String HongHaoSignMd5(String text) throws UnsupportedEncodingException,
+			NoSuchAlgorithmException {
+		byte[] bts = text.getBytes("UTF-8");
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		byte[] bts_hash = md.digest(bts);
+		StringBuffer buf = new StringBuffer();
+		for (byte b : bts_hash) {
+			buf.append(String.format("%02x", b & 0xff));
+		}
+		return buf.toString();
+	}
+}

@@ -1,0 +1,26 @@
+package com.bwcloud.finance.center.biz;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bwcloud.finance.center.entity.PjZzszFpmxzb;
+import com.bwcloud.finance.center.mapper.PjZzszFpmxzbMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+import java.util.List;
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-02 14:21:14
+ * @email 463540703@qq.com
+ */
+@Service
+public class PjZzszFpmxzbBiz extends BusinessBiz<PjZzszFpmxzbMapper, PjZzszFpmxzb> {
+
+    @Autowired
+    PjZzszFpmxzbMapper pjZzszFpmxzbMapper;
+
+    public int insertInvoiceDetailList(List<PjZzszFpmxzb> invoiceDetailList) {
+        return pjZzszFpmxzbMapper.insertInvoiceDetailList(invoiceDetailList);
+    }
+}

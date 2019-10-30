@@ -1,0 +1,149 @@
+package com.bwcloud.finance.center.biz;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.bwcloud.finance.center.entity.LoanDeviceInfo;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.bwcloud.finance.center.entity.PjJsfpFpmx;
+import com.bwcloud.finance.center.entity.PjZzszFpmx;
+import com.bwcloud.finance.center.mapper.LoanDeviceMapper;
+import com.bwcloud.finance.center.mapper.LoanMerchantMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+import com.github.wxiaoqi.security.common.constant.BwCloudConstants;
+import com.github.wxiaoqi.security.common.msg.ResultModel;
+import com.github.wxiaoqi.security.common.util.StringHelper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+@Service
+@Slf4j
+public class LoanDeviceBiz extends BusinessBiz<LoanDeviceMapper, LoanDeviceInfo> {
+    @Autowired
+    LoanDeviceMapper loanDeviceMapper;
+
+    @Autowired
+    PjZzszFpmxBiz pjZzszFpmxBiz;
+
+    @Autowired
+    PjZzspFpmxBiz pjZzspFpmxBiz;
+
+    @Autowired
+    PjZzspdzFpmxBiz pjZzspdzFpmxBiz;
+
+    @Autowired
+    PjJsfpFpmxBiz pjJsfpFpmxBiz;
+
+    public LoanDeviceInfo getLoanDeviceInfo(String nsrsbh, String sksbbh) {
+        return loanDeviceMapper.selectDeviceInfo(nsrsbh, sksbbh);
+    }
+
+    public ResultModel insertDeviceInfo(String deviceInfo) {
+        ResultModel resultModel = new ResultModel();
+        try {
+            LoanDeviceInfo loanDeviceInfo = JSON.parseObject(deviceInfo, new TypeReference<LoanDeviceInfo>() {
+            });
+            LoanDeviceInfo device = loanDeviceMapper.selectDeviceInfo(loanDeviceInfo.getNsrsbh(), loanDeviceInfo.getSksbbh());
+            if (StringHelper.isEmpty(device)) {
+                loanDeviceMapper.insert(loanDeviceInfo);
+            } else {
+                loanDeviceMapper.updateByPrimaryKey(loanDeviceInfo);
+            }
+        } catch (Exception e) {
+            log.info("服务器异常!", e);
+            resultModel.setCode(9999);
+            resultModel.setMsg("服务器异常!" + e);
+        }
+        return resultModel;
+    }
+
+    public ResultModel queryInvoiceUploadDate(String merchantInfo) {
+        JSONObject merchantJson = JSONObject.parseObject(merchantInfo);
+        ResultModel<JSONObject> resultModel = new ResultModel<>();
+        try {
+            String nsrsbh = (String) merchantJson.get("nsrsbh");
+            String sksbbh = merchantJson.getString("sksbbh");
+            String fplxdm = merchantJson.getString("fplxdm");
+            JSONObject data = new JSONObject();
+            List<LoanDeviceInfo> loanDeviceInfos = loanDeviceMapper.selectDeviceList(nsrsbh, sksbbh);
+            data.put("nsrsbh", nsrsbh);
+            data.put("sksb_count", loanDeviceInfos.size());
+            if (StringHelper.isEmpty(loanDeviceInfos)) {
+                data.put("sksb", "");
+            } else {
+                JSONArray deviceList = new JSONArray();
+                for (int i = 0; i < loanDeviceInfos.size(); i++) {
+                    JSONObject deviceInfo = new JSONObject();
+                    LoanDeviceInfo loanDeviceInfo = loanDeviceInfos.get(i);
+                    deviceInfo.put("sksbbh",loanDeviceInfo.getSksbbh());
+                    if (StringHelper.isEmpty(fplxdm)) {
+                        String[] fplxdmStr = loanDeviceInfo.getFplxdm().split(",");
+                        deviceInfo.put("fplx_count",fplxdmStr.length);
+                        JSONArray fplxdmList = new JSONArray();
+                        for (int j=0;j<fplxdmStr.length;j++){
+                            JSONObject fplxdmInfo = new JSONObject();
+                            fplxdm = fplxdmStr[j];
+                            JSONObject invoiceInfo = queryInvoice(nsrsbh,loanDeviceInfo.getSksbbh(),fplxdm);
+                            fplxdmInfo.put("fplxdm",fplxdm);
+                            fplxdmInfo.put("fpsc_qsrq",invoiceInfo.get("fpsc_qsrq"));
+                            fplxdmInfo.put("fpsc_jzrq",invoiceInfo.get("fpsc_jzrq"));
+                            fplxdmList.add(invoiceInfo);
+                        }
+                        deviceInfo.put("fplx",fplxdmList);
+                    }else {
+                        deviceInfo.put("fplx_count",1);
+                        JSONArray fplxdmList = new JSONArray();
+                        JSONObject fplxdmInfo = new JSONObject();
+                        JSONObject invoiceInfo = queryInvoice(nsrsbh,loanDeviceInfo.getSksbbh(),fplxdm);
+                        fplxdmInfo.put("fplxdm",fplxdm);
+                        fplxdmInfo.put("fpsc_qsrq",invoiceInfo.get("fpsc_qsrq"));
+                        fplxdmInfo.put("fpsc_jzrq",invoiceInfo.get("fpsc_jzrq"));
+                        fplxdmList.add(invoiceInfo);
+                        deviceInfo.put("fplx",fplxdmList);
+                    }
+                    deviceList.add(deviceInfo);
+                }
+                data.put("sksb", deviceList);
+            }
+            resultModel.setData(data);
+        } catch (Exception e) {
+            resultModel.setCode(9999);
+            resultModel.setMsg("服务器异常!" + e);
+            log.info("设备查询发票上传日期，服务器异常：" + e);
+        }
+        return resultModel;
+    }
+
+    private JSONObject queryInvoice(String nsrsbh,String sksbbh,String fplxdm){
+        Object object = null;
+        if (BwCloudConstants.ZZS_ZY_FP.equals(fplxdm)) {
+            object = pjZzszFpmxBiz.getPjZzszFpmx(nsrsbh, sksbbh, fplxdm);
+        } else if (BwCloudConstants.ZZS_PT_FP.equals(fplxdm)) {
+            object = pjZzspFpmxBiz.getPjZzspFpmx(nsrsbh, sksbbh, fplxdm);
+        } else if (BwCloudConstants.DZ_FP.equals(fplxdm)) {
+            object = pjZzspdzFpmxBiz.getPjZzspdzFpmx(nsrsbh, sksbbh, fplxdm);
+        } else if (BwCloudConstants.JS_FP.equals(fplxdm)) {
+            object = pjJsfpFpmxBiz.getPjJsfpFpmx(nsrsbh, sksbbh, fplxdm);
+        } else if (BwCloudConstants.JDC_FP.equals(fplxdm)) {
+            object = pjZzszFpmxBiz.getPjZzszFpmx(nsrsbh, sksbbh, fplxdm);
+        } else if (BwCloudConstants.ESC_FP.equals(fplxdm)) {
+            object = pjZzszFpmxBiz.getPjZzszFpmx(nsrsbh, sksbbh, fplxdm);
+        } else if (BwCloudConstants.HY_FP.equals(fplxdm)) {
+            object = pjZzszFpmxBiz.getPjZzszFpmx(nsrsbh, sksbbh, fplxdm);
+        } else if (BwCloudConstants.SCSY_FP.equals(fplxdm)) {
+            object = pjZzszFpmxBiz.getPjZzszFpmx(nsrsbh, sksbbh, fplxdm);
+        }
+        JSONObject json = (JSONObject) JSON.toJSON(object);
+        return json;
+    }
+}

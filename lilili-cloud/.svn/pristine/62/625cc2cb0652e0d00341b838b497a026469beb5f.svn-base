@@ -1,0 +1,17 @@
+package com.bwcloud.billingCenter.rubricInfoTable.uploadService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 红字信息表上传接口
+ * Created by bs on 2018/4/10.
+ */
+@Service
+public interface UploadService {
+    /**
+     * 通过红字信息表上传接口将企业需要开具红字发票的信息上传到税务系统中
+     * @param json
+     * @return
+     */
+    String rubricInfoTableUpload(String json);
+}

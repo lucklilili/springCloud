@@ -1,0 +1,44 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.util.ArrayList;
+
+/**
+ * @author dz
+ */
+public class TaxDataDetailUploadReq {
+
+	@JSONField(name = "base_info", ordinal = 1)
+	private TaxDataUploadBaseInfo baseInfo;
+
+	@JSONField(name = "tran_list", ordinal = 2)
+	private ArrayList<TaxDataUploadTranInfo> tranList;
+
+	@JSONField(name = "input_list", ordinal = 3)
+	private ArrayList<TaxDataUploadInputInfo> inputList;
+
+	public TaxDataUploadBaseInfo getBaseInfo() {
+		return baseInfo;
+	}
+
+	public void setBaseInfo(TaxDataUploadBaseInfo baseInfo) {
+		this.baseInfo = baseInfo;
+	}
+
+	public ArrayList<TaxDataUploadTranInfo> getTranList() {
+		return tranList;
+	}
+
+	public void setTranList(ArrayList<TaxDataUploadTranInfo> tranList) {
+		this.tranList = tranList;
+	}
+
+	public ArrayList<TaxDataUploadInputInfo> getInputList() {
+		return inputList;
+	}
+
+	public void setInputList(ArrayList<TaxDataUploadInputInfo> inputList) {
+		this.inputList = inputList;
+	}
+}

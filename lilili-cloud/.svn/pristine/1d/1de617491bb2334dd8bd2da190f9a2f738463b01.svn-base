@@ -1,0 +1,16 @@
+package com.bwcloud.billingCenter.invoiceQuery.openInvoceTermainalInfoQuery;
+
+/**
+ * 查询一个核心板下已创建的终端信息，查询一个开票终端信息。
+ * Created by bs on 2018/4/13.
+ */
+public interface OpenInvoiceTerminalInfoQueryService {
+
+    /**
+     *查询一个核心板下已创建的终端信息，
+     * 也可通过传入终端代码查询一个开票终端信息。
+     * @param json
+     * @return
+     */
+    String openInvoiceTerminalInfoQuery(String json);
+}

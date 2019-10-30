@@ -1,0 +1,33 @@
+package com.bwcloud.finance.center.biz;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.entity.LoanDetail;
+import com.bwcloud.finance.center.mapper.LoanDetailMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+import java.util.List;
+
+/**
+ * @author Mr.AG
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+@Service
+public class LoanDetailBiz extends BusinessBiz<LoanDetailMapper, LoanDetail> {
+
+    @Autowired
+    LoanDetailMapper loanDetailMapper;
+
+    public List<LoanDetail> loanDetailList(String json) {
+        JSONObject loanDetail = JSONObject.parseObject(json);
+        String nsrsbh = (String) loanDetail.get("nsrsbh");
+        String nsrmc = (String) loanDetail.get("nsrmc");
+        String loan_start_date = (String) loanDetail.get("start_date");
+        String loan_end_date = (String) loanDetail.get("end_date");
+        String cont_status = (String) loanDetail.get("cont_status");
+        return loanDetailMapper.selectLoanDetailList(nsrsbh, nsrmc, loan_start_date, loan_end_date, cont_status);
+    }
+}

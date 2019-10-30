@@ -1,0 +1,17 @@
+package com.bwcloud.billingCenter.invoiceQuery.invoiceQueryCountService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 发票查询统计接口。
+ * Created by bs on 2018/4/12.
+ */
+@Service
+public interface InvoiceQueryCountService {
+    /**
+     * 可以查询输入终端的正数、废票、红票的数量已经金额等。
+     * @param json
+     * @return
+     */
+    String invoiceQueryCount(String json);
+}

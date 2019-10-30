@@ -1,0 +1,575 @@
+package com.bwcloud.device.center.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-11 19:53:12
+ * @email 463540703@qq.com
+ */
+@Table(name = "tax_device_info")
+public class TaxDeviceInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    //
+    @Id
+    private String id;
+
+    //设备ID
+    @Column(name = "device_id")
+    private String deviceId;
+
+    //税控设备类型
+    @Column(name = "tax_device_type")
+    private String taxDeviceType;
+
+    //纳税人识别号
+    @Column(name = "nsrsbh")
+    private String nsrsbh;
+
+    //纳税人名称
+    @Column(name = "nsrmc")
+    private String nsrmc;
+
+    //税控设备编号
+    @Column(name = "sbbh")
+    private String sbbh;
+
+    //机器编号
+    @Column(name = "jqbh")
+    private String jqbh;
+
+    //税务机关代码
+    @Column(name = "swjgdm")
+    private String swjgdm;
+
+    //税务机关名称
+    @Column(name = "swjgmc")
+    private String swjgmc;
+
+    //发票类型代码
+    @Column(name = "fplxdm")
+    private String fplxdm;
+
+    //税率
+    @Column(name = "sl")
+    private String sl;
+
+    //发票票样
+    @Column(name = "fppy")
+    private String fppy;
+
+    //当前时钟
+    @Column(name = "dqsz")
+    private String dqsz;
+
+    //启用时间
+    @Column(name = "qysj")
+    private String qysj;
+
+    //版本号
+    @Column(name = "bbh")
+    private String bbh;
+
+    //开票机号
+    @Column(name = "kpjh")
+    private String kpjh;
+
+    //企业类型
+    @Column(name = "qylx")
+    private String qylx;
+
+    //保留信息
+    @Column(name = "blxx")
+    private String blxx;
+
+    //其它扩展信息
+    @Column(name = "qtkzxx")
+    private String qtkzxx;
+
+    //共享主机名称
+    @Column(name = "gxjmc")
+    private String gxjmc;
+
+    //主板类型
+    @Column(name = "zblx")
+    private String zblx;
+
+    //主板编号
+    @Column(name = "zbbh")
+    private String zbbh;
+
+    //串口端口号
+    @Column(name = "uarth")
+    private String uarth;
+
+    //USB通道容量
+    @Column(name = "usbrl")
+    private String usbrl;
+
+    //USB通道号
+    @Column(name = "usbbh")
+    private String usbbh;
+
+    //扩展字段1
+    @Column(name = "kzxx1")
+    private String kzxx1;
+
+    //扩展字段2
+    @Column(name = "kzxx2")
+    private String kzxx2;
+
+    //扩展字段3
+    @Column(name = "kzxx3")
+    private String kzxx3;
+
+    //扩展字段4
+    @Column(name = "kzxx4")
+    private String kzxx4;
+
+    //扩展字段5
+    @Column(name = "kzxx5")
+    private String kzxx5;
+
+    //创建时间
+    @Column(name = "create_date")
+    private String createDate;
+
+
+    /**
+     * 设置：
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * 设置：设备ID
+     */
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    /**
+     * 获取：设备ID
+     */
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    /**
+     * 设置：税控设备类型
+     */
+    public void setTaxDeviceType(String taxDeviceType) {
+        this.taxDeviceType = taxDeviceType;
+    }
+
+    /**
+     * 获取：税控设备类型
+     */
+    public String getTaxDeviceType() {
+        return taxDeviceType;
+    }
+
+    /**
+     * 设置：纳税人识别号
+     */
+    public void setNsrsbh(String nsrsbh) {
+        this.nsrsbh = nsrsbh;
+    }
+
+    /**
+     * 获取：纳税人识别号
+     */
+    public String getNsrsbh() {
+        return nsrsbh;
+    }
+
+    /**
+     * 设置：纳税人名称
+     */
+    public void setNsrmc(String nsrmc) {
+        this.nsrmc = nsrmc;
+    }
+
+    /**
+     * 获取：纳税人名称
+     */
+    public String getNsrmc() {
+        return nsrmc;
+    }
+
+    /**
+     * 设置：税控设备编号
+     */
+    public void setSbbh(String sbbh) {
+        this.sbbh = sbbh;
+    }
+
+    /**
+     * 获取：税控设备编号
+     */
+    public String getSbbh() {
+        return sbbh;
+    }
+
+    /**
+     * 设置：机器编号
+     */
+    public void setJqbh(String jqbh) {
+        this.jqbh = jqbh;
+    }
+
+    /**
+     * 获取：机器编号
+     */
+    public String getJqbh() {
+        return jqbh;
+    }
+
+    /**
+     * 设置：税务机关代码
+     */
+    public void setSwjgdm(String swjgdm) {
+        this.swjgdm = swjgdm;
+    }
+
+    /**
+     * 获取：税务机关代码
+     */
+    public String getSwjgdm() {
+        return swjgdm;
+    }
+
+    /**
+     * 设置：税务机关名称
+     */
+    public void setSwjgmc(String swjgmc) {
+        this.swjgmc = swjgmc;
+    }
+
+    /**
+     * 获取：税务机关名称
+     */
+    public String getSwjgmc() {
+        return swjgmc;
+    }
+
+    /**
+     * 设置：发票类型代码
+     */
+    public void setFplxdm(String fplxdm) {
+        this.fplxdm = fplxdm;
+    }
+
+    /**
+     * 获取：发票类型代码
+     */
+    public String getFplxdm() {
+        return fplxdm;
+    }
+
+    /**
+     * 设置：税率
+     */
+    public void setSl(String sl) {
+        this.sl = sl;
+    }
+
+    /**
+     * 获取：税率
+     */
+    public String getSl() {
+        return sl;
+    }
+
+    /**
+     * 设置：发票票样
+     */
+    public void setFppy(String fppy) {
+        this.fppy = fppy;
+    }
+
+    /**
+     * 获取：发票票样
+     */
+    public String getFppy() {
+        return fppy;
+    }
+
+    /**
+     * 设置：当前时钟
+     */
+    public void setDqsz(String dqsz) {
+        this.dqsz = dqsz;
+    }
+
+    /**
+     * 获取：当前时钟
+     */
+    public String getDqsz() {
+        return dqsz;
+    }
+
+    /**
+     * 设置：启用时间
+     */
+    public void setQysj(String qysj) {
+        this.qysj = qysj;
+    }
+
+    /**
+     * 获取：启用时间
+     */
+    public String getQysj() {
+        return qysj;
+    }
+
+    /**
+     * 设置：版本号
+     */
+    public void setBbh(String bbh) {
+        this.bbh = bbh;
+    }
+
+    /**
+     * 获取：版本号
+     */
+    public String getBbh() {
+        return bbh;
+    }
+
+    /**
+     * 设置：开票机号
+     */
+    public void setKpjh(String kpjh) {
+        this.kpjh = kpjh;
+    }
+
+    /**
+     * 获取：开票机号
+     */
+    public String getKpjh() {
+        return kpjh;
+    }
+
+    /**
+     * 设置：企业类型
+     */
+    public void setQylx(String qylx) {
+        this.qylx = qylx;
+    }
+
+    /**
+     * 获取：企业类型
+     */
+    public String getQylx() {
+        return qylx;
+    }
+
+    /**
+     * 设置：保留信息
+     */
+    public void setBlxx(String blxx) {
+        this.blxx = blxx;
+    }
+
+    /**
+     * 获取：保留信息
+     */
+    public String getBlxx() {
+        return blxx;
+    }
+
+    /**
+     * 设置：其它扩展信息
+     */
+    public void setQtkzxx(String qtkzxx) {
+        this.qtkzxx = qtkzxx;
+    }
+
+    /**
+     * 获取：其它扩展信息
+     */
+    public String getQtkzxx() {
+        return qtkzxx;
+    }
+
+    /**
+     * 设置：共享主机名称
+     */
+    public void setGxjmc(String gxjmc) {
+        this.gxjmc = gxjmc;
+    }
+
+    /**
+     * 获取：共享主机名称
+     */
+    public String getGxjmc() {
+        return gxjmc;
+    }
+
+    /**
+     * 设置：主板类型
+     */
+    public void setZblx(String zblx) {
+        this.zblx = zblx;
+    }
+
+    /**
+     * 获取：主板类型
+     */
+    public String getZblx() {
+        return zblx;
+    }
+
+    /**
+     * 设置：主板编号
+     */
+    public void setZbbh(String zbbh) {
+        this.zbbh = zbbh;
+    }
+
+    /**
+     * 获取：主板编号
+     */
+    public String getZbbh() {
+        return zbbh;
+    }
+
+    /**
+     * 设置：串口端口号
+     */
+    public void setUarth(String uarth) {
+        this.uarth = uarth;
+    }
+
+    /**
+     * 获取：串口端口号
+     */
+    public String getUarth() {
+        return uarth;
+    }
+
+    /**
+     * 设置：USB通道容量
+     */
+    public void setUsbrl(String usbrl) {
+        this.usbrl = usbrl;
+    }
+
+    /**
+     * 获取：USB通道容量
+     */
+    public String getUsbrl() {
+        return usbrl;
+    }
+
+    /**
+     * 设置：USB通道号
+     */
+    public void setUsbbh(String usbbh) {
+        this.usbbh = usbbh;
+    }
+
+    /**
+     * 获取：USB通道号
+     */
+    public String getUsbbh() {
+        return usbbh;
+    }
+
+    /**
+     * 设置：扩展字段1
+     */
+    public void setKzxx1(String kzxx1) {
+        this.kzxx1 = kzxx1;
+    }
+
+    /**
+     * 获取：扩展字段1
+     */
+    public String getKzxx1() {
+        return kzxx1;
+    }
+
+    /**
+     * 设置：扩展字段2
+     */
+    public void setKzxx2(String kzxx2) {
+        this.kzxx2 = kzxx2;
+    }
+
+    /**
+     * 获取：扩展字段2
+     */
+    public String getKzxx2() {
+        return kzxx2;
+    }
+
+    /**
+     * 设置：扩展字段3
+     */
+    public void setKzxx3(String kzxx3) {
+        this.kzxx3 = kzxx3;
+    }
+
+    /**
+     * 获取：扩展字段3
+     */
+    public String getKzxx3() {
+        return kzxx3;
+    }
+
+    /**
+     * 设置：扩展字段4
+     */
+    public void setKzxx4(String kzxx4) {
+        this.kzxx4 = kzxx4;
+    }
+
+    /**
+     * 获取：扩展字段4
+     */
+    public String getKzxx4() {
+        return kzxx4;
+    }
+
+    /**
+     * 设置：扩展字段5
+     */
+    public void setKzxx5(String kzxx5) {
+        this.kzxx5 = kzxx5;
+    }
+
+    /**
+     * 获取：扩展字段5
+     */
+    public String getKzxx5() {
+        return kzxx5;
+    }
+
+    /**
+     * 设置：创建时间
+     */
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    /**
+     * 获取：创建时间
+     */
+    public String getCreateDate() {
+        return createDate;
+    }
+}

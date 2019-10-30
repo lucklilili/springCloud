@@ -1,0 +1,18 @@
+package com.bwcloud.billingCenter.invoiceQuery.invoiceStockQuery;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 查询税控服务器中的发票领购库存情况，
+ * 包括发票库中未分发的发票和发票池中已分发未开具的发票
+ * Created by bs on 2018/4/12.
+ */
+@Service
+public interface InvoicStockQueryService {
+    /**
+     * 查询税控服务器中的发票领购库存情况
+     * @param json
+     * @return
+     */
+    String invoiceStockQuery(String json);
+}

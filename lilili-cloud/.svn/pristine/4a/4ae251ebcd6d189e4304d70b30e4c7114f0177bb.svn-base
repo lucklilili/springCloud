@@ -1,0 +1,535 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-02 14:21:14
+ * @email 463540703@qq.com
+ */
+@Table(name = "pj_zzsz_fpmxzb")
+public class PjZzszFpmxzb implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private String id;
+
+    @Column(name = "mxid")
+    private String mxid;
+
+    /**
+     * 发票代码
+     */
+    @Column(name = "fpdm")
+    private String fpdm;
+
+    /**
+     * 发票号码
+     */
+    @Column(name = "fphm")
+    private String fphm;
+
+    /**
+     * 发票明细行号
+     */
+    @Column(name = "fpmxxh")
+    private int fpmxxh;
+
+    /**
+     * 销售单据编号
+     */
+    @Column(name = "xsdjbh")
+    private String xsdjbh;
+
+    /**
+     * 发票行性质
+     */
+    @Column(name = "fphxz")
+    private BigDecimal fphxz;
+
+    /**
+     * 金额
+     */
+    @Column(name = "je")
+    private BigDecimal je;
+
+    /**
+     * 税率
+     */
+    @Column(name = "sl")
+    private BigDecimal sl;
+
+    /**
+     * 税额
+     */
+    @Column(name = "se")
+    private BigDecimal se;
+
+    /**
+     * 商品名称
+     */
+    @Column(name = "spmc")
+    private String spmc;
+
+    /**
+     * 商品税目
+     */
+    @Column(name = "spsm")
+    private String spsm;
+
+    /**
+     * 规格型号
+     */
+    @Column(name = "ggxh")
+    private String ggxh;
+
+    /**
+     * 单位
+     */
+    @Column(name = "dw")
+    private String dw;
+
+    /**
+     * 商品数量
+     */
+    @Column(name = "spsl")
+    private BigDecimal spsl;
+
+    /**
+     * 商品单价
+     */
+    @Column(name = "spdj")
+    @JSONField(name = "dj")
+    private BigDecimal spdj;
+
+    /**
+     * 含税标志
+     */
+    @Column(name = "hsbz")
+    private String hsbz;
+
+    /**
+     * 商品编码
+     */
+    @Column(name = "spbm")
+    private String spbm;
+
+    /**
+     * 单据明细序号
+     */
+    @Column(name = "djmxxh")
+    private BigDecimal djmxxh;
+
+    /**
+     * 版本
+     */
+    @Column(name = "bb")
+    private String bb;
+
+    /**
+     * 纳税人自行编码
+     */
+    @Column(name = "zxbm")
+    private String zxbm;
+
+    /**
+     * 优惠政策标识
+     */
+    @Column(name = "yhzcbs")
+    private String yhzcbs;
+
+    /**
+     * 零税率标识
+     */
+    @Column(name = "lslbs")
+    private String lslbs;
+
+    /**
+     * 增值税特殊管理
+     */
+    @Column(name = "zzstsgl")
+    private String zzstsgl;
+
+    /**
+     * 开票日期
+     */
+    @Column(name = "kprq")
+    private String kprq;
+
+    /**
+     * 机器编号
+     */
+    @Column(name = "jqbh")
+    private String jqbh;
+
+
+    /**
+     * 设置：
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setMxid(String mxid) {
+        this.mxid = mxid;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getMxid() {
+        return mxid;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setFpdm(String fpdm) {
+        this.fpdm = fpdm;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getFpdm() {
+        return fpdm;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setFphm(String fphm) {
+        this.fphm = fphm;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getFphm() {
+        return fphm;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setFpmxxh(int fpmxxh) {
+        this.fpmxxh = fpmxxh;
+    }
+
+    /**
+     * 获取：
+     */
+    public int getFpmxxh() {
+        return fpmxxh;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setXsdjbh(String xsdjbh) {
+        this.xsdjbh = xsdjbh;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getXsdjbh() {
+        return xsdjbh;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setFphxz(BigDecimal fphxz) {
+        this.fphxz = fphxz;
+    }
+
+    /**
+     * 获取：
+     */
+    public BigDecimal getFphxz() {
+        return fphxz;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setJe(BigDecimal je) {
+        this.je = je;
+    }
+
+    /**
+     * 获取：
+     */
+    public BigDecimal getJe() {
+        return je;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setSl(BigDecimal sl) {
+        this.sl = sl;
+    }
+
+    /**
+     * 获取：
+     */
+    public BigDecimal getSl() {
+        return sl;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setSe(BigDecimal se) {
+        this.se = se;
+    }
+
+    /**
+     * 获取：
+     */
+    public BigDecimal getSe() {
+        return se;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setSpmc(String spmc) {
+        this.spmc = spmc;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getSpmc() {
+        return spmc;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setSpsm(String spsm) {
+        this.spsm = spsm;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getSpsm() {
+        return spsm;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setGgxh(String ggxh) {
+        this.ggxh = ggxh;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getGgxh() {
+        return ggxh;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setDw(String dw) {
+        this.dw = dw;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getDw() {
+        return dw;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setSpsl(BigDecimal spsl) {
+        this.spsl = spsl;
+    }
+
+    /**
+     * 获取：
+     */
+    public BigDecimal getSpsl() {
+        return spsl;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setSpdj(BigDecimal spdj) {
+        this.spdj = spdj;
+    }
+
+    /**
+     * 获取：
+     */
+    public BigDecimal getSpdj() {
+        return spdj;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setHsbz(String hsbz) {
+        this.hsbz = hsbz;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getHsbz() {
+        return hsbz;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setSpbm(String spbm) {
+        this.spbm = spbm;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getSpbm() {
+        return spbm;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setDjmxxh(BigDecimal djmxxh) {
+        this.djmxxh = djmxxh;
+    }
+
+    /**
+     * 获取：
+     */
+    public BigDecimal getDjmxxh() {
+        return djmxxh;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setBb(String bb) {
+        this.bb = bb;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getBb() {
+        return bb;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setYhzcbs(String yhzcbs) {
+        this.yhzcbs = yhzcbs;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getYhzcbs() {
+        return yhzcbs;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setLslbs(String lslbs) {
+        this.lslbs = lslbs;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getLslbs() {
+        return lslbs;
+    }
+
+    /**
+     * 设置：
+     */
+    public void setZzstsgl(String zzstsgl) {
+        this.zzstsgl = zzstsgl;
+    }
+
+    /**
+     * 获取：
+     */
+    public String getZzstsgl() {
+        return zzstsgl;
+    }
+
+    /**
+     * 设置：纳税人自行编码
+     */
+    public void setZxbm(String zxbm) {
+        this.zxbm = zxbm;
+    }
+
+    /**
+     * 获取：纳税人自行编码
+     */
+    public String getZxbm() {
+        return zxbm;
+    }
+
+    /**
+     * 设置：开票日期
+     */
+    public void setKprq(String kprq) {
+        this.kprq = kprq;
+    }
+
+    /**
+     * 获取：开票日期
+     */
+    public String getKprq() {
+        return kprq;
+    }
+
+    /**
+     * 设置：机器编号
+     */
+    public void setJqbh(String jqbh) {
+        this.jqbh = jqbh;
+    }
+
+    /**
+     * 获取：机器编号
+     */
+    public String getJqbh() {
+        return jqbh;
+    }
+}

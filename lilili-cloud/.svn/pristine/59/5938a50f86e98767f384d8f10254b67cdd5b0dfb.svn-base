@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.billingCenter.module.mapper.YwDjMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.billingCenter.module.entity.YwDj" id="ywDjMap">
+        <result property="id" column="ID"/>
+        <result property="fpqqlsh" column="FPQQLSH"/>
+        <result property="yhxx" column="YHXX"/>
+        <result property="sksbbh" column="SKSBBH"/>
+        <result property="fplxdm" column="FPLXDM"/>
+        <result property="kplx" column="KPLX"/>
+        <result property="tspz" column="TSPZ"/>
+        <result property="fppy" column="FPPY"/>
+        <result property="xhdwsbh" column="XHDWSBH"/>
+        <result property="xhdwmc" column="XHDWMC"/>
+        <result property="xhdwdzdh" column="XHDWDZDH"/>
+        <result property="xhdwyhzh" column="XHDWYHZH"/>
+        <result property="ghdwmc" column="GHDWMC"/>
+        <result property="ghdwsbh" column="GHDWSBH"/>
+        <result property="ghdwdzdh" column="GHDWDZDH"/>
+        <result property="ghdwyhzh" column="GHDWYHZH"/>
+        <result property="qdbz" column="QDBZ"/>
+        <result property="zsfs" column="ZSFS"/>
+        <result property="hjje" column="HJJE"/>
+        <result property="hjse" column="HJSE"/>
+        <result property="jshj" column="JSHJ"/>
+        <result property="kce" column="KCE"/>
+        <result property="bz" column="BZ"/>
+        <result property="fhr" column="FHR"/>
+        <result property="skr" column="SKR"/>
+        <result property="kpr" column="KPR"/>
+        <result property="xxbbh" column="XXBBH"/>
+        <result property="yfpdm" column="YFPDM"/>
+        <result property="yfphm" column="YFPHM"/>
+        <result property="djrq" column="DJRQ"/>
+        <result property="czy" column="CZY"/>
+        <result property="djzt" column="DJZT"/>
+        <result property="jqbh" column="JQBH"/>
+        <result property="sbyy" column="SBYY"/>
+        <result property="kpzt" column="KPZT"/>
+        <result property="openid" column="OPENID"/>
+        <result property="ywlx" column="YWLX"/>
+        <result property="fpdm" column="FPDM"/>
+        <result property="fphm" column="FPHM"/>
+        <result property="zflx" column="ZFLX"/>
+        <result property="zfr" column="ZFR"/>
+        <result property="yl1" column="YL1"/>
+        <result property="yl2" column="YL2"/>
+        <result property="yl3" column="YL3"/>
+        <result property="yl4" column="YL4"/>
+        <result property="yl6" column="YL6"/>
+        <result property="yl7" column="YL7"/>
+        <result property="yl8" column="YL8"/>
+        <result property="yl10" column="YL10"/>
+        <result property="yl9" column="YL9"/>
+        <result property="yl5" column="YL5"/>
+        <result property="sprsjh" column="sprsjh"/>
+        <result property="bmbbbh" column="bmbbbh"/>
+        <result property="jsbh" column="jsbh"/>
+        <result property="forwardstatus" column="forwardstatus"/>
+        <result property="kpjzsj" column="kpjzsj"/>
+        <result property="fssj" column="fssj"/>
+        <result property="source" column="source"/>
+    </resultMap>
+
+</mapper>

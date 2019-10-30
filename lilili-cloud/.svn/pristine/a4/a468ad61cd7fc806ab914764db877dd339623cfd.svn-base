@@ -1,0 +1,18 @@
+package com.bwcloud.finance.loan.biz;
+
+import com.bwcloud.finance.loan.entity.LoanRepayPlan;
+import com.bwcloud.finance.loan.mapper.LoanRepayPlanMapper;
+import org.springframework.stereotype.Service;
+
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+/**
+ * 
+ *
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+@Service
+public class LoanRepayPlanBiz extends BusinessBiz<LoanRepayPlanMapper,LoanRepayPlan> {
+}

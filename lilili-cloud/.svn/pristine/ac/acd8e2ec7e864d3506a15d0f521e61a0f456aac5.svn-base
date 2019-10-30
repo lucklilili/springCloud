@@ -1,0 +1,15 @@
+package com.bwcloud.finance.center.mapper;
+
+import com.bwcloud.finance.center.entity.PjZzszFpmxzb;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-02 14:21:14
+ */
+public interface PjZzszFpmxzbMapper extends CommonMapper<PjZzszFpmxzb> {
+	
+}

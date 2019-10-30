@@ -1,0 +1,15 @@
+package com.bwcloud.billingCenter.invoicingInterfaces.invoicingBeanImp;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoicingInterfaces.invoicingBean.AbsInvoicing;
+
+/**
+ * Created by guodong on 2018/3/27.
+ */
+public class InvoicingImp_DZ extends AbsInvoicing {
+
+    @Override
+    public JSONObject invoicing(JSONObject jsonObject) {
+        return null;
+    }
+}

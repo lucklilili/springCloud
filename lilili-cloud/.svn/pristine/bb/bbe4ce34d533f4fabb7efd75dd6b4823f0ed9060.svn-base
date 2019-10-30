@@ -1,0 +1,68 @@
+/**
+ * Created by zhangjian_java on 2018/3/30.
+ */
+public class testxml {
+
+    String s="<business id=\"FPSCDZPT\">\n" +
+            "<body>\n" +
+            "<input>\n" +
+            "<fplxdm>026</fplxdm>\n" +
+            "<fpqqlsh>0000000033300</fpqqlsh>\n" +
+            "<kplx>0</kplx>\n" +
+            "<jsbh></jsbh>\n" +
+            "<fpdm>150003528888</fpdm>\n" +
+            "<fphm>11111223</fphm>\n" +
+            "<fpzt>00</fpzt>\n" +
+            "<zsfs>0</zsfs>\n" +
+            "<tspz>08</tspz>\n" +
+            "<kprq>20180330104040</kprq>\n" +
+            "<jqbh></jqbh>\n" +
+            "<sksbbh>499000126039</sksbbh>\n" +
+            "<skm><CATA>034*&lt;*5&gt;6347214727&gt;9-38/+&gt;&gt;3/*&gt;08&gt;+8-&lt;6**6&lt;16*+7*9+7&lt;2039*7*+-27201&lt;372*3&lt;350/8&gt;21&lt;556144&lt;&gt;/**0126421914+9+6054*</CATA></skm>\n" +
+            "<jym>10105840240673258118</jym>\n" +
+            "<xhdwsbh>500080000010003</xhdwsbh>\n" +
+            "<xhdwmc>卷式发票测试3</xhdwmc>\n" +
+            "<xhdwdzdh>北京市海淀区苏州街0001010-2122222</xhdwdzdh>\n" +
+            "<xhdwyhzh>北京银行</xhdwyhzh>\n" +
+            "<ghdwsbh></ghdwsbh>\n" +
+            "<ghdwmc>123456789012345678901</ghdwmc>\n" +
+            "<ghdwdzdh></ghdwdzdh>\n" +
+            "<ghdwyhzh></ghdwyhzh>\n" +
+            "<gflxxx>15001235365</gflxxx>\n" +
+            "<xflxxx>15001235365</xflxxx>\n" +
+            "<fyxm count=\"1\">\n" +
+            "<group xh=\"1\">\n" +
+            "<fphxz>0</fphxz>\n" +
+            "<spmc>邮件</spmc>\n" +
+            "<ggxh></ggxh>\n" +
+            "<dw></dw>\n" +
+            "<spsl></spsl>\n" +
+            "<dj></dj>\n" +
+            "<je>200</je>\n" +
+            "<sl>0.03</sl>\n" +
+            "<se>6</se>\n" +
+            "<hsbz>1</hsbz>\n" +
+            "<spbm></spbm>\n" +
+            "<zxbm></zxbm>\n" +
+            "<yhzcbs></yhzcbs>\n" +
+            "<lslbs></lslbs>\n" +
+            "<zzstsgl></zzstsgl>\n" +
+            "</group>\n" +
+            "</fyxm>\n" +
+            "<hjje>200</hjje>\n" +
+            "<hjse>6</hjse>\n" +
+            "<jshj>206</jshj>\n" +
+            "<kce></kce>\n" +
+            "<bz>备注</bz>\n" +
+            "<skr>收款人</skr>\n" +
+            "<fhr>复核人</fhr>\n" +
+            "<kpr>开票人</kpr>\n" +
+            "<zyspmc>邮件</zyspmc>\n" +
+            "<yfpdm></yfpdm>\n" +
+            "<yfphm></yfphm>\n" +
+            "<qmcs></qmcs>\n" +
+            "<qmz></qmz>\n" +
+            "</input>\n" +
+            "</body>\n" +
+            "</business>";
+}

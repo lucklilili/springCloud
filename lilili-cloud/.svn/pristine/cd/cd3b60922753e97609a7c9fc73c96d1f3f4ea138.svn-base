@@ -1,0 +1,30 @@
+package com.bwcloud.billingCenter.invoicingInterfaces.abstractBean;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoicingInterfaces.invoicingBean.AbsInvoicing;
+
+/**
+ * 桥接类
+ * Created by guodong on 2018/3/27.
+ */
+public abstract class Abstraction {
+    private AbsInvoicing implementor;
+
+    public AbsInvoicing getImplementor() {
+        return implementor;
+    }
+
+    public void setImplementor(AbsInvoicing implementor) {
+        this.implementor = implementor;
+    }
+
+    /**
+     * 发票开具
+     * @param jsonObject
+     * @return
+     */
+    public JSONObject invoicing(JSONObject jsonObject) {
+        return implementor.invoicing(jsonObject);
+    }
+
+}

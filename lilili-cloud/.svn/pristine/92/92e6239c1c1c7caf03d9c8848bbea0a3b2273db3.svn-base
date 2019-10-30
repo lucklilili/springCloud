@@ -1,0 +1,130 @@
+package com.bwcloud.finance.loan.biz;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.loan.entity.TaxInvoice;
+import com.bwcloud.finance.loan.entity.TaxInvoiceDetail;
+import com.bwcloud.finance.loan.mapper.TaxInvoiceMapper;
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+@Service
+@Slf4j
+public class TaxInvoiceBiz extends BusinessBiz<TaxInvoiceMapper, TaxInvoice> {
+    @Autowired
+    TaxInvoiceDetailBiz taxInvoiceDetailBiz;
+
+    public void insertInvoice(String invoice) {
+        JSONObject invoiceJson = JSONObject.parseObject(invoice);
+        JSONArray invoiceList = (JSONArray) invoiceJson.get("invoice_info");
+        for (int i = 0; i < invoiceList.size(); i++) {
+            JSONObject invoiceInfo = (JSONObject) invoiceList.get(i);
+            TaxInvoice taxInvoice = new TaxInvoice();
+            List<TaxInvoiceDetail> taxInvoiceDetailList = new ArrayList<>();
+            String mid = UUIDUtils.generateUuid();
+            taxInvoice.setId(mid);
+            taxInvoice.setFplxdm((String) invoiceInfo.get("fplxdm"));
+            taxInvoice.setFpdm((String) invoiceInfo.get("fpdm"));
+            taxInvoice.setFphm((String) invoiceInfo.get("fphm"));
+            taxInvoice.setTspz((String) invoiceInfo.get("tspz"));
+            taxInvoice.setKprq((String) invoiceInfo.get("kprq"));
+            taxInvoice.setJqbh((String) invoiceInfo.get("jqbh"));
+            taxInvoice.setSkm((String) invoiceInfo.get("skm"));
+            taxInvoice.setGhdwmc((String) invoiceInfo.get("ghdwmc"));
+            taxInvoice.setGhdwdm((String) invoiceInfo.get("ghdwdm"));
+            taxInvoice.setGhdwdzdh((String) invoiceInfo.get("ghdwdzdh"));
+            taxInvoice.setGhdwyhzh((String) invoiceInfo.get("ghdwyhzh"));
+            taxInvoice.setXhdwmc((String) invoiceInfo.get("xhdwmc"));
+            taxInvoice.setXhdwdm((String) invoiceInfo.get("xhdwdm"));
+            taxInvoice.setXhdwdzdh((String) invoiceInfo.get("xhdwdzdh"));
+            taxInvoice.setXhdwyhzh((String) invoiceInfo.get("xhdwyhzh"));
+            taxInvoice.setSwjgdm((String) invoiceInfo.get("swjgdm"));
+            taxInvoice.setSwjgmc((String) invoiceInfo.get("swjgmc"));
+            taxInvoice.setSpsm((String) invoiceInfo.get("spsm"));
+            taxInvoice.setZhsl( invoiceInfo.getBigDecimal("zhsl"));
+            taxInvoice.setHjje( invoiceInfo.getBigDecimal("hjje"));
+            taxInvoice.setSe( invoiceInfo.getBigDecimal("se"));
+            taxInvoice.setJshj( invoiceInfo.getBigDecimal("jshj"));
+            taxInvoice.setBz((String) invoiceInfo.get("bz"));
+            taxInvoice.setSkr((String) invoiceInfo.get("skr"));
+            taxInvoice.setFhr((String) invoiceInfo.get("fhr"));
+            taxInvoice.setKpr((String) invoiceInfo.get("kpr"));
+            taxInvoice.setTzdh((String) invoiceInfo.get("tzdh"));
+            taxInvoice.setKpjh((String) invoiceInfo.get("kpjh"));
+            taxInvoice.setFpzt((String) invoiceInfo.get("fpzt"));
+            taxInvoice.setQdbz((String) invoiceInfo.get("qdbz"));
+            taxInvoice.setZkbz((String) invoiceInfo.get("zkbz"));
+            taxInvoice.setHjzkje( invoiceInfo.getBigDecimal("hjzkje"));
+            taxInvoice.setHjzkse( invoiceInfo.getBigDecimal("hjzkse"));
+            taxInvoice.setSsyf((String) invoiceInfo.get("ssyf"));
+            taxInvoice.setZfrq((String) invoiceInfo.get("zfrq"));
+            taxInvoice.setZfdqsj((String) invoiceInfo.get("zfdqsj"));
+            taxInvoice.setZfr((String) invoiceInfo.get("zfr"));
+            taxInvoice.setZfyy((String) invoiceInfo.get("zfyy"));
+            taxInvoice.setYfpdm((String) invoiceInfo.get("yfpdm"));
+            taxInvoice.setYfphm((String) invoiceInfo.get("yfphm"));
+            taxInvoice.setBbh((String) invoiceInfo.get("bbh"));
+            taxInvoice.setJym((String) invoiceInfo.get("jym"));
+            taxInvoice.setCzydm((String) invoiceInfo.get("czydm"));
+            taxInvoice.setZfrdm((String) invoiceInfo.get("zfrdm"));
+            taxInvoice.setKpddm((String) invoiceInfo.get("kpddm"));
+            taxInvoice.setFpcbh( invoiceInfo.getBigDecimal("fpcbh"));
+            taxInvoice.setQmcs((String) invoiceInfo.get("qmcs"));
+            taxInvoice.setQmbz((String) invoiceInfo.get("qmbz"));
+            taxInvoice.setQmz((String) invoiceInfo.get("qmz"));
+            taxInvoice.setScbz((String) invoiceInfo.get("scbz"));
+            taxInvoice.setYqbz((String) invoiceInfo.get("yqbz"));
+            taxInvoice.setHzxxb((String) invoiceInfo.get("hzxxb"));
+            taxInvoice.setFpqqlsh((String) invoiceInfo.get("fpqqlsh"));
+            taxInvoice.setBmbbbh((String) invoiceInfo.get("bmbbbh"));
+            taxInvoice.setHsslbs((String) invoiceInfo.get("hsslbs"));
+            taxInvoice.setZsfs((String) invoiceInfo.get("zsfs"));
+            taxInvoice.setKce((String) invoiceInfo.get("kce"));
+            taxInvoice.setDybz((String) invoiceInfo.get("dybz"));
+            JSONArray invoiceDetailList = (JSONArray) invoiceInfo.get("invoice_detail_info");
+            for (int j = 0; j < invoiceDetailList.size(); i++) {
+                JSONObject invoiceDetailInfo = (JSONObject) invoiceDetailList.get(j);
+                TaxInvoiceDetail taxInvoiceDetail = new TaxInvoiceDetail();
+                taxInvoiceDetail.setId(UUIDUtils.generateUuid());
+                taxInvoiceDetail.setMxid(mid);
+                taxInvoiceDetail.setFpdm((String) invoiceInfo.get("fpdm"));
+                taxInvoiceDetail.setFphm((String) invoiceInfo.get("fphm"));
+                taxInvoiceDetail.setXsdjbh(invoiceDetailInfo.getString("xsdjbh"));
+                taxInvoiceDetail.setFpmxxh( invoiceDetailInfo.getBigDecimal("fpmxxh"));
+                taxInvoiceDetail.setFphxz((String) invoiceDetailInfo.get("fphxz"));
+                taxInvoiceDetail.setJe( invoiceDetailInfo.getBigDecimal("je"));
+                taxInvoiceDetail.setSl( invoiceDetailInfo.getBigDecimal("sl"));
+                taxInvoiceDetail.setSe( invoiceDetailInfo.getBigDecimal("se"));
+                taxInvoiceDetail.setSpmc((String) invoiceDetailInfo.get("spmc"));
+                taxInvoiceDetail.setSpsm((String) invoiceDetailInfo.get("spsm"));
+                taxInvoiceDetail.setGgxh((String) invoiceDetailInfo.get("ggxh"));
+                taxInvoiceDetail.setSpsl(invoiceDetailInfo.getBigDecimal("spsl"));
+                taxInvoiceDetail.setSpdj(invoiceDetailInfo.getBigDecimal("spdj"));
+                taxInvoiceDetail.setDw((String) invoiceDetailInfo.get("dw"));
+                taxInvoiceDetail.setHsbz((String) invoiceDetailInfo.get("hsbz"));
+                taxInvoiceDetail.setSpbm((String) invoiceDetailInfo.get("spbm"));
+                taxInvoiceDetail.setZxbm((String) invoiceDetailInfo.get("zxbm"));
+                taxInvoiceDetail.setDjmxxh((String) invoiceDetailInfo.get("djmxxh"));
+                taxInvoiceDetail.setYhzcbs((String) invoiceDetailInfo.get("yhzcbs"));
+                taxInvoiceDetail.setLslbs((String) invoiceDetailInfo.get("lslbs"));
+                taxInvoiceDetail.setZzstsgl((String) invoiceDetailInfo.get("zzstsgl"));
+                taxInvoiceDetail.setBb((String) invoiceDetailInfo.get("bb"));
+                taxInvoiceDetailList.add(taxInvoiceDetail);
+            }
+            super.insertSelective(taxInvoice);
+            taxInvoiceDetailBiz.insertTaxInvoiceDetailList(taxInvoiceDetailList);
+        }
+    }
+}

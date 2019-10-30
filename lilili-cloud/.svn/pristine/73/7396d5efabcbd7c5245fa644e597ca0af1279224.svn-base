@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.DataAgreementMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.DataAgreement" id="dataAgreementMap">
+        <result property="id" column="id"/>
+        <result property="upNo" column="up_no"/>
+        <result property="bizType" column="biz_type"/>
+        <result property="packType" column="pack_type"/>
+        <result property="pdfAgree" column="pdf_agree"/>
+        <result property="pdfUrl" column="pdf_url"/>
+        <result property="supId" column="sup_id"/>
+        <result property="taxCode" column="tax_code"/>
+        <result property="taxName" column="tax_name"/>
+        <result property="upFlag" column="up_flag"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+</mapper>

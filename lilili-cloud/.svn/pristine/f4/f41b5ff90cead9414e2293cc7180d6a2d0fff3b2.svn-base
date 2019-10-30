@@ -1,0 +1,50 @@
+package com.bwcloud.finance.center.rest;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.biz.LoanDeviceBiz;
+import com.bwcloud.finance.center.biz.LoanMerchantBiz;
+import com.bwcloud.finance.center.biz.TaxInvoiceBiz;
+import com.bwcloud.finance.center.entity.LoanDeviceInfo;
+import com.bwcloud.finance.center.entity.TaxInvoice;
+import com.github.wxiaoqi.security.common.msg.ResultModel;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+
+/**
+ * @author dz
+ */
+@RestController
+@CheckClientToken
+@CheckUserToken
+@RequestMapping("/invoice")
+@Slf4j
+public class TaxInvoiceController {
+
+    @Autowired
+    private TaxInvoiceBiz taxInvoiceBiz;
+
+    @Autowired
+    LoanMerchantBiz loanMerchantBiz;
+
+    @Autowired
+    LoanDeviceBiz loanDeviceBiz;
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String invoiceUpload(@RequestBody String invoice) {
+        ResultModel result = taxInvoiceBiz.invoiceUpload(invoice);
+        return JSON.toJSONString(result);
+    }
+
+    @RequestMapping(value = "/datequery", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultModel<JSONObject> queryInvoiceUploadDate(@RequestBody String merchantInfo) {
+        return loanDeviceBiz.queryInvoiceUploadDate(merchantInfo);
+    }
+
+}

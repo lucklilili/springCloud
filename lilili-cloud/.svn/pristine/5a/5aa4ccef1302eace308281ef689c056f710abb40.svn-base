@@ -1,0 +1,42 @@
+package com.bwcloud.finance.center.rest;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.biz.LoanMerchantBiz;
+import com.bwcloud.finance.center.biz.TaxInvoiceBiz;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.bwcloud.finance.center.entity.TaxInvoice;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+import com.github.wxiaoqi.security.common.msg.ResultModel;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+/**
+ * @author dz
+ */
+@RestController
+@CheckClientToken
+@CheckUserToken
+@RequestMapping("/agreement")
+public class LoanMerchantController extends BaseController<LoanMerchantBiz, LoanMerchantInfo> {
+
+    @Autowired
+    LoanMerchantBiz loanMerchantBiz;
+
+    @RequestMapping(value = "/authorization", method = RequestMethod.POST)
+    @ResponseBody
+    public String agreementAuthorization(@RequestBody String agreementInfo) {
+        ResultModel resultModel = loanMerchantBiz.insertMerchantInfo(agreementInfo);
+        return JSON.toJSONString(resultModel);
+    }
+
+    @RequestMapping(value = "/query", method = RequestMethod.POST)
+    @ResponseBody
+    public String agreementQuery(@RequestBody String merchantInfo) {
+        ResultModel resultModel = loanMerchantBiz.merchantAgreementInfo(merchantInfo);
+        return JSON.toJSONString(resultModel);
+    }
+
+}

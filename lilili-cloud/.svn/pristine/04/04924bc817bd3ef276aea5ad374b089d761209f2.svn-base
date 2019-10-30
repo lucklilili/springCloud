@@ -1,0 +1,68 @@
+#logging:
+#    level:
+##        tk.mybatis: DEBUG
+#        com.bwcloud.finance.centerer: DEBUG
+server:
+    port: 9060
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+        prefer-ip-address: true
+        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+            defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+spring:
+    application:
+        name: ace-finance
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        time-zone: GMT+8
+        default-property-inclusion: non_null
+    datasource:
+        name: test
+        url: jdbc:mysql://${MYSQL_HOST:192.168.70.238}:${MYSQL_PORT:3306}/green_loan?useUnicode=true&characterEncoding=UTF8
+        username: bwyf
+        password: BWyf8888!
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        druid:
+            filters: stat
+            maxActive: 20
+            initialSize: 1
+            maxWait: 60000
+            minIdle: 1
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 300000
+            validationQuery: select 'x'
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: true
+            maxOpenPreparedStatements: 20
+    redis:
+            database: 1
+            host: ${REDIS_HOST:192.168.168.132}
+            port: ${REDIS_PORT:6379}
+            pool:
+                max-active: 20
+
+# 配置数据库
+mybatis:
+    mapper-locations: "classpath*:mapper/*.xml"
+
+
+#sendHongHaoUrl: https://www.honghaojinrong.com/
+sendHongHaoUrl: https://www.shhonghao.cn/
+
+invoiceUpload:
+    version: 1.0.0
+    req: HHFPD0110000BW01000000A0000A01
+    signKey: e99a18c428cb38d5f260853678922e03

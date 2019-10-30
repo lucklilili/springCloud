@@ -1,0 +1,20 @@
+package com.bwcloud.billingCenter.invoicePurchase.informationUntreadService.impl;
+
+import com.bwcloud.billingCenter.invoicePurchase.informationUntreadService.UntreadService;
+
+/**
+ * Created by bs on 2018/4/9.
+ */
+public class UntreadServiceImpl implements UntreadService {
+    /**
+     * 实现税控服务器的发票领购信息由开票终端退回到发票库存,
+     * 要求退回整段发票领购信息剩余全部未开发票
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String informatinUntread(String string) {
+        return null;
+    }
+}

@@ -1,0 +1,15 @@
+package com.bwcloud.device.center.mapper;
+
+import com.bwcloud.device.center.entity.TerminalInfo;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-11 19:53:12
+ */
+public interface TerminalInfoMapper extends CommonMapper<TerminalInfo> {
+	
+}

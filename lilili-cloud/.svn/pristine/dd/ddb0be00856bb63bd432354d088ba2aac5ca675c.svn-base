@@ -1,0 +1,45 @@
+package com.bwcloud.finance.loan.rest;
+
+import com.bwcloud.finance.loan.biz.LoanMerchantBiz;
+import com.bwcloud.finance.loan.biz.TaxInvoiceBiz;
+import com.bwcloud.finance.loan.entity.TaxInvoice;
+import com.bwcloud.finance.loan.entity.TaxInvoiceDetail;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * @author dz
+ */
+@RestController
+@CheckClientToken
+@CheckUserToken
+@RequestMapping("/invoice")
+public class TaxInvoiceController extends BaseController<TaxInvoiceBiz,TaxInvoice> {
+
+    @Autowired
+    TaxInvoiceBiz taxInvoiceBiz;
+
+    @Autowired
+    LoanMerchantBiz loanMerchantBiz;
+
+    @RequestMapping("/upload")
+    public String queryAccountInfo( String invoice) {
+        taxInvoiceBiz.insertInvoice(invoice);
+        return "okokokokokokok:"+invoice;
+    }
+
+    @RequestMapping("/datequery")
+    public String queryInvoiceUploadDate( String merchantInfo) {
+        loanMerchantBiz.queryInvoiceUploadDate(merchantInfo);
+        return "okokokokokokok:"+merchantInfo;
+    }
+
+}

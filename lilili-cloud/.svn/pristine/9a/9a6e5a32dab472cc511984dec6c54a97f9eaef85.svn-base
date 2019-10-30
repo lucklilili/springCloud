@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.LoanDetailMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.LoanDetail" id="loanDetailMap">
+        <result property="id" column="id"/>
+        <result property="billNo" column="bill_no"/>
+        <result property="platData" column="plat_data"/>
+        <result property="platTime" column="plat_time"/>
+        <result property="applyNo" column="apply_no"/>
+        <result property="supId" column="sup_id"/>
+        <result property="taxName" column="tax_name"/>
+        <result property="taxCode" column="tax_code"/>
+        <result property="regAddr" column="reg_addr"/>
+        <result property="bizAddr" column="biz_addr"/>
+        <result property="certType" column="cert_type"/>
+        <result property="certCoe" column="cert_coe"/>
+        <result property="custName" column="cust_name"/>
+        <result property="cusetMobile" column="cuset_mobile"/>
+        <result property="loanAmt" column="loan_amt"/>
+        <result property="loanBal" column="loan_bal"/>
+        <result property="execRate" column="exec_rate"/>
+        <result property="loanTerm" column="loan_term"/>
+        <result property="loanStartDate" column="loan_start_date"/>
+        <result property="loanEndDate" column="loan_end_date"/>
+        <result property="contStatus" column="cont_status"/>
+        <result property="loanClearDate" column="loan_clear_date"/>
+        <result property="lendBankNo" column="lend_bank_no"/>
+        <result property="lendCardNo" column="lend_card_no"/>
+        <result property="repayBankNo" column="repay_bank_no"/>
+        <result property="repayCardNo" column="repay_card_no"/>
+        <result property="repayType" column="repay_type"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectLoanDetailList" resultType="com.bwcloud.finance.center.entity.LoanDetail">
+        select l.* from loan_detail l
+        where 1 = 1
+        <if test="tax_code != null">
+            and l.tax_code = #{tax_code}
+        </if>
+    </select>
+</mapper>

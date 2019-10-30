@@ -1,0 +1,17 @@
+package com.bwcloud.billingCenter.invoiceQuery.invoicewNumberService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 发票票号查询
+ * Created by bs on 2018/4/12.
+ */
+@Service
+public interface InvoiceNumberService {
+    /**
+     * 通过发票代码、发票号码查询此开票终端所属税号下发票的归属信息(包含已开和未开)
+     * @param json
+     * @return
+     */
+    String invoiceNumberQuery(String json);
+}

@@ -1,0 +1,28 @@
+package com.bwcloud.finance.loan.mapper;
+
+import com.bwcloud.finance.loan.entity.LoanMerchantInfo;
+import com.bwcloud.finance.loan.entity.TaxInvoice;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * 
+ * 
+ * @author dz
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+public interface LoanMerchantMapper extends CommonMapper<LoanMerchantInfo> {
+
+    /**
+     * 查询授权商户列表
+     * @param nsrsbh
+     * @param merchantid
+     * @return
+     */
+    public List<LoanMerchantInfo> selectMerchantList(@Param("nsrsbh") String nsrsbh, @Param("merchantid") String merchantid);
+
+    public LoanMerchantInfo selectMerchantAgreement(@Param("nsrsbh") String nsrsbh, @Param("merchantid") String merchantid);
+}

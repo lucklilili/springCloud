@@ -1,0 +1,139 @@
+package com.bwcloud.billingCenter.rubricInfoTable.applyQueryService.impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.rubricInfoTable.applyQueryService.ApplyQueryService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ * 红字信息表申请与查询实现类
+ * Created by bs on 2018/4/10.
+ */
+public class ApplyQueryServiceImpl implements ApplyQueryService{
+    /**
+     * 将需要开具的红字信息表内容传递给税控管理系统，
+     * 然后通过税控管理系统将红字信息表内容上传税务局端并获取反馈信息（跨省反馈滞后）,
+     * 再通过此接口从税控管理系统中提取税局反馈红字信息内容
+     * @param string
+     * @return
+     */
+    @Override
+    public String rubricInfoTableApplyQuery(String string) {
+        String xml = rubricInfoTableApplyQuery2Xml(string);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+    /**
+     * 将需要开具的红字信息表内容传递给税控管理系统，
+     * 然后通过税控管理系统将红字信息表内容上传税务局端并获取反馈信息（跨省反馈滞后）,
+     * 再通过此接口从税控管理系统中提取税局反馈红字信息内容
+     *  json 转 xml
+     * @param string
+     * @return
+     */
+    String rubricInfoTableApplyQuery2Xml(String string) {
+        try{
+            JSONObject json = JSONObject.parseObject(string);
+            JSONObject business = json.getJSONObject("business");
+            String id = business.getString("id");
+            String comment = business.getString("comment");
+            JSONObject body = business.getJSONObject("body");
+            String yylxdm = body.getString("yylxdm");
+            String nsrsbh = body.getString("nsrsbh");
+            String fplxdm = body.getString("fplxdm");
+            String yfpdm = body.getString("yfpdm");
+            String yfphm = body.getString("yfphm");
+            String kpzddm = body.getString("kpzddm");
+            String sqyy = body.getString("sqyy");
+            String ywlx = body.getString("ywlx");
+            String sqrmc = body.getString("sqrmc");
+            String sqjgmc = body.getString("sqjgmc");
+            String lxfs = body.getString("lxfs");
+            String xhdwsbh = body.getString("xhdwsbh");
+            String xhdwmc = body.getString("xhdwmc");
+            String ghdwsbh = body.getString("ghdwsbh");
+            String ghdwmc = body.getString("ghdwmc");
+            String zdbz = body.getString("zdbz");
+
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"");
+            stringBuffer.append(id);
+            stringBuffer.append("\" comment=\"");
+            stringBuffer.append(comment);
+            stringBuffer.append("\">\n\t<body yylxdm=\"");
+            stringBuffer.append(yylxdm);
+            stringBuffer.append("\">\n\t\t<nsrsbh>");
+            stringBuffer.append(nsrsbh);
+            stringBuffer.append("</nsrsbh>");
+            stringBuffer.append("\n\t\t<fplxdm>");
+            stringBuffer.append(fplxdm);
+            stringBuffer.append("</fplxdm>");
+            stringBuffer.append("\n\t\t<yfpdm>");
+            stringBuffer.append(yfpdm);
+            stringBuffer.append("</yfpdm>");
+            stringBuffer.append("\n\t\t<yfphm>");
+            stringBuffer.append(yfphm);
+            stringBuffer.append("</yfphm>");
+            stringBuffer.append("\n\t\t<kpzddm>");
+            stringBuffer.append(kpzddm);
+            stringBuffer.append("</kpzddm>");
+            stringBuffer.append("\n\t\t<sqyy>");
+            stringBuffer.append(sqyy);
+            stringBuffer.append("</sqyy>");
+            stringBuffer.append("\n\t\t<ywlx>");
+            stringBuffer.append(ywlx);
+            stringBuffer.append("</ywlx>");
+            stringBuffer.append("\n\t\t<sqrmc>");
+            stringBuffer.append(sqrmc);
+            stringBuffer.append("</sqrmc>");
+            stringBuffer.append("\n\t\t<sqjgmc>");
+            stringBuffer.append(sqjgmc);
+            stringBuffer.append("</sqjgmc>");
+            stringBuffer.append("\n\t\t<lxfs>");
+            stringBuffer.append(lxfs);
+            stringBuffer.append("</lxfs>");
+            stringBuffer.append("\n\t\t<xhdwsbh>");
+            stringBuffer.append(xhdwsbh);
+            stringBuffer.append("</xhdwsbh>");
+            stringBuffer.append("\n\t\t<xhdwmc>");
+            stringBuffer.append(xhdwmc);
+            stringBuffer.append("</xhdwmc>");
+            stringBuffer.append("\n\t\t<ghdwsbh>");
+            stringBuffer.append(ghdwsbh);
+            stringBuffer.append("</ghdwsbh>");
+            stringBuffer.append("\n\t\t<ghdwmc>");
+            stringBuffer.append(ghdwmc);
+            stringBuffer.append("</ghdwmc>");
+            stringBuffer.append("\n\t\t<zdbz>");
+            stringBuffer.append(zdbz);
+            stringBuffer.append("</zdbz>");
+            stringBuffer.append("\n\t</body>");
+            stringBuffer.append("\n</business>");
+            return stringBuffer.toString();
+        }catch(Exception e){
+            return "json转xml，转换失败！";
+        }
+    }
+
+    String sendXml(String string){
+        return "";
+    }
+
+    /**
+     * 将需要开具的红字信息表内容传递给税控管理系统，
+     * 然后通过税控管理系统将红字信息表内容上传税务局端并获取反馈信息（跨省反馈滞后）,
+     * 再通过此接口从税控管理系统中提取税局反馈红字信息内容
+     *  xml 转 json
+     * @param receiveXml
+     * @return
+     */
+    String xml2Json(String receiveXml){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

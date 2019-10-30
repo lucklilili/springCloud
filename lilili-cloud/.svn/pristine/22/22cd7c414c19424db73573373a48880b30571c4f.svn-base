@@ -1,0 +1,245 @@
+package com.bwcloud.finance.center.entity;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-02 14:21:14
+ */
+@Table(name = "pj_jdc_fpmxzb")
+public class PjJdcFpmxzb implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    /**编码*/
+    @Id
+    private String bm;
+	
+	    /**车辆类型*/
+    @Column(name = "CLLX")
+    private String cllx;
+	
+	    /**厂牌型号*/
+    @Column(name = "CPXH")
+    private String cpxh;
+	
+	    /**产地*/
+    @Column(name = "CD")
+    private String cd;
+	
+	    /**合格证号*/
+    @Column(name = "HGZH")
+    private String hgzh;
+	
+	    /**进口证明书号*/
+    @Column(name = "JKZMSH")
+    private String jkzmsh;
+	
+	    /**商检单号*/
+    @Column(name = "SJDH")
+    private String sjdh;
+	
+	    /**发动机号码*/
+    @Column(name = "FDJHM")
+    private String fdjhm;
+	
+	    /**车辆识别代码*/
+    @Column(name = "CLSBDM")
+    private String clsbdm;
+	
+	    /**完税凭证号码*/
+    @Column(name = "WSPZHM")
+    private String wspzhm;
+	
+	    /**吨位*/
+    @Column(name = "DW")
+    private BigDecimal dw;
+	
+	    /**限乘人数*/
+    @Column(name = "XCRS")
+    private BigDecimal xcrs;
+	
+	    /**生产企业名称*/
+    @Column(name = "SCQYMC")
+    private String scqymc;
+	
+	    /**纳税人识别号*/
+    @Column(name = "NSRSBH")
+    private String nsrsbh;
+	
+
+	/**
+	 * 设置：编码
+	 */
+	public void setBm(String bm) {
+		this.bm = bm;
+	}
+	/**
+	 * 获取：编码
+	 */
+	public String getBm() {
+		return bm;
+	}
+	/**
+	 * 设置：车辆类型
+	 */
+	public void setCllx(String cllx) {
+		this.cllx = cllx;
+	}
+	/**
+	 * 获取：车辆类型
+	 */
+	public String getCllx() {
+		return cllx;
+	}
+	/**
+	 * 设置：厂牌型号
+	 */
+	public void setCpxh(String cpxh) {
+		this.cpxh = cpxh;
+	}
+	/**
+	 * 获取：厂牌型号
+	 */
+	public String getCpxh() {
+		return cpxh;
+	}
+	/**
+	 * 设置：产地
+	 */
+	public void setCd(String cd) {
+		this.cd = cd;
+	}
+	/**
+	 * 获取：产地
+	 */
+	public String getCd() {
+		return cd;
+	}
+	/**
+	 * 设置：合格证号
+	 */
+	public void setHgzh(String hgzh) {
+		this.hgzh = hgzh;
+	}
+	/**
+	 * 获取：合格证号
+	 */
+	public String getHgzh() {
+		return hgzh;
+	}
+	/**
+	 * 设置：进口证明书号
+	 */
+	public void setJkzmsh(String jkzmsh) {
+		this.jkzmsh = jkzmsh;
+	}
+	/**
+	 * 获取：进口证明书号
+	 */
+	public String getJkzmsh() {
+		return jkzmsh;
+	}
+	/**
+	 * 设置：商检单号
+	 */
+	public void setSjdh(String sjdh) {
+		this.sjdh = sjdh;
+	}
+	/**
+	 * 获取：商检单号
+	 */
+	public String getSjdh() {
+		return sjdh;
+	}
+	/**
+	 * 设置：发动机号码
+	 */
+	public void setFdjhm(String fdjhm) {
+		this.fdjhm = fdjhm;
+	}
+	/**
+	 * 获取：发动机号码
+	 */
+	public String getFdjhm() {
+		return fdjhm;
+	}
+	/**
+	 * 设置：车辆识别代码
+	 */
+	public void setClsbdm(String clsbdm) {
+		this.clsbdm = clsbdm;
+	}
+	/**
+	 * 获取：车辆识别代码
+	 */
+	public String getClsbdm() {
+		return clsbdm;
+	}
+	/**
+	 * 设置：完税凭证号码
+	 */
+	public void setWspzhm(String wspzhm) {
+		this.wspzhm = wspzhm;
+	}
+	/**
+	 * 获取：完税凭证号码
+	 */
+	public String getWspzhm() {
+		return wspzhm;
+	}
+	/**
+	 * 设置：吨位
+	 */
+	public void setDw(BigDecimal dw) {
+		this.dw = dw;
+	}
+	/**
+	 * 获取：吨位
+	 */
+	public BigDecimal getDw() {
+		return dw;
+	}
+	/**
+	 * 设置：限乘人数
+	 */
+	public void setXcrs(BigDecimal xcrs) {
+		this.xcrs = xcrs;
+	}
+	/**
+	 * 获取：限乘人数
+	 */
+	public BigDecimal getXcrs() {
+		return xcrs;
+	}
+	/**
+	 * 设置：生产企业名称
+	 */
+	public void setScqymc(String scqymc) {
+		this.scqymc = scqymc;
+	}
+	/**
+	 * 获取：生产企业名称
+	 */
+	public String getScqymc() {
+		return scqymc;
+	}
+	/**
+	 * 设置：纳税人识别号
+	 */
+	public void setNsrsbh(String nsrsbh) {
+		this.nsrsbh = nsrsbh;
+	}
+	/**
+	 * 获取：纳税人识别号
+	 */
+	public String getNsrsbh() {
+		return nsrsbh;
+	}
+}

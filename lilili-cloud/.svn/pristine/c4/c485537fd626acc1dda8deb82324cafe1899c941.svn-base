@@ -1,0 +1,35 @@
+package com.bwcloud.billingCenter.invoicingInterfaces.transfer;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoicingInterfaces.abstractBean.Abstraction;
+import com.bwcloud.billingCenter.invoicingInterfaces.abstractBean.RefinedAbstraction;
+import com.bwcloud.billingCenter.invoicingInterfaces.invoicingBeanImp.InvoicingImp_DZ;
+import com.bwcloud.billingCenter.invoicingInterfaces.invoicingBeanImp.InvoicingImp_JS;
+import com.bwcloud.billingCenter.invoicingInterfaces.invoicingBeanImp.InvoicingImp_ZZSP;
+import com.bwcloud.billingCenter.invoicingInterfaces.invoicingBeanImp.InvoicingImp_ZZSZ;
+import com.bwcloud.billingCenter.utlis.XjbwConstants;
+
+/**
+ * Created by guodong on 2018/3/27.
+ */
+public class Transfer {
+    /**
+     * 开具
+     * @param jsonObject
+     * @param fplxdm
+     * @return
+     */
+    public JSONObject invoicing(String fplxdm, JSONObject jsonObject){
+        Abstraction abstraction=new RefinedAbstraction();
+        if(XjbwConstants.ZZSPDZ.equals(fplxdm)){
+            abstraction.setImplementor(new InvoicingImp_DZ());
+        }else if(XjbwConstants.ZZSP.equals(fplxdm)){
+            abstraction.setImplementor(new InvoicingImp_ZZSP());
+        }else if(XjbwConstants.ZZSZ.equals(fplxdm)){
+            abstraction.setImplementor(new InvoicingImp_ZZSZ());
+        }else if(XjbwConstants.JSFP.equals(fplxdm)){
+            abstraction.setImplementor(new InvoicingImp_JS());
+        }
+        return abstraction.invoicing(jsonObject);
+    }
+}

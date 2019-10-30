@@ -1,0 +1,20 @@
+package com.bwcloud.billingCenter.invoicePurchase.infomationCheckService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 核对税控服务器中是否有对应的空白发票段信息
+ * Created by bs on 2018/4/12.
+ */
+@Service
+public interface CheckService {
+    /**
+     * 调用时无法获取到开票终端信息，
+     * 通过纳税人识别号查询对应的所有税控服务器中发票库存的领购信息。
+     * 要访问税控开票服务器的数据库即可进行逻辑判断。
+     * (此接口只适用于分发\退回前进行核对使用)
+     * @param string
+     * @return
+     */
+    String informationCheck(String string);
+}

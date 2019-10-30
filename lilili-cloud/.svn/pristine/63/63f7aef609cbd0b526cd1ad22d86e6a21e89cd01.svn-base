@@ -1,0 +1,31 @@
+package com.bwcloud.finance.center.bwfpd;
+
+import com.github.wxiaoqi.security.common.util.DateUtils;
+import org.springframework.scheduling.Trigger;
+import org.springframework.scheduling.TriggerContext;
+import org.springframework.scheduling.support.CronTrigger;
+
+import java.util.Date;
+
+/**
+ * Created by Administrator on 2018/3/30.
+ */
+public class TaxDataUploadTrigger implements Trigger {
+
+    public String cron;
+
+    public TaxDataUploadTrigger(String cron) {
+        this.cron = cron;
+    }
+
+    @Override
+    public Date nextExecutionTime(TriggerContext triggerContext) {
+        if ("".equals(cron) || cron == null) {
+            return null;
+        }
+        // 定时任务触发，可修改定时任务的执行周期
+        CronTrigger trigger = new CronTrigger(cron);
+        Date nextExecDate = trigger.nextExecutionTime(triggerContext);
+        return nextExecDate;
+    }
+}

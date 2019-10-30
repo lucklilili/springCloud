@@ -1,0 +1,211 @@
+package com.bwcloud.finance.loan.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author dz
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:55
+ */
+@Table(name = "data_agreement")
+public class DataAgreement implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+    @Id
+    private String id;
+	
+	    //上传流水号
+    @Column(name = "up_no")
+    private String upNo;
+	
+	    //业务类型
+    @Column(name = "biz_type")
+    private String bizType;
+	
+	    //压缩包类型
+    @Column(name = "pack_type")
+    private String packType;
+	
+	    //文件名
+    @Column(name = "pdf_agree")
+    private String pdfAgree;
+	
+	    //文件路径
+    @Column(name = "pdf_url")
+    private String pdfUrl;
+	
+	    //百旺ID
+    @Column(name = "sup_id")
+    private String supId;
+	
+	    //纳税人识别号
+    @Column(name = "tax_code")
+    private String taxCode;
+	
+	    //纳税人名称
+    @Column(name = "tax_name")
+    private String taxName;
+	
+	    //上传标志
+    @Column(name = "up_flag")
+    private String upFlag;
+	
+	    //创建时间
+    @Column(name = "create_time")
+    private String createTime;
+	
+	    //修改时间
+    @Column(name = "update_time")
+    private String updateTime;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：上传流水号
+	 */
+	public void setUpNo(String upNo) {
+		this.upNo = upNo;
+	}
+	/**
+	 * 获取：上传流水号
+	 */
+	public String getUpNo() {
+		return upNo;
+	}
+	/**
+	 * 设置：业务类型
+	 */
+	public void setBizType(String bizType) {
+		this.bizType = bizType;
+	}
+	/**
+	 * 获取：业务类型
+	 */
+	public String getBizType() {
+		return bizType;
+	}
+	/**
+	 * 设置：压缩包类型
+	 */
+	public void setPackType(String packType) {
+		this.packType = packType;
+	}
+	/**
+	 * 获取：压缩包类型
+	 */
+	public String getPackType() {
+		return packType;
+	}
+	/**
+	 * 设置：文件名
+	 */
+	public void setPdfAgree(String pdfAgree) {
+		this.pdfAgree = pdfAgree;
+	}
+	/**
+	 * 获取：文件名
+	 */
+	public String getPdfAgree() {
+		return pdfAgree;
+	}
+	/**
+	 * 设置：文件路径
+	 */
+	public void setPdfUrl(String pdfUrl) {
+		this.pdfUrl = pdfUrl;
+	}
+	/**
+	 * 获取：文件路径
+	 */
+	public String getPdfUrl() {
+		return pdfUrl;
+	}
+	/**
+	 * 设置：百旺ID
+	 */
+	public void setSupId(String supId) {
+		this.supId = supId;
+	}
+	/**
+	 * 获取：百旺ID
+	 */
+	public String getSupId() {
+		return supId;
+	}
+	/**
+	 * 设置：纳税人识别号
+	 */
+	public void setTaxCode(String taxCode) {
+		this.taxCode = taxCode;
+	}
+	/**
+	 * 获取：纳税人识别号
+	 */
+	public String getTaxCode() {
+		return taxCode;
+	}
+	/**
+	 * 设置：纳税人名称
+	 */
+	public void setTaxName(String taxName) {
+		this.taxName = taxName;
+	}
+	/**
+	 * 获取：纳税人名称
+	 */
+	public String getTaxName() {
+		return taxName;
+	}
+	/**
+	 * 设置：上传标志
+	 */
+	public void setUpFlag(String upFlag) {
+		this.upFlag = upFlag;
+	}
+	/**
+	 * 获取：上传标志
+	 */
+	public String getUpFlag() {
+		return upFlag;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：修改时间
+	 */
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	/**
+	 * 获取：修改时间
+	 */
+	public String getUpdateTime() {
+		return updateTime;
+	}
+}

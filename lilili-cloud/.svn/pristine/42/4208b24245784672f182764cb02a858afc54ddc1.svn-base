@@ -1,0 +1,292 @@
+package com.bwcloud.device.center.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-11 19:53:12
+ */
+@Table(name = "device_reg_code")
+public class DeviceRegCode implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //主机名称
+    @Column(name = "zjmc")
+    private String zjmc;
+	
+	    //机身编号
+    @Column(name = "jsbh")
+    private String jsbh;
+	
+	    //网口MAC
+    @Column(name = "wkmac")
+    private String wkmac;
+	
+	    //CPU的UUID号
+    @Column(name = "uuid")
+    private String uuid;
+	
+	    //纳税人识别号
+    @Column(name = "nsrsbh")
+    private String nsrsbh;
+	
+	    //设备编号
+    @Column(name = "sbbh")
+    private String sbbh;
+	
+	    //设备类型（1：税控盘阵列，0:云票打印机）
+    @Column(name = "sblx")
+    private String sblx;
+	
+	    //申请时间(YYYYMMDDHHmmss)
+    @Column(name = "sqsj")
+    private String sqsj;
+	
+	    //授权期限(1,2,3年)
+    @Column(name = "sqqx")
+    private String sqqx;
+	
+	    //原授权日期(YYYYMMDD)
+    @Column(name = "ysqrq")
+    private String ysqrq;
+	
+	    //授权截止时间(YYYYMMDD)
+    @Column(name = "sqjzrq")
+    private String sqjzrq;
+	
+	    //授权日期
+    @Column(name = "sqrq")
+    private String sqrq;
+	
+	    //处理标识:0：初始状态;1：审批通过
+    @Column(name = "clbz")
+    private String clbz;
+	
+	    //是否申请（N：没有申请，Y：已申请）
+    @Column(name = "sfsq")
+    private String sfsq;
+	
+	    //授权标识(N：授权失败，Y：授权成功)
+    @Column(name = "sqbz")
+    private String sqbz;
+	
+	    //授权码
+    @Column(name = "sqm")
+    private String sqm;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：主机名称
+	 */
+	public void setZjmc(String zjmc) {
+		this.zjmc = zjmc;
+	}
+	/**
+	 * 获取：主机名称
+	 */
+	public String getZjmc() {
+		return zjmc;
+	}
+	/**
+	 * 设置：机身编号
+	 */
+	public void setJsbh(String jsbh) {
+		this.jsbh = jsbh;
+	}
+	/**
+	 * 获取：机身编号
+	 */
+	public String getJsbh() {
+		return jsbh;
+	}
+	/**
+	 * 设置：网口MAC
+	 */
+	public void setWkmac(String wkmac) {
+		this.wkmac = wkmac;
+	}
+	/**
+	 * 获取：网口MAC
+	 */
+	public String getWkmac() {
+		return wkmac;
+	}
+	/**
+	 * 设置：CPU的UUID号
+	 */
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	/**
+	 * 获取：CPU的UUID号
+	 */
+	public String getUuid() {
+		return uuid;
+	}
+	/**
+	 * 设置：纳税人识别号
+	 */
+	public void setNsrsbh(String nsrsbh) {
+		this.nsrsbh = nsrsbh;
+	}
+	/**
+	 * 获取：纳税人识别号
+	 */
+	public String getNsrsbh() {
+		return nsrsbh;
+	}
+	/**
+	 * 设置：设备编号
+	 */
+	public void setSbbh(String sbbh) {
+		this.sbbh = sbbh;
+	}
+	/**
+	 * 获取：设备编号
+	 */
+	public String getSbbh() {
+		return sbbh;
+	}
+	/**
+	 * 设置：设备类型（1：税控盘阵列，0:云票打印机）
+	 */
+	public void setSblx(String sblx) {
+		this.sblx = sblx;
+	}
+	/**
+	 * 获取：设备类型（1：税控盘阵列，0:云票打印机）
+	 */
+	public String getSblx() {
+		return sblx;
+	}
+	/**
+	 * 设置：申请时间(YYYYMMDDHHmmss)
+	 */
+	public void setSqsj(String sqsj) {
+		this.sqsj = sqsj;
+	}
+	/**
+	 * 获取：申请时间(YYYYMMDDHHmmss)
+	 */
+	public String getSqsj() {
+		return sqsj;
+	}
+	/**
+	 * 设置：授权期限(1,2,3年)
+	 */
+	public void setSqqx(String sqqx) {
+		this.sqqx = sqqx;
+	}
+	/**
+	 * 获取：授权期限(1,2,3年)
+	 */
+	public String getSqqx() {
+		return sqqx;
+	}
+	/**
+	 * 设置：原授权日期(YYYYMMDD)
+	 */
+	public void setYsqrq(String ysqrq) {
+		this.ysqrq = ysqrq;
+	}
+	/**
+	 * 获取：原授权日期(YYYYMMDD)
+	 */
+	public String getYsqrq() {
+		return ysqrq;
+	}
+	/**
+	 * 设置：授权截止时间(YYYYMMDD)
+	 */
+	public void setSqjzrq(String sqjzrq) {
+		this.sqjzrq = sqjzrq;
+	}
+	/**
+	 * 获取：授权截止时间(YYYYMMDD)
+	 */
+	public String getSqjzrq() {
+		return sqjzrq;
+	}
+	/**
+	 * 设置：授权日期
+	 */
+	public void setSqrq(String sqrq) {
+		this.sqrq = sqrq;
+	}
+	/**
+	 * 获取：授权日期
+	 */
+	public String getSqrq() {
+		return sqrq;
+	}
+	/**
+	 * 设置：处理标识:0：初始状态;1：审批通过
+	 */
+	public void setClbz(String clbz) {
+		this.clbz = clbz;
+	}
+	/**
+	 * 获取：处理标识:0：初始状态;1：审批通过
+	 */
+	public String getClbz() {
+		return clbz;
+	}
+	/**
+	 * 设置：是否申请（N：没有申请，Y：已申请）
+	 */
+	public void setSfsq(String sfsq) {
+		this.sfsq = sfsq;
+	}
+	/**
+	 * 获取：是否申请（N：没有申请，Y：已申请）
+	 */
+	public String getSfsq() {
+		return sfsq;
+	}
+	/**
+	 * 设置：授权标识(N：授权失败，Y：授权成功)
+	 */
+	public void setSqbz(String sqbz) {
+		this.sqbz = sqbz;
+	}
+	/**
+	 * 获取：授权标识(N：授权失败，Y：授权成功)
+	 */
+	public String getSqbz() {
+		return sqbz;
+	}
+	/**
+	 * 设置：授权码
+	 */
+	public void setSqm(String sqm) {
+		this.sqm = sqm;
+	}
+	/**
+	 * 获取：授权码
+	 */
+	public String getSqm() {
+		return sqm;
+	}
+}

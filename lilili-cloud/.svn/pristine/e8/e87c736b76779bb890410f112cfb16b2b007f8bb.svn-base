@@ -1,0 +1,517 @@
+package com.bwcloud.billingCenter.module.entity;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 主要是存储业务系统单据明细的数据
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-04-09 13:44:03
+ */
+@Table(name = "yw_djmx")
+public class YwDjmx implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //业务ID
+    @Column(name = "YWID")
+    private String ywid;
+	
+	    //行号
+    @Column(name = "HH")
+    private Integer hh;
+	
+	    //发票行性质
+    @Column(name = "FPHXZ")
+    private String fphxz;
+	
+	    //货物名称
+    @Column(name = "SPMC")
+    private String spmc;
+	
+	    //商品税目
+    @Column(name = "SPSM")
+    private String spsm;
+	
+	    //规格型号
+    @Column(name = "GGXH")
+    private String ggxh;
+	
+	    //计量单位
+    @Column(name = "DW")
+    private String dw;
+	
+	    //商品数量
+    @Column(name = "SPSL")
+    private BigDecimal spsl;
+	
+	    //商品单价
+    @Column(name = "DJ")
+    private BigDecimal dj;
+	
+	    //金额
+    @Column(name = "JE")
+    private BigDecimal je;
+	
+	    //税率
+    @Column(name = "SL")
+    private BigDecimal sl;
+	
+	    //税额
+    @Column(name = "SE")
+    private BigDecimal se;
+	
+	    //含税单价
+    @Column(name = "HSDJ")
+    private BigDecimal hsdj;
+	
+	    //含税金额
+    @Column(name = "HSJE")
+    private BigDecimal hsje;
+	
+	    //含税标志
+    @Column(name = "HSBZ")
+    private String hsbz;
+	
+	    //货物编码
+    @Column(name = "SPBM")
+    private String spbm;
+	
+	    //纳税人自行编码
+    @Column(name = "ZXBM")
+    private String zxbm;
+	
+	    //优惠政策标识
+    @Column(name = "YHZCBS")
+    private String yhzcbs;
+	
+	    //零税率标识
+    @Column(name = "LSLBS")
+    private String lslbs;
+	
+	    //增值税特殊管理
+    @Column(name = "ZZSTSGL")
+    private String zzstsgl;
+	
+	    //预留1
+    @Column(name = "YL1")
+    private String yl1;
+	
+	    //预留2
+    @Column(name = "YL2")
+    private String yl2;
+	
+	    //预留3
+    @Column(name = "YL3")
+    private String yl3;
+	
+	    //预留4
+    @Column(name = "YL4")
+    private String yl4;
+	
+	    //预留6
+    @Column(name = "YL6")
+    private String yl6;
+	
+	    //预留7
+    @Column(name = "YL7")
+    private String yl7;
+	
+	    //预留8
+    @Column(name = "YL8")
+    private String yl8;
+	
+	    //预留10（数字类型）
+    @Column(name = "YL10")
+    private String yl10;
+	
+	    //预留9（数字类型）
+    @Column(name = "YL9")
+    private String yl9;
+	
+	    //预留5
+    @Column(name = "YL5")
+    private String yl5;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：业务ID
+	 */
+	public void setYwid(String ywid) {
+		this.ywid = ywid;
+	}
+	/**
+	 * 获取：业务ID
+	 */
+	public String getYwid() {
+		return ywid;
+	}
+	/**
+	 * 设置：行号
+	 */
+	public void setHh(Integer hh) {
+		this.hh = hh;
+	}
+	/**
+	 * 获取：行号
+	 */
+	public Integer getHh() {
+		return hh;
+	}
+	/**
+	 * 设置：发票行性质
+	 */
+	public void setFphxz(String fphxz) {
+		this.fphxz = fphxz;
+	}
+	/**
+	 * 获取：发票行性质
+	 */
+	public String getFphxz() {
+		return fphxz;
+	}
+	/**
+	 * 设置：货物名称
+	 */
+	public void setSpmc(String spmc) {
+		this.spmc = spmc;
+	}
+	/**
+	 * 获取：货物名称
+	 */
+	public String getSpmc() {
+		return spmc;
+	}
+	/**
+	 * 设置：商品税目
+	 */
+	public void setSpsm(String spsm) {
+		this.spsm = spsm;
+	}
+	/**
+	 * 获取：商品税目
+	 */
+	public String getSpsm() {
+		return spsm;
+	}
+	/**
+	 * 设置：规格型号
+	 */
+	public void setGgxh(String ggxh) {
+		this.ggxh = ggxh;
+	}
+	/**
+	 * 获取：规格型号
+	 */
+	public String getGgxh() {
+		return ggxh;
+	}
+	/**
+	 * 设置：计量单位
+	 */
+	public void setDw(String dw) {
+		this.dw = dw;
+	}
+	/**
+	 * 获取：计量单位
+	 */
+	public String getDw() {
+		return dw;
+	}
+	/**
+	 * 设置：商品数量
+	 */
+	public void setSpsl(BigDecimal spsl) {
+		this.spsl = spsl;
+	}
+	/**
+	 * 获取：商品数量
+	 */
+	public BigDecimal getSpsl() {
+		return spsl;
+	}
+	/**
+	 * 设置：商品单价
+	 */
+	public void setDj(BigDecimal dj) {
+		this.dj = dj;
+	}
+	/**
+	 * 获取：商品单价
+	 */
+	public BigDecimal getDj() {
+		return dj;
+	}
+	/**
+	 * 设置：金额
+	 */
+	public void setJe(BigDecimal je) {
+		this.je = je;
+	}
+	/**
+	 * 获取：金额
+	 */
+	public BigDecimal getJe() {
+		return je;
+	}
+	/**
+	 * 设置：税率
+	 */
+	public void setSl(BigDecimal sl) {
+		this.sl = sl;
+	}
+	/**
+	 * 获取：税率
+	 */
+	public BigDecimal getSl() {
+		return sl;
+	}
+	/**
+	 * 设置：税额
+	 */
+	public void setSe(BigDecimal se) {
+		this.se = se;
+	}
+	/**
+	 * 获取：税额
+	 */
+	public BigDecimal getSe() {
+		return se;
+	}
+	/**
+	 * 设置：含税单价
+	 */
+	public void setHsdj(BigDecimal hsdj) {
+		this.hsdj = hsdj;
+	}
+	/**
+	 * 获取：含税单价
+	 */
+	public BigDecimal getHsdj() {
+		return hsdj;
+	}
+	/**
+	 * 设置：含税金额
+	 */
+	public void setHsje(BigDecimal hsje) {
+		this.hsje = hsje;
+	}
+	/**
+	 * 获取：含税金额
+	 */
+	public BigDecimal getHsje() {
+		return hsje;
+	}
+	/**
+	 * 设置：含税标志
+	 */
+	public void setHsbz(String hsbz) {
+		this.hsbz = hsbz;
+	}
+	/**
+	 * 获取：含税标志
+	 */
+	public String getHsbz() {
+		return hsbz;
+	}
+	/**
+	 * 设置：货物编码
+	 */
+	public void setSpbm(String spbm) {
+		this.spbm = spbm;
+	}
+	/**
+	 * 获取：货物编码
+	 */
+	public String getSpbm() {
+		return spbm;
+	}
+	/**
+	 * 设置：纳税人自行编码
+	 */
+	public void setZxbm(String zxbm) {
+		this.zxbm = zxbm;
+	}
+	/**
+	 * 获取：纳税人自行编码
+	 */
+	public String getZxbm() {
+		return zxbm;
+	}
+	/**
+	 * 设置：优惠政策标识
+	 */
+	public void setYhzcbs(String yhzcbs) {
+		this.yhzcbs = yhzcbs;
+	}
+	/**
+	 * 获取：优惠政策标识
+	 */
+	public String getYhzcbs() {
+		return yhzcbs;
+	}
+	/**
+	 * 设置：零税率标识
+	 */
+	public void setLslbs(String lslbs) {
+		this.lslbs = lslbs;
+	}
+	/**
+	 * 获取：零税率标识
+	 */
+	public String getLslbs() {
+		return lslbs;
+	}
+	/**
+	 * 设置：增值税特殊管理
+	 */
+	public void setZzstsgl(String zzstsgl) {
+		this.zzstsgl = zzstsgl;
+	}
+	/**
+	 * 获取：增值税特殊管理
+	 */
+	public String getZzstsgl() {
+		return zzstsgl;
+	}
+	/**
+	 * 设置：预留1
+	 */
+	public void setYl1(String yl1) {
+		this.yl1 = yl1;
+	}
+	/**
+	 * 获取：预留1
+	 */
+	public String getYl1() {
+		return yl1;
+	}
+	/**
+	 * 设置：预留2
+	 */
+	public void setYl2(String yl2) {
+		this.yl2 = yl2;
+	}
+	/**
+	 * 获取：预留2
+	 */
+	public String getYl2() {
+		return yl2;
+	}
+	/**
+	 * 设置：预留3
+	 */
+	public void setYl3(String yl3) {
+		this.yl3 = yl3;
+	}
+	/**
+	 * 获取：预留3
+	 */
+	public String getYl3() {
+		return yl3;
+	}
+	/**
+	 * 设置：预留4
+	 */
+	public void setYl4(String yl4) {
+		this.yl4 = yl4;
+	}
+	/**
+	 * 获取：预留4
+	 */
+	public String getYl4() {
+		return yl4;
+	}
+	/**
+	 * 设置：预留6
+	 */
+	public void setYl6(String yl6) {
+		this.yl6 = yl6;
+	}
+	/**
+	 * 获取：预留6
+	 */
+	public String getYl6() {
+		return yl6;
+	}
+	/**
+	 * 设置：预留7
+	 */
+	public void setYl7(String yl7) {
+		this.yl7 = yl7;
+	}
+	/**
+	 * 获取：预留7
+	 */
+	public String getYl7() {
+		return yl7;
+	}
+	/**
+	 * 设置：预留8
+	 */
+	public void setYl8(String yl8) {
+		this.yl8 = yl8;
+	}
+	/**
+	 * 获取：预留8
+	 */
+	public String getYl8() {
+		return yl8;
+	}
+	/**
+	 * 设置：预留10（数字类型）
+	 */
+	public void setYl10(String yl10) {
+		this.yl10 = yl10;
+	}
+	/**
+	 * 获取：预留10（数字类型）
+	 */
+	public String getYl10() {
+		return yl10;
+	}
+	/**
+	 * 设置：预留9（数字类型）
+	 */
+	public void setYl9(String yl9) {
+		this.yl9 = yl9;
+	}
+	/**
+	 * 获取：预留9（数字类型）
+	 */
+	public String getYl9() {
+		return yl9;
+	}
+	/**
+	 * 设置：预留5
+	 */
+	public void setYl5(String yl5) {
+		this.yl5 = yl5;
+	}
+	/**
+	 * 获取：预留5
+	 */
+	public String getYl5() {
+		return yl5;
+	}
+}

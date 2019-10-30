@@ -1,0 +1,25 @@
+package com.bwcloud.billingCenter.utlis;
+
+/**
+ * 定义通用的静态变量
+ * Created by guodong on 2018/3/27.
+ */
+public interface XjbwConstants {
+    /**
+     * 发票种类
+     */
+    public static final String ZZSPDZ="026";//电子票
+    public static final String ZZSP="007";//普票
+    public static final String ZZSZ="004";//专票
+    public static final String JSFP="025";//卷票
+    /**
+     * 发票状态
+     */
+    public static final String ZSKJ = "00";// 正数开具
+    public static final String FSKJ = "01";// 负数开具
+    public static final String KBZF = "02";// 空白作废
+    public static final String ZSZF = "03";// 正数作废
+    public static final String FSZF = "04";// 负数作废
+
+
+}

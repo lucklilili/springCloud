@@ -1,0 +1,43 @@
+package com.bwcloud.finance.center.mapper;
+
+import com.bwcloud.finance.center.entity.PjJsfpFpmx;
+import com.bwcloud.finance.center.entity.PjZzspFpmx;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-09 15:11:22
+ * @email 463540703@qq.com
+ */
+public interface PjJsfpFpmxMapper extends CommonMapper<PjJsfpFpmx> {
+    /**
+     * 查询发票信息
+     *
+     * @param nsrsbh
+     * @param start_date
+     * @param end_date
+     * @return
+     */
+    public List<PjJsfpFpmx> queryInvoiceList(@Param("xhdwdm") String nsrsbh, @Param("start_date") String start_date, @Param("end_date") String end_date);
+
+    /**
+     * 根据发票代码、号码查询发票信息
+     * @param fpdm
+     * @param fphm
+     * @return
+     */
+    public PjJsfpFpmx queryInvoiceInfo(@Param("fpdm") String fpdm, @Param("fphm") String fphm);
+
+    /**
+     * 根据税号、税控设备编号、发票类型代码查询发票信息
+     *
+     * @param xhdwdm
+     * @param sksbbh
+     * @param fplxdm
+     * @return
+     */
+    public PjJsfpFpmx getPjJsfpFpmx(@Param("kpdwdm") String xhdwdm, @Param("sksbbh") String sksbbh, @Param("fplxdm") String fplxdm);
+}

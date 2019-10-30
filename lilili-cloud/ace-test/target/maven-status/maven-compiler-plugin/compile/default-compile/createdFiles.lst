@@ -1,0 +1,6 @@
+com/lilili/feignDao/UserFeignDao.class
+com/lilili/TestBootstrap.class
+com/lilili/controller/TestController.class
+com/lilili/feignDao/UserFeignFallback.class
+com/lilili/feignservice/UserService.class
+com/lilili/feignentity/UserEntity.class

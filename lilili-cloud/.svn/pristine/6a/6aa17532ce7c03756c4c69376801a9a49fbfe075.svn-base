@@ -1,0 +1,252 @@
+package com.bwcloud.billingCenter.invoiceOpening.utils;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
+
+import java.util.HashMap;
+
+
+
+/**
+ * lilili 2018/3/30.
+ */
+public class Conversion {
+
+    /**
+     * 卷式发票
+     */
+    public static String jsonToXmlRollInvoice(String completeJson) {
+        StringBuffer stringBuffer = new StringBuffer();
+        try {
+            JSONObject json = JSONObject.parseObject(completeJson);
+            JSONObject bussinse = json.getJSONObject("business");
+            JSONObject body = bussinse.getJSONObject("body");
+
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"" + bussinse.getString("id") + "\" comment=\"" +    bussinse.getString("comment") + "\">\n");
+            stringBuffer.append("<body yylxdm=\"" + body.getString("yylxdm") + "\">\n");
+            stringBuffer.append("<kpzdbs>" + body.getString("kpzdbs") + "</kpzdbs>\n");
+            stringBuffer.append("<fplxdm>" + body.getString("fplxdm") + "</fplxdm>\n");
+            stringBuffer.append("<fpqqlsh>" + body.getString("fpqqlsh") + "</fpqqlsh>\n");
+            stringBuffer.append("<kplx>" + body.getString("kplx") + "</kplx>\n");
+            stringBuffer.append("<xhdwsbh>" + body.getString("xhdwsbh") + "</xhdwsbh>\n");
+            stringBuffer.append("<xhdwmc>" + body.getString("xhdwmc") + "</xhdwmc>\n");
+            stringBuffer.append("<ghdwsbh>" + body.getString("ghdwsbh") + "</ghdwsbh>\n");
+            stringBuffer.append("<ghdwmc>" + body.getString("ghdwmc") + "</ghdwmc>\n");
+            stringBuffer.append("<zsfs>" + body.getString("zsfs") + "</zsfs>\n");
+            stringBuffer.append("<fppy>" + body.getString("fppy") + "</fppy>\n");
+            JSONObject fyxm = body.getJSONObject("fyxm");
+            stringBuffer.append("<fyxm count=\"" + fyxm.getString("count") + "\">\n");
+            JSONArray group = fyxm.getJSONArray("group");
+            if (group.size() > 0) {
+                for (int i = 0; i < group.size(); i++) {
+                    HashMap map = new HashMap();
+                    JSONObject groups = group.getJSONObject(i);
+                    stringBuffer.append("<group xh=\"" + (i + 1) + "\">\n");
+                    stringBuffer.append("<fphxz>" + groups.getString("fphxz") + "</fphxz>\n");
+                    stringBuffer.append("<xm>" + groups.getString("xm") + "</xm>\n");
+                    stringBuffer.append("<sl>" + groups.getString("sl") + "</sl>\n");
+                    stringBuffer.append("<hsdj>" + groups.getString("hsdj") + "</hsdj>\n");
+                    stringBuffer.append("<hsje>" + groups.getString("hsje") + "</hsje>\n");
+                    stringBuffer.append("<bhsdj>" + groups.getString("bhsdj") + "</bhsdj>\n");
+                    stringBuffer.append("<bhsje>" + groups.getString("bhsje") + "</bhsje>\n");
+                    stringBuffer.append("<zsl>" + groups.getString("zsl") + "</zsl>\n");
+                    stringBuffer.append("<se>" + groups.getString("se") + "</se>\n");
+                    stringBuffer.append("<spbm>" + groups.getString("spbm") + "</spbm>\n");
+                    stringBuffer.append("<zxbm>" + groups.getString("zxbm") + "</zxbm>\n");
+                    stringBuffer.append("<yhzcbs>" + groups.getString("yhzcbs") + "</yhzcbs>\n");
+                    stringBuffer.append("<lslbs>" + groups.getString("lslbs") + "</lslbs>\n");
+                    stringBuffer.append("<zzstsgl>" + groups.getString("zzstsgl") + "</zzstsgl>\n");
+                    stringBuffer.append("</group>\n");
+                }
+            }
+            stringBuffer.append("</fyxm>\n");
+            stringBuffer.append("<hjje>" + body.getString("hjje") + "</hjje>\n");
+            stringBuffer.append("<hjse>" + body.getString("hjse") + "</hjse>\n");
+            stringBuffer.append("<jshj>" + body.getString("jshj") + "</jshj>\n");
+            stringBuffer.append("<kce>" + body.getString("kce") + "</kce>\n");
+            stringBuffer.append("<bz>" + body.getString("bz") + "</bz>\n");
+            stringBuffer.append("<skr>" + body.getString("skr") + "</skr>\n");
+            stringBuffer.append("<kpr>" + body.getString("kpr") + "</kpr>\n");
+            stringBuffer.append("<yfpdm>" + body.getString("yfpdm") + "</yfpdm>\n");
+            stringBuffer.append("<yfphm>" + body.getString("yfphm") + "</yfphm>\n");
+            stringBuffer.append("</body>\n");
+            stringBuffer.append("</business>\n");
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "客户传入报文json解析失败";
+
+        }
+
+
+    }
+
+    /**
+     * 增值税普通发票&专用发票
+     */
+    public static String jsonToXmlGeneralInvoice(String completeJson) {
+        try{
+            StringBuffer stringBuffer = new StringBuffer();
+            JSONObject json = JSONObject.parseObject(completeJson);
+            JSONObject bussinse = json.getJSONObject("business");
+            JSONObject body = bussinse.getJSONObject("body");
+
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"" + bussinse.getString("id") + "\" comment=\"" +    bussinse.getString("comment") + "\">\n");
+            stringBuffer.append("<body yylxdm=\"" + body.getString("yylxdm") + "\">\n");
+            stringBuffer.append("<kpzdbs>" + body.getString("kpzdbs") + "</kpzdbs>\n");
+            stringBuffer.append("<fplxdm>" + body.getString("fplxdm") + "</fplxdm>\n");
+            stringBuffer.append("<fpqqlsh>" + body.getString("fpqqlsh") + "</fpqqlsh>\n");
+            stringBuffer.append("<kplx>" + body.getString("kplx") + "</kplx>\n");
+            stringBuffer.append("<tspz>" + body.getString("tspz") + "</tspz>\n");
+            stringBuffer.append("<xhdwsbh>" + body.getString("xhdwsbh") + "</xhdwsbh>\n");
+            stringBuffer.append("<xhdwmc>" + body.getString("xhdwmc") + "</xhdwmc>\n");
+            stringBuffer.append("<xhdwdzdh>" + body.getString("xhdwdzdh") + "</xhdwdzdh>\n");
+            stringBuffer.append("<xhdwyhzh>" + body.getString("xhdwyhzh") + "</xhdwyhzh>\n");
+            stringBuffer.append("<ghdwsbh>" + body.getString("ghdwsbh") + "</ghdwsbh>\n");
+            stringBuffer.append("<ghdwmc>" + body.getString("ghdwmc") + "</ghdwmc>\n");
+            stringBuffer.append("<ghdwdzdh>" + body.getString("ghdwdzdh") + "</ghdwdzdh>\n");
+            stringBuffer.append("<ghdwyhzh>" + body.getString("ghdwyhzh") + "</ghdwyhzh>\n");
+            stringBuffer.append("<qdbz>" + body.getString("qdbz") + "</qdbz>\n");
+            stringBuffer.append("<zsfs>" + body.getString("zsfs") + "</zsfs>\n");
+            JSONObject fyxm = body.getJSONObject("fyxm");
+            stringBuffer.append("<fyxm count=\"" + fyxm.getString("count") + "\">\n");
+            JSONArray group = fyxm.getJSONArray("group");
+            if (group.size() > 0) {
+                for (int i = 0; i < group.size(); i++) {
+                    HashMap map = new HashMap();
+                    JSONObject groups = group.getJSONObject(i);
+                    stringBuffer.append("<group xh=\"" + (i + 1) + "\">\n");
+                    stringBuffer.append("<fphxz>" + groups.getString("fphxz") + "</fphxz>\n");
+                    stringBuffer.append("<spmc>" + groups.getString("spmc") + "</spmc>\n");
+                    stringBuffer.append("<spsm>" + groups.getString("spsm") + "</spsm>\n");
+                    stringBuffer.append("<ggxh>" + groups.getString("ggxh") + "</ggxh>\n");
+                    stringBuffer.append("<dw>" + groups.getString("dw") + "</dw>\n");
+                    stringBuffer.append("<spsl>" + groups.getString("spsl") + "</spsl>\n");
+                    stringBuffer.append("<dj>" + groups.getString("dj") + "</dj>\n");
+                    stringBuffer.append("<je>" + groups.getString("je") + "</je>\n");
+                    stringBuffer.append("<sl>" + groups.getString("sl") + "</sl>\n");
+                    stringBuffer.append("<se>" + groups.getString("se") + "</se>\n");
+                    stringBuffer.append("<hsbz>" + groups.getString("hsbz") + "</hsbz>\n");
+                    stringBuffer.append("<spbm>" + groups.getString("spbm") + "</spbm>\n");
+                    stringBuffer.append("<zxbm>" + groups.getString("zxbm") + "</zxbm>\n");
+                    stringBuffer.append("<yhzcbs>" + groups.getString("yhzcbs") + "</yhzcbs>\n");
+                    stringBuffer.append("<lslbs>" + groups.getString("lslbs") + "</lslbs>\n");
+                    stringBuffer.append("<zzstsgl>" + groups.getString("zzstsgl") + "</zzstsgl>\n");
+                    stringBuffer.append("</group>\n");
+                }
+                stringBuffer.append("</fyxm>\n");
+                stringBuffer.append("<hjje>" + body.getString("hjje") + "</hjje>\n");
+                stringBuffer.append("<hjse>" + body.getString("hjse") + "</hjse>\n");
+                stringBuffer.append("<jshj>" + body.getString("jshj") + "</jshj>\n");
+                stringBuffer.append("<kce>" + body.getString("kce") + "</kce>\n");
+                stringBuffer.append("<bz>" + body.getString("bz") + "</bz>\n");
+                stringBuffer.append("<skr>" + body.getString("skr") + "</skr>\n");
+                stringBuffer.append("<fhr>" + body.getString("fhr") + "</fhr>\n");
+                stringBuffer.append("<kpr>" + body.getString("kpr") + "</kpr>\n");
+                stringBuffer.append("<tzdbh>" + body.getString("tzdbh") + "</tzdbh>\n");
+                stringBuffer.append("<yfpdm>" + body.getString("yfpdm") + "</yfpdm>\n");
+                stringBuffer.append("<yfphm>" + body.getString("yfphm") + "</yfphm>\n");
+                stringBuffer.append("</body>\n");
+                stringBuffer.append("</business>\n");
+            }
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "税控服务返回xml解析失败";
+        }
+    }
+
+    /**
+     * 增值税电子发票
+     */
+    public static String jsonToXmlElectronInvoice(String completeJson) {
+        try{
+            StringBuffer stringBuffer = new StringBuffer();
+            JSONObject json = JSONObject.parseObject(completeJson);
+            JSONObject bussinse = json.getJSONObject("business");
+            JSONObject body = bussinse.getJSONObject("body");
+
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"" + bussinse.getString("id") + "\" comment=\"" +    bussinse.getString("comment") + "\">\n");
+            stringBuffer.append("<body yylxdm=\"" + body.getString("yylxdm") + "\">\n");
+            stringBuffer.append("<kpzdbs>" + body.getString("kpzdbs") + "</kpzdbs>\n");
+            stringBuffer.append("<yhlx>" + body.getString("yhlx") + "</yhlx>\n");
+            stringBuffer.append("<fplxdm>" + body.getString("fplxdm") + "</fplxdm>\n");
+            stringBuffer.append("<fpqqlsh>" + body.getString("fpqqlsh") + "</fpqqlsh>\n");
+            stringBuffer.append("<kplx>" + body.getString("kplx") + "</kplx>\n");
+            stringBuffer.append("<tspz>" + body.getString("tspz") + "</tspz>\n");
+            stringBuffer.append("<xhdwsbh>" + body.getString("xhdwsbh") + "</xhdwsbh>\n");
+            stringBuffer.append("<xhdwmc>" + body.getString("xhdwmc") + "</xhdwmc>\n");
+            stringBuffer.append("<xhdwdzdh>" + body.getString("xhdwdzdh") + "</xhdwdzdh>\n");
+            stringBuffer.append("<xhdwyhzh>" + body.getString("xhdwyhzh") + "</xhdwyhzh>\n");
+            stringBuffer.append("<ghdwsbh>" + body.getString("ghdwsbh") + "</ghdwsbh>\n");
+            stringBuffer.append("<ghdwmc>" + body.getString("ghdwmc") + "</ghdwmc>\n");
+            stringBuffer.append("<ghdwdzdh>" + body.getString("ghdwdzdh") + "</ghdwdzdh>\n");
+            stringBuffer.append("<ghdwyhzh>" + body.getString("ghdwyhzh") + "</ghdwyhzh>\n");
+            stringBuffer.append("<qdbz>" + body.getString("qdbz") + "</qdbz>\n");
+            stringBuffer.append("<zsfs>" + body.getString("zsfs") + "</zsfs>\n");
+            JSONObject fyxm = body.getJSONObject("fyxm");
+            stringBuffer.append("<fyxm count=\"" + fyxm.getString("count") + "\">\n");
+            JSONArray group = fyxm.getJSONArray("group");
+            if (group.size() > 0) {
+                for (int i = 0; i < group.size(); i++) {
+                    HashMap map = new HashMap();
+                    JSONObject groups = group.getJSONObject(i);
+                    stringBuffer.append("<group xh=\"" + (i + 1) + "\">\n");
+                    stringBuffer.append("<fphxz>" + groups.getString("fphxz") + "</fphxz>\n");
+                    stringBuffer.append("<spmc>" + groups.getString("spmc") + "</spmc>\n");
+                    stringBuffer.append("<spsm>" + groups.getString("spsm") + "</spsm>\n");
+                    stringBuffer.append("<ggxh>" + groups.getString("ggxh") + "</ggxh>\n");
+                    stringBuffer.append("<dw>" + groups.getString("dw") + "</dw>\n");
+                    stringBuffer.append("<spsl>" + groups.getString("spsl") + "</spsl>\n");
+                    stringBuffer.append("<dj>" + groups.getString("dj") + "</dj>\n");
+                    stringBuffer.append("<je>" + groups.getString("je") + "</je>\n");
+                    stringBuffer.append("<sl>" + groups.getString("sl") + "</sl>\n");
+                    stringBuffer.append("<se>" + groups.getString("se") + "</se>\n");
+                    stringBuffer.append("<hsbz>" + groups.getString("hsbz") + "</hsbz>\n");
+                    stringBuffer.append("<spbm>" + groups.getString("spbm") + "</spbm>\n");
+                    stringBuffer.append("<zxbm>" + groups.getString("zxbm") + "</zxbm>\n");
+                    stringBuffer.append("<yhzcbs>" + groups.getString("yhzcbs") + "</yhzcbs>\n");
+                    stringBuffer.append("<lslbs>" + groups.getString("lslbs") + "</lslbs>\n");
+                    stringBuffer.append("<zzstsgl>" + groups.getString("zzstsgl") + "</zzstsgl>\n");
+                    stringBuffer.append("</group>\n");
+                }
+                stringBuffer.append("</fyxm>\n");
+                stringBuffer.append("<hjje>" + body.getString("hjje") + "</hjje>\n");
+                stringBuffer.append("<hjse>" + body.getString("hjse") + "</hjse>\n");
+                stringBuffer.append("<jshj>" + body.getString("jshj") + "</jshj>\n");
+                stringBuffer.append("<kce>" + body.getString("kce") + "</kce>\n");
+                stringBuffer.append("<bz>" + body.getString("bz") + "</bz>\n");
+                stringBuffer.append("<skr>" + body.getString("skr") + "</skr>\n");
+                stringBuffer.append("<fhr>" + body.getString("fhr") + "</fhr>\n");
+                stringBuffer.append("<kpr>" + body.getString("kpr") + "</kpr>\n");
+                stringBuffer.append("<yfpdm>" + body.getString("yfpdm") + "</yfpdm>\n");
+                stringBuffer.append("<yfphm>" + body.getString("yfphm") + "</yfphm>\n");
+                stringBuffer.append("<tsbz>" + body.getString("tsbz") + "</tsbz>\n");
+                stringBuffer.append("<gfkhdh>" + body.getString("gfkhdh") + "</gfkhdh>\n");
+                stringBuffer.append("<gfkhyx>" + body.getString("gfkhyx") + "</gfkhyx>\n");
+                stringBuffer.append("</body>\n");
+                stringBuffer.append("</business>\n");
+            }
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "税控服务返回xml解析失败";
+        }
+    }
+
+
+    /**
+     * 处理税控服务器返回报文
+     */
+    public static String xmltoJson(String completeXml) {
+        try{
+            return UniversalUtils.xmlToJson(completeXml);
+        }catch (Exception e){
+            return "税控服务返回xml解析失败";
+        }
+
+    }
+
+}

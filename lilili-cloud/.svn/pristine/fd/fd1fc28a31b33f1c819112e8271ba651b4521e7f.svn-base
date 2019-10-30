@@ -1,0 +1,17 @@
+package com.bwcloud.billingCenter.invoiceOpening.abstractClass;
+
+/**
+ * lilili on 2018/3/29.
+ * 抽象的开具类
+ */
+public abstract class InoviceOpening {
+
+
+    protected static final String JSFP = "025";
+    protected static final String DZFP = "026";
+    protected static final String PTFP = "007";
+    protected static final String ZYFP = "004";
+
+    public abstract String Opening(String json);
+
+}

@@ -1,0 +1,119 @@
+package com.bwcloud.billingCenter.onlineTicketInfoSynchronizationQuery.impl;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.onlineTicketInfoSynchronizationQuery.SynchronizationQueryService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ * Created by Administrator on 2018/4/14.
+ */
+public class SynchronizationQueryServiceImpl implements SynchronizationQueryService {
+    /**
+     * 主要根据开票终端来查询相应税号的分机（核心版）
+     *
+     * @param json
+     * @return
+     */
+    @Override
+    public String onlineTicketInfoSynchronizationQuery(String json) {
+        String xml = onlineTicketInfoSynchronizationQuery2Xml(json);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+
+    /**
+     * json 转 xml
+     * @param string
+     * @return
+     */
+    String onlineTicketInfoSynchronizationQuery2Xml(String string) {
+       try {
+           JSONObject json = JSONObject.parseObject(string);
+           JSONObject business = json.getJSONObject("business");
+           String id = business.getString("id");
+           String comment = business.getString("comment");
+           JSONObject body = business.getJSONObject("body");
+           String yylxdm = body.getString("yylxdm");
+           String kpzdbs = body.getString("kpzdbs");
+
+           StringBuffer stringBuffer = new StringBuffer();
+           stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+           stringBuffer.append("<business id=\"");
+           stringBuffer.append(id);
+           stringBuffer.append("\" comment=\"");
+           stringBuffer.append(comment);
+           stringBuffer.append("\">\n\t<body yylxdm=\"");
+           stringBuffer.append(yylxdm);
+           stringBuffer.append("\">\n\t\t<kpzdbs>");
+           stringBuffer.append(kpzdbs);
+           stringBuffer.append("</kpzdbs>");
+           stringBuffer.append("\n\t\t<fpxl>");
+
+
+           JSONObject fpxl = body.getJSONObject("fpxl");
+           JSONArray groups = fpxl.getJSONArray("group");
+           for (int i = 0; i < groups.size(); i++) {
+               JSONObject group = groups.getJSONObject(i);
+               String xh = group.getString("xh");
+               String fplxdm = group.getString("fplxdm");
+               String fpdm = group.getString("fpdm");
+               String qshm = group.getString("qshm");
+               String zzhm = group.getString("zzhm");
+               String fpfs = group.getString("fpfs");
+               String gpzt = group.getString("gpzt");
+               stringBuffer.append("\n\t\t\t<group xh=\"");
+               stringBuffer.append(xh);
+               stringBuffer.append("\">");
+               stringBuffer.append("\n\t\t\t\t<fplxdm>");
+               stringBuffer.append(fplxdm);
+               stringBuffer.append("</fplxdm>");
+               stringBuffer.append("\n\t\t\t\t<fpdm>");
+               stringBuffer.append(fpdm);
+               stringBuffer.append("</fpdm>");
+               stringBuffer.append("\n\t\t\t\t<qshm>");
+               stringBuffer.append(qshm);
+               stringBuffer.append("</qshm>");
+               stringBuffer.append("\n\t\t\t\t<zzhm>");
+               stringBuffer.append(zzhm);
+               stringBuffer.append("</zzhm>");
+               stringBuffer.append("\n\t\t\t\t<fpfs>");
+               stringBuffer.append(fpfs);
+               stringBuffer.append("</fpfs>");
+               stringBuffer.append("\n\t\t\t\t<gpzt>");
+               stringBuffer.append(gpzt);
+               stringBuffer.append("\n\t\t\t\t</gpzt>");
+               stringBuffer.append("\n\t\t\t</group>");
+           }
+
+
+           stringBuffer.append("\n\t\t</fpxl>");
+           stringBuffer.append("\n\t</body>\n</business>");
+           return stringBuffer.toString();
+       }catch (Exception e){
+           return "json转xml，转换失败！";
+       }
+    }
+    /**
+     * 向税控服务器发送xml，并返回结果
+     * @param xml
+     * @return
+     */
+    String sendXml(String xml){
+        return "";
+    }
+    /**
+     * xml 转 json
+     * @param receiveXml
+     * @return
+     */
+    String xml2Json(String receiveXml){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

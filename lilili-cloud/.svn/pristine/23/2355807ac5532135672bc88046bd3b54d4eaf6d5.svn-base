@@ -1,0 +1,276 @@
+package com.bwcloud.finance.loan.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+@Table(name = "tax_base_info")
+public class TaxBaseInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //数据日期
+    @Column(name = "data_date")
+    private String dataDate;
+	
+	    //百旺ID
+    @Column(name = "sup_id")
+    private String supId;
+	
+	    //纳税人识别号
+    @Column(name = "tax_code")
+    private String taxCode;
+	
+	    //纳税人名称
+    @Column(name = "tax_name")
+    private String taxName;
+	
+	    //发票票面记录地址
+    @Column(name = "inv_addr")
+    private String invAddr;
+	
+	    //最早发票距现在月份数
+    @Column(name = "inv_his_months")
+    private String invHisMonths;
+	
+	    //前36个月合计开票张数
+    @Column(name = "inv_sum_num")
+    private String invSumNum;
+	
+	    //前36个月合计开票金额
+    @Column(name = "inv_sum_amt")
+    private String invSumAmt;
+	
+	    //前36个月合计应税销售收入
+    @Column(name = "tax_sum_amt")
+    private String taxSumAmt;
+	
+	    //同省份同行业上一年月均开票张数
+    @Column(name = "inv_avg_num")
+    private String invAvgNum;
+	
+	    //同省份同行业上一年应税销售收入
+    @Column(name = "inv_avg_amt")
+    private String invAvgAmt;
+	
+	    //连续未开票天数
+    @Column(name = "inv_no_days")
+    private String invNoDays;
+	
+	    //其他行授予借款人的授信额度
+    @Column(name = "credit_amt")
+    private String creditAmt;
+	
+	    //创建时间
+    @Column(name = "create_time")
+    private String createTime;
+	
+	    //修改时间
+    @Column(name = "update_time")
+    private String updateTime;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：数据日期
+	 */
+	public void setDataDate(String dataDate) {
+		this.dataDate = dataDate;
+	}
+	/**
+	 * 获取：数据日期
+	 */
+	public String getDataDate() {
+		return dataDate;
+	}
+	/**
+	 * 设置：百旺ID
+	 */
+	public void setSupId(String supId) {
+		this.supId = supId;
+	}
+	/**
+	 * 获取：百旺ID
+	 */
+	public String getSupId() {
+		return supId;
+	}
+	/**
+	 * 设置：纳税人识别号
+	 */
+	public void setTaxCode(String taxCode) {
+		this.taxCode = taxCode;
+	}
+	/**
+	 * 获取：纳税人识别号
+	 */
+	public String getTaxCode() {
+		return taxCode;
+	}
+	/**
+	 * 设置：纳税人名称
+	 */
+	public void setTaxName(String taxName) {
+		this.taxName = taxName;
+	}
+	/**
+	 * 获取：纳税人名称
+	 */
+	public String getTaxName() {
+		return taxName;
+	}
+	/**
+	 * 设置：发票票面记录地址
+	 */
+	public void setInvAddr(String invAddr) {
+		this.invAddr = invAddr;
+	}
+	/**
+	 * 获取：发票票面记录地址
+	 */
+	public String getInvAddr() {
+		return invAddr;
+	}
+	/**
+	 * 设置：最早发票距现在月份数
+	 */
+	public void setInvHisMonths(String invHisMonths) {
+		this.invHisMonths = invHisMonths;
+	}
+	/**
+	 * 获取：最早发票距现在月份数
+	 */
+	public String getInvHisMonths() {
+		return invHisMonths;
+	}
+	/**
+	 * 设置：前36个月合计开票张数
+	 */
+	public void setInvSumNum(String invSumNum) {
+		this.invSumNum = invSumNum;
+	}
+	/**
+	 * 获取：前36个月合计开票张数
+	 */
+	public String getInvSumNum() {
+		return invSumNum;
+	}
+	/**
+	 * 设置：前36个月合计开票金额
+	 */
+	public void setInvSumAmt(String invSumAmt) {
+		this.invSumAmt = invSumAmt;
+	}
+	/**
+	 * 获取：前36个月合计开票金额
+	 */
+	public String getInvSumAmt() {
+		return invSumAmt;
+	}
+	/**
+	 * 设置：前36个月合计应税销售收入
+	 */
+	public void setTaxSumAmt(String taxSumAmt) {
+		this.taxSumAmt = taxSumAmt;
+	}
+	/**
+	 * 获取：前36个月合计应税销售收入
+	 */
+	public String getTaxSumAmt() {
+		return taxSumAmt;
+	}
+	/**
+	 * 设置：同省份同行业上一年月均开票张数
+	 */
+	public void setInvAvgNum(String invAvgNum) {
+		this.invAvgNum = invAvgNum;
+	}
+	/**
+	 * 获取：同省份同行业上一年月均开票张数
+	 */
+	public String getInvAvgNum() {
+		return invAvgNum;
+	}
+	/**
+	 * 设置：同省份同行业上一年应税销售收入
+	 */
+	public void setInvAvgAmt(String invAvgAmt) {
+		this.invAvgAmt = invAvgAmt;
+	}
+	/**
+	 * 获取：同省份同行业上一年应税销售收入
+	 */
+	public String getInvAvgAmt() {
+		return invAvgAmt;
+	}
+	/**
+	 * 设置：连续未开票天数
+	 */
+	public void setInvNoDays(String invNoDays) {
+		this.invNoDays = invNoDays;
+	}
+	/**
+	 * 获取：连续未开票天数
+	 */
+	public String getInvNoDays() {
+		return invNoDays;
+	}
+	/**
+	 * 设置：其他行授予借款人的授信额度
+	 */
+	public void setCreditAmt(String creditAmt) {
+		this.creditAmt = creditAmt;
+	}
+	/**
+	 * 获取：其他行授予借款人的授信额度
+	 */
+	public String getCreditAmt() {
+		return creditAmt;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：修改时间
+	 */
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	/**
+	 * 获取：修改时间
+	 */
+	public String getUpdateTime() {
+		return updateTime;
+	}
+}

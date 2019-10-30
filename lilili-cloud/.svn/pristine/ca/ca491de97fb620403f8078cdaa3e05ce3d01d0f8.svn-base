@@ -1,0 +1,20 @@
+package com.bwcloud.billingCenter.invoicePrint.printService;
+
+/**
+ * Created by bs on 2018/4/2.
+ *
+ * 该接口用于发票打印相关
+ */
+public interface PrintService {
+
+    //页边距打印（智能打印）
+    String marginsPrint(String json);
+
+    //智能打印----增值税专用发票
+    String  specialPrint(String josn);
+    //智能打印----值税普通发票
+    String ordinaryPrint(String json);
+
+    //智能打印----增值税普通发票（卷式）
+    String rollPrint(String json);
+}

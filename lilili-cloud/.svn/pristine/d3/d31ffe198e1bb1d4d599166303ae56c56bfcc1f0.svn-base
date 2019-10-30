@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.PjJdcFpmxzbMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.PjJdcFpmxzb" id="pjJdcFpmxzbMap">
+        <result property="bm" column="BM"/>
+        <result property="cllx" column="CLLX"/>
+        <result property="cpxh" column="CPXH"/>
+        <result property="cd" column="CD"/>
+        <result property="hgzh" column="HGZH"/>
+        <result property="jkzmsh" column="JKZMSH"/>
+        <result property="sjdh" column="SJDH"/>
+        <result property="fdjhm" column="FDJHM"/>
+        <result property="clsbdm" column="CLSBDM"/>
+        <result property="wspzhm" column="WSPZHM"/>
+        <result property="dw" column="DW"/>
+        <result property="xcrs" column="XCRS"/>
+        <result property="scqymc" column="SCQYMC"/>
+        <result property="nsrsbh" column="NSRSBH"/>
+    </resultMap>
+
+</mapper>

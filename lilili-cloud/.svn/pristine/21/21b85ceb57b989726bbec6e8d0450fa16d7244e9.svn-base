@@ -1,0 +1,121 @@
+package com.bwcloud.billingCenter;
+
+
+import com.bwcloud.billingCenter.invoiceOpening.service.InvoiceOpeningService;
+
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * lilili 2018/3/29.
+ */
+@RestController
+@CheckClientToken
+public class  InvoiceController {
+
+    @Autowired
+    private InvoiceOpeningService InvoiceOpeningService;
+
+
+
+    @RequestMapping(value = "/invoiceOpening", method = RequestMethod.POST)
+    public String invoiceOpening(HttpServletRequest request,HttpServletResponse response) throws Exception{
+//         String s=IOUtils.toString(request.getInputStream(), "utf-8");
+//        System.out.print(s);
+        String s="{\n" +
+                "\t\"business\": {\n" +
+                "\t\t\"id\": \"10008\",\n" +
+                "\t\t\"comment\": \"发票开具\",\n" +
+                "\t\t\"body\": {\n" +
+                "\t\t\t\"yylxdm\": \"1\",\n" +
+                "              \"kpzdbs\": \"开票终端标识\",\n" +
+                "              \"yhlx\": \"用户类型\",\n" +
+                "\t\t\t\"fplxdm\": \"发票类型代码\",\n" +
+                "\t\t\t\"fpqqlsh\": \"发票请求流水号\",\n" +
+                "\t\t\t\"kplx\": \"开票类型\",\n" +
+                "\t\t\t\"tspz\": \"特殊票种标识\",\n" +
+                "\t\t\t\"xhdwsbh\": \"销货单位识别号\",\n" +
+                "\t\t\t\"xhdwmc\": \"销货单位名称\",\n" +
+                "\t\t\t\"xhdwdzdh\": \"销货单位地址电话\",\n" +
+                "\t\t\t\"xhdwyhzh\": \"销货单位银行帐号\",\n" +
+                "\t\t\t\"ghdwsbh\": \"购货单位识别号\",\n" +
+                "\t\t\t\"ghdwmc\": \"购货单位名称\",\n" +
+                "\t\t\t\"ghdwdzdh\": \"购货单位地址电话\",\n" +
+                "\t\t\t\"ghdwyhzh\": \"购货单位银行帐号\",\n" +
+                "\t\t\t\"qdbz\": \"清单标志\",\n" +
+                "\t\t\t\"zsfs\": \"征税方式\",\n" +
+                "\t\t\t\"fyxm\": {\n" +
+                "\t\t\t\t\"count\": \"2\",\n" +
+                "\t\t\t\t\"group\": [{\n" +
+                "\t\t\t\t\t\t\"xh\": \"1\",\n" +
+                "\t\t\t\t\t\t\"fphxz\": \"发票行性质\",\n" +
+                "\t\t\t\t\t\t\"spmc\": \"商品名称\",\n" +
+                "\t\t\t\t\t\t\"spsm\": \"商品税目\",\n" +
+                "\t\t\t\t\t\t\"ggxh\": \"规格型号\",\n" +
+                "\t\t\t\t\t\t\"dw\": \"单位\",\n" +
+                "\t\t\t\t\t\t\"spsl\": \"商品数量\",\n" +
+                "\t\t\t\t\t\t\"dj\": \"单价\",\n" +
+                "\t\t\t\t\t\t\"je\": \"金额\",\n" +
+                "\t\t\t\t\t\t\"sl\": \"税率\",\n" +
+                "\t\t\t\t\t\t\"se\": \"税额\",\n" +
+                "\t\t\t\t\t\t\"hsbz\": \"含税标志\",\n" +
+                "\t\t\t\t\t\t\"spbm\": \"商品编码\",\n" +
+                "\t\t\t\t\t\t\"zxbm\": \"纳税人自行编码\",\n" +
+                "\t\t\t\t\t\t\"yhzcbs\": \"优惠政策标识\",\n" +
+                "\t\t\t\t\t\t\"lslbs\": \"零税率标识\",\n" +
+                "\t\t\t\t\t\t\"zzstsgl\": \"增值税特殊管理\"\n" +
+                "\t\t\t\t\t},\n" +
+                "\t\t\t\t\t{\n" +
+                "\t\t\t\t\t\t\"xh\": \"2\",\n" +
+                "\t\t\t\t\t\t\"fphxz\": \"发票行性质\",\n" +
+                "\t\t\t\t\t\t\"spmc\": \"商品名称\",\n" +
+                "\t\t\t\t\t\t\"spsm\": \"商品税目\",\n" +
+                "\t\t\t\t\t\t\"ggxh\": \"规格型号\",\n" +
+                "\t\t\t\t\t\t\"dw\": \"单位\",\n" +
+                "\t\t\t\t\t\t\"spsl\": \"商品数量\",\n" +
+                "\t\t\t\t\t\t\"dj\": \"单价\",\n" +
+                "\t\t\t\t\t\t\"je\": \"金额\",\n" +
+                "\t\t\t\t\t\t\"sl\": \"税率\",\n" +
+                "\t\t\t\t\t\t\"se\": \"税额\",\n" +
+                "\t\t\t\t\t\t\"hsbz\": \"含税标志\",\n" +
+                "\t\t\t\t\t\t\"spbm\": \"商品编码\",\n" +
+                "\t\t\t\t\t\t\"zxbm\": \"纳税人自行编码\",\n" +
+                "\t\t\t\t\t\t\"yhzcbs\": \"优惠政策标识\",\n" +
+                "\t\t\t\t\t\t\"lslbs\": \"零税率标识\",\n" +
+                "\t\t\t\t\t\t\"zzstsgl\": \"增值税特殊管理\"\n" +
+                "\t\t\t\t\t}\n" +
+                "\t\t\t\t]\n" +
+                "\t\t\t},\n" +
+                "\t\t\t\"hjje\": \"合计金额\",\n" +
+                "\t\t\t\"hjse\": \"合计税额\",\n" +
+                "\t\t\t\"jshj\": \"价税合计\",\n" +
+                "\t\t\t\"kce\": \"差额征税扣除额\",\n" +
+                "\t\t\t\"bz\": \"备注\",\n" +
+                "\t\t\t\"skr\": \"收款人\",\n" +
+                "\t\t\t\"fhr\": \"复核人\",\n" +
+                "\t\t\t\"kpr\": \"开票人\",\n" +
+                "\t\t\t\"yfpdm\": \"原发票代码\",\n" +
+                "\t\t\t\"yfphm\": \"原发票号码\",\n" +
+                "\t\t\t\"tsbz\": \"推送标志\",\n" +
+                "\t\t\t\"gfkhdh\": \"购方客户电话\",\n" +
+                "\t\t\t\"gfkhyx\": \"购方客户邮箱\"\n" +
+                "\t\t}\n" +
+                "\t}\n" +
+                "}";
+
+        return  InvoiceOpeningService.toOpening(s);
+    }
+
+
+}

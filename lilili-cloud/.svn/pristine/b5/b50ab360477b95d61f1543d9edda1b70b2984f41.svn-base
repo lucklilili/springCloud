@@ -1,0 +1,17 @@
+package com.bwcloud.billingCenter.rubricInfoTable.applyService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 通过红字信息表申请接口可以申请购方或销方的红字信息表。
+ * Created by bs on 2018/4/12.
+ */
+@Service
+public interface InfoTableApplyService {
+    /**
+     * 申请购方或销方的红字信息表.
+     * @param json
+     * @return
+     */
+    String informationApply(String json);
+}

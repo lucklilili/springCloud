@@ -1,0 +1,19 @@
+package com.bwcloud.billingCenter.invoicePurchase.informationQueryService.impl;
+
+import com.bwcloud.billingCenter.invoicePurchase.informationQueryService.InformationQueryService;
+
+/**
+ * Created by bs on 2018/4/9.
+ */
+public class InformationQueryServiceImpl implements InformationQueryService {
+    /**
+     * 获取税控服务器指定发票类型的发票领购信息。
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String informationQuery(String string) {
+        return null;
+    }
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.PjZzspFpmxzbMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.PjZzspFpmxzb" id="pjZzspFpmxzbMap">
+        <result property="id" column="id"/>
+        <result property="mxid" column="mxid"/>
+        <result property="fpdm" column="fpdm"/>
+        <result property="fphm" column="fphm"/>
+        <result property="fpmxxh" column="fpmxxh"/>
+        <result property="xsdjbh" column="xsdjbh"/>
+        <result property="fphxz" column="fphxz"/>
+        <result property="je" column="je"/>
+        <result property="sl" column="sl"/>
+        <result property="se" column="se"/>
+        <result property="spmc" column="spmc"/>
+        <result property="spsm" column="spsm"/>
+        <result property="ggxh" column="ggxh"/>
+        <result property="dw" column="dw"/>
+        <result property="spsl" column="spsl"/>
+        <result property="spdj" column="spdj"/>
+        <result property="hsbz" column="hsbz"/>
+        <result property="spbm" column="spbm"/>
+        <result property="djmxxh" column="djmxxh"/>
+        <result property="bb" column="bb"/>
+        <result property="zxbm" column="zxbm"/>
+        <result property="yhzcbs" column="yhzcbs"/>
+        <result property="lslbs" column="lslbs"/>
+        <result property="zzstsgl" column="zzstsgl"/>
+        <result property="kprq" column="kprq"/>
+        <result property="jqbh" column="jqbh"/>
+    </resultMap>
+
+</mapper>

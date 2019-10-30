@@ -1,0 +1,129 @@
+package com.bwcloud.finance.center.timer;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.bwcloud.finance.center.biz.LoanMerchantBiz;
+import com.bwcloud.finance.center.biz.TaxInvoiceBiz;
+import com.bwcloud.finance.center.bwfpd.TaxDataUploadTask;
+import com.bwcloud.finance.center.bwfpd.TaxDataUploadTrigger;
+import com.bwcloud.finance.center.constant.LoanCodeConstants;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.bwcloud.finance.center.entity.TaxDataDetailUploadReq;
+import com.bwcloud.finance.center.entity.TaxDataUploadResponse;
+import com.bwcloud.finance.center.utils.InvoiceLoanUtil;
+import com.github.wxiaoqi.security.common.util.DateUtils;
+import com.github.wxiaoqi.security.common.util.GZipUtils;
+import com.github.wxiaoqi.security.common.util.HttpUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.httpclient.HttpException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.Trigger;
+import org.springframework.scheduling.TriggerContext;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.scheduling.support.CronTrigger;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PreDestroy;
+import java.net.ConnectException;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * 发票上传timer
+ *
+ * @author dz
+ *         Created by Administrator on 2018/3/26.
+ */
+@Slf4j
+@Component
+public class InvoiceUploadTimer {
+
+    @Autowired
+    LoanMerchantBiz loanMerchantBiz;
+
+    @Autowired
+    TaxInvoiceBiz taxInvoiceBiz;
+
+    @Autowired
+    private ThreadPoolTaskScheduler threadPoolTaskScheduler;
+
+    @Bean
+    public ThreadPoolTaskScheduler threadPoolTaskScheduler() {
+        return new ThreadPoolTaskScheduler();
+    }
+
+    @Value("${sendHongHaoUrl}")
+    private String url;
+
+    @Value("${invoiceUpload.version}")
+    private String ver;
+
+    @Value("${invoiceUpload.req}")
+    private String req;
+
+    @Value("${invoiceUpload.signKey}")
+    private String signKey;
+
+    @Scheduled(cron = "0 0/5 * * * ?")
+    public void uploadDataCheck() {
+        log.info("上传数据检查定时器开始");
+        List<LoanMerchantInfo> list = loanMerchantBiz.selectListAll();
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                LoanMerchantInfo loanMerchantInfo = list.get(i);
+                if ("Y".equals(loanMerchantInfo.getXysqbz())) {
+                    String nsrsbh = loanMerchantInfo.getNsrsbh();
+                    String merchantid = loanMerchantInfo.getMerchantid();
+                    try {
+                        String reqTime = DateUtils.formatSfmFiles(new Date());
+                        String dataDateQueryUrl = url + "bwfpd.server/api/dataDateQuery?sup_id=" + nsrsbh + "&req_time=" + reqTime;
+                        log.info("调用上传数据检查接口请求地址、参数" + dataDateQueryUrl);
+                        JSONObject jsonObject = HttpUtil.httpRequestHonghao(dataDateQueryUrl, "GET", null);
+                        log.info("调用上传数据检查接口返回报文" + jsonObject.toJSONString());
+                        if (LoanCodeConstants.RESULT_SUCCESS.equals(jsonObject.getString("rescd")) &&
+                                LoanCodeConstants.UPLOAD_TRUE.equals(jsonObject.getString("up_flag"))) {
+                            invoiceUpload(loanMerchantInfo, jsonObject);
+                        } else {
+                            log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + "," + jsonObject.getString("resmsg"));
+                        }
+                    } catch (ConnectException ce) {
+                        log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + "调用宏昊上传数据检查接口连接超时！" + ce);
+                    } catch (Exception e) {
+                        log.error("商户ID:" + merchantid + "，税号:" + nsrsbh + "调用宏昊上传数据检查接口服务异常！" + e);
+                    }
+                }
+            }
+        }
+    }
+
+    public void invoiceUpload(LoanMerchantInfo loanMerchantInfo, JSONObject jsonObject) {
+        String nsrsbh = loanMerchantInfo.getNsrsbh();
+        String merchantid = loanMerchantInfo.getMerchantid();
+        String upTime = jsonObject.getString("up_time");
+        try {
+            String cron = DateUtils.getCron(DateUtils.parse(upTime, DateUtils.DATE_FULL_FORMAT_FILES));
+            log.info("将商户ID:" + merchantid + "，税号:" + nsrsbh + "添加到企业税务数据明细上传定时线程池中！");
+            threadPoolTaskScheduler.schedule(new TaxDataUploadTask(loanMerchantInfo, taxInvoiceBiz, ver, req, signKey, jsonObject), new TaxDataUploadTrigger(cron));
+
+        } catch (ParseException pe) {
+            log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + "添加到企业税务数据明细上传定时线程池失败，日期转换异常！" + pe);
+        } catch (Exception e) {
+            log.info("商户ID:" + merchantid + "，税号:" + nsrsbh + "添加到企业税务数据明细上传定时线程池失败，服务器异常！" + e);
+        }
+    }
+
+    /**
+     * 服务器关闭时摧毁线程池
+     */
+    @PreDestroy
+    public void destory() {
+        threadPoolTaskScheduler.shutdown();
+        log.info("企业税务数据明细上传线程池销毁");
+    }
+
+}

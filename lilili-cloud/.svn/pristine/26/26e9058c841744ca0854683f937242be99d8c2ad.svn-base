@@ -1,0 +1,17 @@
+package com.bwcloud.billingCenter.rubricInfoTable.queryService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 通过红字信息表查询接口可以查询已申请的红字信息表。
+ * Created by bs on 2018/4/12.
+ */
+@Service
+public interface InfoTableQueryService {
+    /**
+     * 查询已申请的红字信息表。
+     * @param json
+     * @return
+     */
+    String informationQuery(String json);
+}

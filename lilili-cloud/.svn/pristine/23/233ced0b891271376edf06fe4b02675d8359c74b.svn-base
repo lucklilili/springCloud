@@ -1,0 +1,19 @@
+package com.bwcloud.billingCenter.invoiceQuery.serverCoreBoardInfoQueryService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 通过该接口可以查询税控管理系统中的核心板信息和单个核心板信息
+ * Created by bs on 2018/4/13.
+ */
+@Service
+public interface ServerCoreBoardInfoQuery {
+
+    /**
+     * 查询一个税号下所有加入到税控管理系统中的核心板信息，
+     * 也可查询单个核心板信息
+     * @param josn
+     * @return
+     */
+    String serverCoreBoardInfoQuery(String josn);
+}

@@ -1,0 +1,23 @@
+package com.bwcloud.finance.center.mapper;
+
+import com.bwcloud.finance.center.entity.TaxInvoiceDetail;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * 
+ * 
+ * @author dongzhen
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+public interface TaxInvoiceDetailMapper extends CommonMapper<TaxInvoiceDetail> {
+    /**
+     * 批量插入发票明细数据
+     * @param taxInvoiceDetailList
+     * @return
+     */
+    public int insertTaxInvoiceDetailList(@Param("taxInvoiceDetailList")List<TaxInvoiceDetail> taxInvoiceDetailList);
+}

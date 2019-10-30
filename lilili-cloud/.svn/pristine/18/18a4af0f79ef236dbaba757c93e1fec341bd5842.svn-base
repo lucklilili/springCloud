@@ -1,0 +1,33 @@
+package com.bwcloud.finance.center.constant;
+
+/**
+ * 发票贷接口返回错误码
+ *
+ * @author dz
+ *         Created by Administrator on 2018/3/26.
+ */
+public class LoanCodeConstants {
+    /**
+     * 用户token异常
+     */
+    public static final String EX_USER_INVALID_CODE = "40101";
+
+
+    /**
+     * 宏昊接口返回成功标志
+     */
+    public static final String RESULT_SUCCESS = "200";
+
+    /**
+     * 接口请求方式
+     */
+    public static final String REQUEST_POST = "POST";
+    public static final String REQUEST_GET = "GET";
+
+    /**
+     * 接口请求方式
+     */
+    public static final String UPLOAD_TRUE = "1";
+    public static final String UPLOAD_FALSE = "0";
+
+}

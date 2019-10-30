@@ -1,0 +1,1044 @@
+package com.bwcloud.finance.center.entity;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-02 14:21:14
+ */
+@Table(name = "pj_jdc_fpmx")
+public class PjJdcFpmx implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+    @Id
+    private String id;
+	
+	    /**开票日期*/
+    @Column(name = "KPRQ")
+    private String kprq;
+	
+	    /**发票号码*/
+    @Column(name = "FPHM")
+    private String fphm;
+	
+	    /**发票代码*/
+    @Column(name = "FPDM")
+    private String fpdm;
+	
+	    /**机器编号*/
+    @Column(name = "JQBH")
+    private String jqbh;
+	
+	    /**税控码*/
+    @Column(name = "SKM")
+    private String skm;
+	
+	    /**购买方名称*/
+    @Column(name = "GMFMC")
+    private String gmfmc;
+	
+	    /**购买方身份证号码*/
+    @Column(name = "SFZHM")
+    private String sfzhm;
+	
+	    /**购货方识别号*/
+    @Column(name = "GHFSBH")
+    private String ghfsbh;
+	
+	    /**车辆类型*/
+    @Column(name = "CLLX")
+    private String cllx;
+	
+	    /**厂牌型号*/
+    @Column(name = "CPXH")
+    private String cpxh;
+	
+	    /**产地*/
+    @Column(name = "CD")
+    private String cd;
+	
+	    /**合格证号*/
+    @Column(name = "HGZH")
+    private String hgzh;
+	
+	    /**进口证明书号*/
+    @Column(name = "JKZMSH")
+    private String jkzmsh;
+	
+	    /**商检单号*/
+    @Column(name = "SJDH")
+    private String sjdh;
+	
+	    /**发动机号码*/
+    @Column(name = "FDJHM")
+    private String fdjhm;
+	
+	    /**车辆识别代码*/
+    @Column(name = "CLSBDH")
+    private String clsbdh;
+	
+	    /**价税合计*/
+    @Column(name = "JSHJ")
+    private BigDecimal jshj;
+	
+	    /**销货单位名称*/
+    @Column(name = "XHDWMC")
+    private String xhdwmc;
+	
+	    /**电话*/
+    @Column(name = "DH")
+    private String dh;
+	
+	    /**销方纳税人识别号*/
+    @Column(name = "NSRSBH")
+    private String nsrsbh;
+	
+	    /**销方账号*/
+    @Column(name = "ZH")
+    private String zh;
+	
+	    /**地址*/
+    @Column(name = "DZ")
+    private String dz;
+	
+	    /**开户银行*/
+    @Column(name = "KHYH")
+    private String khyh;
+	
+	    /**增值税税率*/
+    @Column(name = "ZZSSL")
+    private BigDecimal zzssl;
+	
+	    /**增值税税额*/
+    @Column(name = "ZZSSE")
+    private BigDecimal zzsse;
+	
+	    /**主管税务机关名称*/
+    @Column(name = "ZGSWJG")
+    private String zgswjg;
+	
+	    /**主管税务机关代码*/
+    @Column(name = "SWJGDM")
+    private String swjgdm;
+	
+	    /**不含税价*/
+    @Column(name = "BHSJ")
+    private BigDecimal bhsj;
+	
+	    /**完税凭证号码*/
+    @Column(name = "WSPZHM")
+    private String wspzhm;
+	
+	    /**吨位*/
+    @Column(name = "DW")
+    private String dw;
+	
+	    /**限乘人数*/
+    @Column(name = "XCRS")
+    private String xcrs;
+	
+	    /**生产企业名称*/
+    @Column(name = "SCQYMC")
+    private String scqymc;
+	
+	    /**开票人*/
+    @Column(name = "KPR")
+    private String kpr;
+	
+	    /**备注*/
+    @Column(name = "BZ")
+    private String bz;
+	
+	    /**发票状态*/
+    @Column(name = "FPZT")
+    private String fpzt;
+	
+	    /**原发票代码*/
+    @Column(name = "YFPDM")
+    private String yfpdm;
+	
+	    /**原发票号码*/
+    @Column(name = "YFPHM")
+    private String yfphm;
+	
+	    /**作废人*/
+    @Column(name = "ZFR")
+    private String zfr;
+	
+	    /**作废日期*/
+    @Column(name = "ZFRQ")
+    private String zfrq;
+	
+	    /**作废原因*/
+    @Column(name = "ZFYY")
+    private String zfyy;
+	
+	    /**发票类型代码*/
+    @Column(name = "FPLXDM")
+    private String fplxdm;
+	
+	    /**发票池编号*/
+    @Column(name = "FPCBH")
+    private BigDecimal fpcbh;
+	
+	    /**开票点代码*/
+    @Column(name = "KPDDM")
+    private String kpddm;
+	
+	    /**作废人代码*/
+    @Column(name = "ZFRDM")
+    private String zfrdm;
+	
+	    /**操作员代码*/
+    @Column(name = "CZYDM")
+    private String czydm;
+	
+	    /**版本号*/
+    @Column(name = "BBH")
+    private String bbh;
+	
+	    /**校验码*/
+    @Column(name = "JYM")
+    private String jym;
+	
+	    /**签名标志*/
+    @Column(name = "QMBZ")
+    private String qmbz;
+	
+	    /**上传标志*/
+    @Column(name = "SCBZ")
+    private String scbz;
+	
+	    /**验签标志*/
+    @Column(name = "YQBZ")
+    private String yqbz;
+	
+	    /**签名值*/
+    @Column(name = "QMZ")
+    private String qmz;
+	
+	    /**当前时间*/
+    @Column(name = "DQSJ")
+    private Date dqsj;
+	
+	    /**作废当前时间*/
+    @Column(name = "ZFDQSJ")
+    private Date zfdqsj;
+	
+	    /**签名参数*/
+    @Column(name = "QMCS")
+    private String qmcs;
+	
+	    /**发票请求流水号*/
+    @Column(name = "FPQQLSH")
+    private String fpqqlsh;
+	
+	    /**商品编码*/
+    @Column(name = "SPBM")
+    private String spbm;
+	
+	    /**商品编码版本号*/
+    @Column(name = "SPBMBBH")
+    private String spbmbbh;
+	
+	    /**优惠政策标识*/
+    @Column(name = "YHZCBS")
+    private String yhzcbs;
+	
+	    /**零税率标识*/
+    @Column(name = "LSLBS")
+    private String lslbs;
+	
+	    /**自行编码*/
+    @Column(name = "ZXBM")
+    private String zxbm;
+	
+	    /**增值税特殊管理*/
+    @Column(name = "ZZSTSGL")
+    private String zzstsgl;
+	
+	    /**上传成功时间*/
+    @Column(name = "SCCGSJ")
+    private String sccgsj;
+	
+	    /**打印标志*/
+    @Column(name = "DYBZ")
+    private String dybz;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：开票日期
+	 */
+	public void setKprq(String kprq) {
+		this.kprq = kprq;
+	}
+	/**
+	 * 获取：开票日期
+	 */
+	public String getKprq() {
+		return kprq;
+	}
+	/**
+	 * 设置：发票号码
+	 */
+	public void setFphm(String fphm) {
+		this.fphm = fphm;
+	}
+	/**
+	 * 获取：发票号码
+	 */
+	public String getFphm() {
+		return fphm;
+	}
+	/**
+	 * 设置：发票代码
+	 */
+	public void setFpdm(String fpdm) {
+		this.fpdm = fpdm;
+	}
+	/**
+	 * 获取：发票代码
+	 */
+	public String getFpdm() {
+		return fpdm;
+	}
+	/**
+	 * 设置：机器编号
+	 */
+	public void setJqbh(String jqbh) {
+		this.jqbh = jqbh;
+	}
+	/**
+	 * 获取：机器编号
+	 */
+	public String getJqbh() {
+		return jqbh;
+	}
+	/**
+	 * 设置：税控码
+	 */
+	public void setSkm(String skm) {
+		this.skm = skm;
+	}
+	/**
+	 * 获取：税控码
+	 */
+	public String getSkm() {
+		return skm;
+	}
+	/**
+	 * 设置：购买方名称
+	 */
+	public void setGmfmc(String gmfmc) {
+		this.gmfmc = gmfmc;
+	}
+	/**
+	 * 获取：购买方名称
+	 */
+	public String getGmfmc() {
+		return gmfmc;
+	}
+	/**
+	 * 设置：购买方身份证号码
+	 */
+	public void setSfzhm(String sfzhm) {
+		this.sfzhm = sfzhm;
+	}
+	/**
+	 * 获取：购买方身份证号码
+	 */
+	public String getSfzhm() {
+		return sfzhm;
+	}
+	/**
+	 * 设置：购货方识别号
+	 */
+	public void setGhfsbh(String ghfsbh) {
+		this.ghfsbh = ghfsbh;
+	}
+	/**
+	 * 获取：购货方识别号
+	 */
+	public String getGhfsbh() {
+		return ghfsbh;
+	}
+	/**
+	 * 设置：车辆类型
+	 */
+	public void setCllx(String cllx) {
+		this.cllx = cllx;
+	}
+	/**
+	 * 获取：车辆类型
+	 */
+	public String getCllx() {
+		return cllx;
+	}
+	/**
+	 * 设置：厂牌型号
+	 */
+	public void setCpxh(String cpxh) {
+		this.cpxh = cpxh;
+	}
+	/**
+	 * 获取：厂牌型号
+	 */
+	public String getCpxh() {
+		return cpxh;
+	}
+	/**
+	 * 设置：产地
+	 */
+	public void setCd(String cd) {
+		this.cd = cd;
+	}
+	/**
+	 * 获取：产地
+	 */
+	public String getCd() {
+		return cd;
+	}
+	/**
+	 * 设置：合格证号
+	 */
+	public void setHgzh(String hgzh) {
+		this.hgzh = hgzh;
+	}
+	/**
+	 * 获取：合格证号
+	 */
+	public String getHgzh() {
+		return hgzh;
+	}
+	/**
+	 * 设置：进口证明书号
+	 */
+	public void setJkzmsh(String jkzmsh) {
+		this.jkzmsh = jkzmsh;
+	}
+	/**
+	 * 获取：进口证明书号
+	 */
+	public String getJkzmsh() {
+		return jkzmsh;
+	}
+	/**
+	 * 设置：商检单号
+	 */
+	public void setSjdh(String sjdh) {
+		this.sjdh = sjdh;
+	}
+	/**
+	 * 获取：商检单号
+	 */
+	public String getSjdh() {
+		return sjdh;
+	}
+	/**
+	 * 设置：发动机号码
+	 */
+	public void setFdjhm(String fdjhm) {
+		this.fdjhm = fdjhm;
+	}
+	/**
+	 * 获取：发动机号码
+	 */
+	public String getFdjhm() {
+		return fdjhm;
+	}
+	/**
+	 * 设置：车辆识别代码
+	 */
+	public void setClsbdh(String clsbdh) {
+		this.clsbdh = clsbdh;
+	}
+	/**
+	 * 获取：车辆识别代码
+	 */
+	public String getClsbdh() {
+		return clsbdh;
+	}
+	/**
+	 * 设置：价税合计
+	 */
+	public void setJshj(BigDecimal jshj) {
+		this.jshj = jshj;
+	}
+	/**
+	 * 获取：价税合计
+	 */
+	public BigDecimal getJshj() {
+		return jshj;
+	}
+	/**
+	 * 设置：销货单位名称
+	 */
+	public void setXhdwmc(String xhdwmc) {
+		this.xhdwmc = xhdwmc;
+	}
+	/**
+	 * 获取：销货单位名称
+	 */
+	public String getXhdwmc() {
+		return xhdwmc;
+	}
+	/**
+	 * 设置：电话
+	 */
+	public void setDh(String dh) {
+		this.dh = dh;
+	}
+	/**
+	 * 获取：电话
+	 */
+	public String getDh() {
+		return dh;
+	}
+	/**
+	 * 设置：销方纳税人识别号
+	 */
+	public void setNsrsbh(String nsrsbh) {
+		this.nsrsbh = nsrsbh;
+	}
+	/**
+	 * 获取：销方纳税人识别号
+	 */
+	public String getNsrsbh() {
+		return nsrsbh;
+	}
+	/**
+	 * 设置：销方账号
+	 */
+	public void setZh(String zh) {
+		this.zh = zh;
+	}
+	/**
+	 * 获取：销方账号
+	 */
+	public String getZh() {
+		return zh;
+	}
+	/**
+	 * 设置：地址
+	 */
+	public void setDz(String dz) {
+		this.dz = dz;
+	}
+	/**
+	 * 获取：地址
+	 */
+	public String getDz() {
+		return dz;
+	}
+	/**
+	 * 设置：开户银行
+	 */
+	public void setKhyh(String khyh) {
+		this.khyh = khyh;
+	}
+	/**
+	 * 获取：开户银行
+	 */
+	public String getKhyh() {
+		return khyh;
+	}
+	/**
+	 * 设置：增值税税率
+	 */
+	public void setZzssl(BigDecimal zzssl) {
+		this.zzssl = zzssl;
+	}
+	/**
+	 * 获取：增值税税率
+	 */
+	public BigDecimal getZzssl() {
+		return zzssl;
+	}
+	/**
+	 * 设置：增值税税额
+	 */
+	public void setZzsse(BigDecimal zzsse) {
+		this.zzsse = zzsse;
+	}
+	/**
+	 * 获取：增值税税额
+	 */
+	public BigDecimal getZzsse() {
+		return zzsse;
+	}
+	/**
+	 * 设置：主管税务机关名称
+	 */
+	public void setZgswjg(String zgswjg) {
+		this.zgswjg = zgswjg;
+	}
+	/**
+	 * 获取：主管税务机关名称
+	 */
+	public String getZgswjg() {
+		return zgswjg;
+	}
+	/**
+	 * 设置：主管税务机关代码
+	 */
+	public void setSwjgdm(String swjgdm) {
+		this.swjgdm = swjgdm;
+	}
+	/**
+	 * 获取：主管税务机关代码
+	 */
+	public String getSwjgdm() {
+		return swjgdm;
+	}
+	/**
+	 * 设置：不含税价
+	 */
+	public void setBhsj(BigDecimal bhsj) {
+		this.bhsj = bhsj;
+	}
+	/**
+	 * 获取：不含税价
+	 */
+	public BigDecimal getBhsj() {
+		return bhsj;
+	}
+	/**
+	 * 设置：完税凭证号码
+	 */
+	public void setWspzhm(String wspzhm) {
+		this.wspzhm = wspzhm;
+	}
+	/**
+	 * 获取：完税凭证号码
+	 */
+	public String getWspzhm() {
+		return wspzhm;
+	}
+	/**
+	 * 设置：吨位
+	 */
+	public void setDw(String dw) {
+		this.dw = dw;
+	}
+	/**
+	 * 获取：吨位
+	 */
+	public String getDw() {
+		return dw;
+	}
+	/**
+	 * 设置：限乘人数
+	 */
+	public void setXcrs(String xcrs) {
+		this.xcrs = xcrs;
+	}
+	/**
+	 * 获取：限乘人数
+	 */
+	public String getXcrs() {
+		return xcrs;
+	}
+	/**
+	 * 设置：生产企业名称
+	 */
+	public void setScqymc(String scqymc) {
+		this.scqymc = scqymc;
+	}
+	/**
+	 * 获取：生产企业名称
+	 */
+	public String getScqymc() {
+		return scqymc;
+	}
+	/**
+	 * 设置：开票人
+	 */
+	public void setKpr(String kpr) {
+		this.kpr = kpr;
+	}
+	/**
+	 * 获取：开票人
+	 */
+	public String getKpr() {
+		return kpr;
+	}
+	/**
+	 * 设置：备注
+	 */
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
+	/**
+	 * 获取：备注
+	 */
+	public String getBz() {
+		return bz;
+	}
+	/**
+	 * 设置：发票状态
+	 */
+	public void setFpzt(String fpzt) {
+		this.fpzt = fpzt;
+	}
+	/**
+	 * 获取：发票状态
+	 */
+	public String getFpzt() {
+		return fpzt;
+	}
+	/**
+	 * 设置：原发票代码
+	 */
+	public void setYfpdm(String yfpdm) {
+		this.yfpdm = yfpdm;
+	}
+	/**
+	 * 获取：原发票代码
+	 */
+	public String getYfpdm() {
+		return yfpdm;
+	}
+	/**
+	 * 设置：原发票号码
+	 */
+	public void setYfphm(String yfphm) {
+		this.yfphm = yfphm;
+	}
+	/**
+	 * 获取：原发票号码
+	 */
+	public String getYfphm() {
+		return yfphm;
+	}
+	/**
+	 * 设置：作废人
+	 */
+	public void setZfr(String zfr) {
+		this.zfr = zfr;
+	}
+	/**
+	 * 获取：作废人
+	 */
+	public String getZfr() {
+		return zfr;
+	}
+	/**
+	 * 设置：作废日期
+	 */
+	public void setZfrq(String zfrq) {
+		this.zfrq = zfrq;
+	}
+	/**
+	 * 获取：作废日期
+	 */
+	public String getZfrq() {
+		return zfrq;
+	}
+	/**
+	 * 设置：作废原因
+	 */
+	public void setZfyy(String zfyy) {
+		this.zfyy = zfyy;
+	}
+	/**
+	 * 获取：作废原因
+	 */
+	public String getZfyy() {
+		return zfyy;
+	}
+	/**
+	 * 设置：发票类型代码
+	 */
+	public void setFplxdm(String fplxdm) {
+		this.fplxdm = fplxdm;
+	}
+	/**
+	 * 获取：发票类型代码
+	 */
+	public String getFplxdm() {
+		return fplxdm;
+	}
+	/**
+	 * 设置：发票池编号
+	 */
+	public void setFpcbh(BigDecimal fpcbh) {
+		this.fpcbh = fpcbh;
+	}
+	/**
+	 * 获取：发票池编号
+	 */
+	public BigDecimal getFpcbh() {
+		return fpcbh;
+	}
+	/**
+	 * 设置：开票点代码
+	 */
+	public void setKpddm(String kpddm) {
+		this.kpddm = kpddm;
+	}
+	/**
+	 * 获取：开票点代码
+	 */
+	public String getKpddm() {
+		return kpddm;
+	}
+	/**
+	 * 设置：作废人代码
+	 */
+	public void setZfrdm(String zfrdm) {
+		this.zfrdm = zfrdm;
+	}
+	/**
+	 * 获取：作废人代码
+	 */
+	public String getZfrdm() {
+		return zfrdm;
+	}
+	/**
+	 * 设置：操作员代码
+	 */
+	public void setCzydm(String czydm) {
+		this.czydm = czydm;
+	}
+	/**
+	 * 获取：操作员代码
+	 */
+	public String getCzydm() {
+		return czydm;
+	}
+	/**
+	 * 设置：版本号
+	 */
+	public void setBbh(String bbh) {
+		this.bbh = bbh;
+	}
+	/**
+	 * 获取：版本号
+	 */
+	public String getBbh() {
+		return bbh;
+	}
+	/**
+	 * 设置：校验码
+	 */
+	public void setJym(String jym) {
+		this.jym = jym;
+	}
+	/**
+	 * 获取：校验码
+	 */
+	public String getJym() {
+		return jym;
+	}
+	/**
+	 * 设置：签名标志
+	 */
+	public void setQmbz(String qmbz) {
+		this.qmbz = qmbz;
+	}
+	/**
+	 * 获取：签名标志
+	 */
+	public String getQmbz() {
+		return qmbz;
+	}
+	/**
+	 * 设置：上传标志
+	 */
+	public void setScbz(String scbz) {
+		this.scbz = scbz;
+	}
+	/**
+	 * 获取：上传标志
+	 */
+	public String getScbz() {
+		return scbz;
+	}
+	/**
+	 * 设置：验签标志
+	 */
+	public void setYqbz(String yqbz) {
+		this.yqbz = yqbz;
+	}
+	/**
+	 * 获取：验签标志
+	 */
+	public String getYqbz() {
+		return yqbz;
+	}
+	/**
+	 * 设置：签名值
+	 */
+	public void setQmz(String qmz) {
+		this.qmz = qmz;
+	}
+	/**
+	 * 获取：签名值
+	 */
+	public String getQmz() {
+		return qmz;
+	}
+	/**
+	 * 设置：当前时间
+	 */
+	public void setDqsj(Date dqsj) {
+		this.dqsj = dqsj;
+	}
+	/**
+	 * 获取：当前时间
+	 */
+	public Date getDqsj() {
+		return dqsj;
+	}
+	/**
+	 * 设置：作废当前时间
+	 */
+	public void setZfdqsj(Date zfdqsj) {
+		this.zfdqsj = zfdqsj;
+	}
+	/**
+	 * 获取：作废当前时间
+	 */
+	public Date getZfdqsj() {
+		return zfdqsj;
+	}
+	/**
+	 * 设置：签名参数
+	 */
+	public void setQmcs(String qmcs) {
+		this.qmcs = qmcs;
+	}
+	/**
+	 * 获取：签名参数
+	 */
+	public String getQmcs() {
+		return qmcs;
+	}
+	/**
+	 * 设置：发票请求流水号
+	 */
+	public void setFpqqlsh(String fpqqlsh) {
+		this.fpqqlsh = fpqqlsh;
+	}
+	/**
+	 * 获取：发票请求流水号
+	 */
+	public String getFpqqlsh() {
+		return fpqqlsh;
+	}
+	/**
+	 * 设置：商品编码
+	 */
+	public void setSpbm(String spbm) {
+		this.spbm = spbm;
+	}
+	/**
+	 * 获取：商品编码
+	 */
+	public String getSpbm() {
+		return spbm;
+	}
+	/**
+	 * 设置：商品编码版本号
+	 */
+	public void setSpbmbbh(String spbmbbh) {
+		this.spbmbbh = spbmbbh;
+	}
+	/**
+	 * 获取：商品编码版本号
+	 */
+	public String getSpbmbbh() {
+		return spbmbbh;
+	}
+	/**
+	 * 设置：优惠政策标识
+	 */
+	public void setYhzcbs(String yhzcbs) {
+		this.yhzcbs = yhzcbs;
+	}
+	/**
+	 * 获取：优惠政策标识
+	 */
+	public String getYhzcbs() {
+		return yhzcbs;
+	}
+	/**
+	 * 设置：零税率标识
+	 */
+	public void setLslbs(String lslbs) {
+		this.lslbs = lslbs;
+	}
+	/**
+	 * 获取：零税率标识
+	 */
+	public String getLslbs() {
+		return lslbs;
+	}
+	/**
+	 * 设置：自行编码
+	 */
+	public void setZxbm(String zxbm) {
+		this.zxbm = zxbm;
+	}
+	/**
+	 * 获取：自行编码
+	 */
+	public String getZxbm() {
+		return zxbm;
+	}
+	/**
+	 * 设置：增值税特殊管理
+	 */
+	public void setZzstsgl(String zzstsgl) {
+		this.zzstsgl = zzstsgl;
+	}
+	/**
+	 * 获取：增值税特殊管理
+	 */
+	public String getZzstsgl() {
+		return zzstsgl;
+	}
+	/**
+	 * 设置：上传成功时间
+	 */
+	public void setSccgsj(String sccgsj) {
+		this.sccgsj = sccgsj;
+	}
+	/**
+	 * 获取：上传成功时间
+	 */
+	public String getSccgsj() {
+		return sccgsj;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setDybz(String dybz) {
+		this.dybz = dybz;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getDybz() {
+		return dybz;
+	}
+}

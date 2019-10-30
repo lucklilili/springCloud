@@ -1,0 +1,115 @@
+package com.bwcloud.billingCenter.netWorkApply.utlis;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+import java.util.HashMap;
+
+
+/**
+ * lilili 2018/4/2.
+ */
+public class ConversionApplys {
+
+    /**
+     * 申领准备信息查询
+     */
+    public static String jsonToXmlapplyReadyInfoQuery(String json) {
+        StringBuffer stringBuffer = new StringBuffer();
+        try {
+            JSONObject resJson = JSONObject.parseObject(json);
+            JSONObject bussinse = resJson.getJSONObject("business");
+            JSONObject body = bussinse.getJSONObject("body");
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"" + bussinse.getString("id") + "\" comment=\"" +    bussinse.getString("comment") + "\">\n");
+            stringBuffer.append("<body yylxdm=\"" + body.getString("yylxdm") + "\">\n");
+            stringBuffer.append("<nsrsbh>" + body.getString("nsrsbh") + "</nsrsbh>\n");
+            stringBuffer.append("<jqbh>" + body.getString("jqbh") + "</jqbh>\n");
+            stringBuffer.append("</body>\n");
+            stringBuffer.append("</business>\n");
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "客户传入报文json解析失败";
+
+        }
+    }
+
+    /**
+     *申领
+     */
+    public static String jsonToXmlapply(String json) {
+        StringBuffer stringBuffer = new StringBuffer();
+        try {
+            JSONObject resJson = JSONObject.parseObject(json);
+            JSONObject bussinse = resJson.getJSONObject("business");
+            JSONObject body = bussinse.getJSONObject("body");
+            JSONObject psxx=body.getJSONObject("psxx");
+
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"" + bussinse.getString("id") + "\" comment=\"" +    bussinse.getString("comment") + "\">\n");
+            stringBuffer.append("<body yylxdm=\"" + body.getString("yylxdm") + "\">\n");
+            stringBuffer.append("<nsrsbh>" + body.getString("nsrsbh") + "</nsrsbh>\n");
+            stringBuffer.append("<jqbh>" + body.getString("jqbh") + "</jqbh>\n");
+            stringBuffer.append("<fplxdm>" + body.getString("fplxdm") + "</fplxdm>\n");
+            stringBuffer.append("<fpzldm>" + body.getString("fpzldm") + "</fpzldm>\n");
+            stringBuffer.append("<slsl>" + body.getString("slsl") + "</slsl>\n");
+            stringBuffer.append("<slsj>" + body.getString("slsj") + "</slsj>\n");
+            stringBuffer.append("<zjlx>" + body.getString("zjlx") + "</zjlx>\n");
+            stringBuffer.append("<zjhm>" + body.getString("zjhm") + "</zjhm>\n");
+            stringBuffer.append("<jbrxm>" + body.getString("jbrxm") + "</jbrxm>\n");
+            stringBuffer.append("<slfs>" + body.getString("slfs") + "</slfs>\n");
+            stringBuffer.append("<slsm>" + body.getString("slsm") + "</slsm>\n");
+            stringBuffer.append("<psxx>\n");
+            stringBuffer.append("<sjrxm>" + psxx.getString("sjrxm") + "</sjrxm>\n");
+            stringBuffer.append("<sjrdz>" + psxx.getString("sjrdz") + "</sjrdz>\n");
+            stringBuffer.append("<yddh>" + psxx.getString("yddh") + "</yddh>\n");
+            stringBuffer.append("<gddh>" + psxx.getString("gddh") + "</gddh>\n");
+            stringBuffer.append("<yb>" + psxx.getString("yb") + "</yb>\n");
+            stringBuffer.append("<bz>" + psxx.getString("bz") + "</bz>\n");
+            stringBuffer.append("</psxx>\n");
+            stringBuffer.append("</body>\n");
+            stringBuffer.append("</business>\n");
+            return  stringBuffer.toString();
+        }catch (Exception e){
+            return "客户传入报文json解析失败";
+
+        }
+
+    }
+    /**
+     *申领状态查询
+     */
+    public static String jsonToXmlApplyStateQuery(String json) {
+        StringBuffer stringBuffer = new StringBuffer();
+        return  stringBuffer.toString();
+    }
+    /**
+     *纸质票确认
+     */
+    public static String jsonToXmlPaperInoviceConfirmReception(String json) {
+        StringBuffer stringBuffer = new StringBuffer();
+        return  stringBuffer.toString();
+    }
+    /**
+     *撤销申领
+     */
+    public static String jsonToXmlRevokeApply(String json) {
+        StringBuffer stringBuffer = new StringBuffer();
+        return  stringBuffer.toString();
+    }
+
+
+
+
+    /**
+     * 处理税控服务器返回报文
+     */
+    public static String xmltoJson(String completeXml) {
+        try{
+            return UniversalUtils.xmlToJson(completeXml);
+        }catch (Exception e){
+            return "税控服务返回xml解析失败";
+        }
+    }
+}

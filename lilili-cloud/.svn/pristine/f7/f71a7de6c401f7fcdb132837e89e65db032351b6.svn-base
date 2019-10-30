@@ -1,0 +1,36 @@
+package com.bwcloud.billingCenter.invoiceOpening.service;
+
+import com.bwcloud.billingCenter.invoiceOpening.abstractClass.InoviceOpening;
+import com.bwcloud.billingCenter.invoiceOpening.serviceExample.ElectronicInvoice;
+import com.bwcloud.billingCenter.invoiceOpening.serviceExample.GeneralInvoice;
+import com.bwcloud.billingCenter.invoiceOpening.serviceExample.RollInvoice;
+import com.bwcloud.billingCenter.invoiceOpening.serviceExample.SpecialInvoice;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * lilili 2018/3/31.
+ * 发票开具统一处理service桥接类
+ */
+@Service
+public class InvoiceOpeningService {
+
+    @Autowired
+    private RollInvoice rollInvoice;//卷式发票025
+
+    @Autowired
+    private GeneralInvoice generalInvoice;//普通发票007
+
+    @Autowired
+    private ElectronicInvoice electronicInvoice;//电子发票026
+
+    @Autowired
+    private SpecialInvoice specialInvoice;//专用发票004
+
+    public String toOpening(String json){
+        InoviceOpening inoviceOpening;
+        inoviceOpening=electronicInvoice;
+        String result =inoviceOpening.Opening(json);
+        return result;
+    }
+}

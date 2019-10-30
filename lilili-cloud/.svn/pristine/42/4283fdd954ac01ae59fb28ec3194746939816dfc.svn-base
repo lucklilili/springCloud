@@ -1,0 +1,80 @@
+package com.github.wxiaoqi.security.common.KafkaMessages;
+
+import java.io.Serializable;
+
+/**
+ *  kafka javaBean 2018/4/17.
+ */
+public class KafKaPrms implements Serializable {
+
+    private String kafka_Ip="localhost";//连接服务器地址
+
+    private String kafka_Host="9092";//连接服务器端口
+
+    private String kafka_topic="defaultTopic";//kafka topic
+
+    private String kafka_group="xjbw";//kafka 组
+
+    private String kafka_key="test";//存入key值
+
+    private String kafka_value="test";//存入value值
+
+    public String getKafka_Ip() {
+        return kafka_Ip;
+    }
+
+    public void setKafka_Ip(String kafka_Ip) {
+        this.kafka_Ip = kafka_Ip;
+    }
+
+    public String getKafka_Host() {
+        return kafka_Host;
+    }
+
+    public void setKafka_Host(String kafka_Host) {
+        this.kafka_Host = kafka_Host;
+    }
+
+    public String getKafka_topic() {
+        return kafka_topic;
+    }
+
+    public void setKafka_topic(String kafka_topic) {
+        this.kafka_topic = kafka_topic;
+    }
+
+    public String getKafka_group() {
+        return kafka_group;
+    }
+
+    public void setKafka_group(String kafka_group) {
+        this.kafka_group = kafka_group;
+    }
+
+    public String getKafka_key() {
+        return kafka_key;
+    }
+
+    public void setKafka_key(String kafka_key) {
+        this.kafka_key = kafka_key;
+    }
+
+    public String getKafka_value() {
+        return kafka_value;
+    }
+
+    public void setKafka_value(String kafka_value) {
+        this.kafka_value = kafka_value;
+    }
+
+
+
+
+
+
+
+
+
+
+
+}

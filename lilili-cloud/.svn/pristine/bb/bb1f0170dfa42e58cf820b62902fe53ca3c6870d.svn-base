@@ -1,0 +1,20 @@
+package com.bwcloud.billingCenter.invoicePurchase.informationDistributeService.impl;
+
+import com.bwcloud.billingCenter.invoicePurchase.informationDistributeService.DistributeService;
+
+/**
+ * Created by bs on 2018/4/9.
+ */
+public class DistributeServiceImpl implements DistributeService {
+    /**
+     * 实现税控服务器的发票领购信息电子号段由发票库存到开票终端的分发。
+     * 只有分发到开票终端的电子号段才可以进行发票开具
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String informationDistribute(String string) {
+        return null;
+    }
+}

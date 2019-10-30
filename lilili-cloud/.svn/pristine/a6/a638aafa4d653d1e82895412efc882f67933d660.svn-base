@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.LoanDeviceMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.LoanDeviceInfo" id="loanDeviceInfo">
+        <result property="id" column="id"/>
+        <result property="sksbbh" column="sksbbh"/>
+        <result property="fpsc_jlrq" column="fpsc_jlrq"/>
+    </resultMap>
+
+    <select id="selectDeviceInfo" resultType="com.bwcloud.finance.center.entity.LoanDeviceInfo">
+        SELECT
+        *
+        FROM loan_devicet_info a
+        WHERE
+        a.sksbbh = #{sksbbh}
+
+        <if test="nsrsbh != '' and nsrsbh != null">
+            and a.nsrsbh = #{nsrsbh}
+        </if>
+
+    </select>
+
+
+</mapper>

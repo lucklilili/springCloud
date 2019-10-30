@@ -1,0 +1,14 @@
+package com.bwcloud.billingCenter.invoiceInvalid.invalidService;
+
+/**
+ * Created by bs on 2018/4/2.
+ * 该接口用于发票作废
+ */
+public interface InvalidService {
+    /**
+     * 接收发票作废的json字符串，并将结果进行返回
+     * @param json
+     * @return
+     */
+    String receive(String json);
+}

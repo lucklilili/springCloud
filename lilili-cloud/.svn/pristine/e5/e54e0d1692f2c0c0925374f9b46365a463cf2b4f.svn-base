@@ -1,0 +1,16 @@
+package com.bwcloud.finance.center.mapper;
+
+
+import com.bwcloud.finance.center.entity.LoanRepay;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+
+/**
+ * 
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+public interface LoanRepayMapper extends CommonMapper<LoanRepay> {
+	
+}

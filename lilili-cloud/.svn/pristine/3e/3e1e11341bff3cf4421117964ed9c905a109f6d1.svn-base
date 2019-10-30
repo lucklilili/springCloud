@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.device.center.mapper.DeviceInfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.device.center.entity.DeviceInfo" id="deviceInfoMap">
+        <result property="id" column="id"/>
+        <result property="jsbh" column="jsbh"/>
+        <result property="deviceName" column="device_name"/>
+        <result property="sblx" column="sblx"/>
+        <result property="type" column="type"/>
+        <result property="state" column="state"/>
+        <result property="createDate" column="create_date"/>
+        <result property="lastLineDate" column="last_line_date"/>
+        <result property="ipdz" column="ipdz"/>
+        <result property="dkh" column="dkh"/>
+        <result property="mac" column="mac"/>
+        <result property="sn" column="sn"/>
+        <result property="jsbbh" column="jsbbh"/>
+        <result property="dwxx" column="dwxx"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="radius" column="radius"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+</mapper>

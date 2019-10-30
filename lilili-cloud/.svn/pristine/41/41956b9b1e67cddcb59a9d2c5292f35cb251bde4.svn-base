@@ -1,0 +1,211 @@
+package com.bwcloud.finance.center.entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+@Table(name = "loan_repay")
+public class LoanRepay implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //借据号
+    @Column(name = "bill_no")
+    private String billNo;
+	
+	    //还款日期
+    @Column(name = "repay_date")
+    private String repayDate;
+	
+	    //还款金额
+    @Column(name = "repay_amt")
+    private String repayAmt;
+	
+	    //还款本金
+    @Column(name = "repay_princ")
+    private String repayPrinc;
+	
+	    //还款利息
+    @Column(name = "repay_inter")
+    private String repayInter;
+	
+	    //逾期本金
+    @Column(name = "over_princ")
+    private String overPrinc;
+	
+	    //逾期利息
+    @Column(name = "over_inter")
+    private String overInter;
+	
+	    //剩余本金
+    @Column(name = "rest_amt")
+    private String restAmt;
+	
+	    //剩余还款金额
+    @Column(name = "rest_repay_amt")
+    private String restRepayAmt;
+	
+	    //创建时间
+    @Column(name = "create_time")
+    private String createTime;
+	
+	    //修改时间
+    @Column(name = "update_time")
+    private String updateTime;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：借据号
+	 */
+	public void setBillNo(String billNo) {
+		this.billNo = billNo;
+	}
+	/**
+	 * 获取：借据号
+	 */
+	public String getBillNo() {
+		return billNo;
+	}
+	/**
+	 * 设置：还款日期
+	 */
+	public void setRepayDate(String repayDate) {
+		this.repayDate = repayDate;
+	}
+	/**
+	 * 获取：还款日期
+	 */
+	public String getRepayDate() {
+		return repayDate;
+	}
+	/**
+	 * 设置：还款金额
+	 */
+	public void setRepayAmt(String repayAmt) {
+		this.repayAmt = repayAmt;
+	}
+	/**
+	 * 获取：还款金额
+	 */
+	public String getRepayAmt() {
+		return repayAmt;
+	}
+	/**
+	 * 设置：还款本金
+	 */
+	public void setRepayPrinc(String repayPrinc) {
+		this.repayPrinc = repayPrinc;
+	}
+	/**
+	 * 获取：还款本金
+	 */
+	public String getRepayPrinc() {
+		return repayPrinc;
+	}
+	/**
+	 * 设置：还款利息
+	 */
+	public void setRepayInter(String repayInter) {
+		this.repayInter = repayInter;
+	}
+	/**
+	 * 获取：还款利息
+	 */
+	public String getRepayInter() {
+		return repayInter;
+	}
+	/**
+	 * 设置：逾期本金
+	 */
+	public void setOverPrinc(String overPrinc) {
+		this.overPrinc = overPrinc;
+	}
+	/**
+	 * 获取：逾期本金
+	 */
+	public String getOverPrinc() {
+		return overPrinc;
+	}
+	/**
+	 * 设置：逾期利息
+	 */
+	public void setOverInter(String overInter) {
+		this.overInter = overInter;
+	}
+	/**
+	 * 获取：逾期利息
+	 */
+	public String getOverInter() {
+		return overInter;
+	}
+	/**
+	 * 设置：剩余本金
+	 */
+	public void setRestAmt(String restAmt) {
+		this.restAmt = restAmt;
+	}
+	/**
+	 * 获取：剩余本金
+	 */
+	public String getRestAmt() {
+		return restAmt;
+	}
+	/**
+	 * 设置：剩余还款金额
+	 */
+	public void setRestRepayAmt(String restRepayAmt) {
+		this.restRepayAmt = restRepayAmt;
+	}
+	/**
+	 * 获取：剩余还款金额
+	 */
+	public String getRestRepayAmt() {
+		return restRepayAmt;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：修改时间
+	 */
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	/**
+	 * 获取：修改时间
+	 */
+	public String getUpdateTime() {
+		return updateTime;
+	}
+}

@@ -1,0 +1,18 @@
+package com.bwcloud.finance.center.biz;
+
+import org.springframework.stereotype.Service;
+
+import com.bwcloud.finance.center.entity.PjZzspdzFpmxzb;
+import com.bwcloud.finance.center.mapper.PjZzspdzFpmxzbMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+/**
+ * 
+ *
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-02 14:21:14
+ */
+@Service
+public class PjZzspdzFpmxzbBiz extends BusinessBiz<PjZzspdzFpmxzbMapper,PjZzspdzFpmxzb> {
+}

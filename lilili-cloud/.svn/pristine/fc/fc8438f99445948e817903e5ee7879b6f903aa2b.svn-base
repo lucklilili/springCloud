@@ -1,0 +1,37 @@
+package com.bwcloud.finance.loan.rest;
+
+import com.bwcloud.finance.loan.biz.LoanMerchantBiz;
+import com.bwcloud.finance.loan.biz.TaxInvoiceBiz;
+import com.bwcloud.finance.loan.entity.TaxInvoice;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author dz
+ */
+@RestController
+@CheckClientToken
+@CheckUserToken
+@RequestMapping("/agreement")
+public class LoanMerchantController extends BaseController<TaxInvoiceBiz,TaxInvoice> {
+
+    @Autowired
+    LoanMerchantBiz loanMerchantBiz;
+
+    @RequestMapping("/authorization")
+    public String agreementAuthorization( String agreementInfo) {
+        loanMerchantBiz.insertMerchantInfo(agreementInfo);
+        return "okokokokokokok:"+agreementInfo;
+    }
+
+    @RequestMapping("/query")
+    public String agreementQuery( String merchantInfo) {
+        loanMerchantBiz.merchantAgreementInfo(merchantInfo);
+        return "okokokokokokok:"+merchantInfo;
+    }
+
+}

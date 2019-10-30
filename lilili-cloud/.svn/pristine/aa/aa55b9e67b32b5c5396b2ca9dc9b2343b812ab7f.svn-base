@@ -1,0 +1,79 @@
+package com.bwcloud.billingCenter.invoiceQuery.openInvoceTermainalInfoQuery.impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoiceQuery.openInvoceTermainalInfoQuery.OpenInvoiceTerminalInfoQueryService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ *
+ * Created by bs on 2018/4/13.
+ */
+public class OpenInvoiceTerminalInfoQueryServiceimpl implements OpenInvoiceTerminalInfoQueryService {
+    /**
+     * 查询一个核心板下已创建的终端信息，
+     * 也可通过传入终端代码查询一个开票终端信息。
+     *
+     * @param json
+     * @return
+     */
+    @Override
+    public String openInvoiceTerminalInfoQuery(String json) {
+        String xml = openInvoiceTerminalInfoQuery2Xml(json);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+
+    String openInvoiceTerminalInfoQuery2Xml(String string) {
+        try {
+            JSONObject json = JSONObject.parseObject(string);
+            JSONObject bussinse = json.getJSONObject("business");
+            String id = bussinse.getString("id");
+            String comment = bussinse.getString("comment");
+            JSONObject body = bussinse.getJSONObject("body");
+            String yylxdm = body.getString("yylxdm");
+            String jqbh = body.getString("jqbh");
+            String kpddm = body.getString("kpddm");
+
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"");
+            stringBuffer.append(id);
+            stringBuffer.append("\" comment=\"");
+            stringBuffer.append(comment);
+            stringBuffer.append("\">\n\t<body yylxdm=\"");
+            stringBuffer.append(yylxdm);
+            stringBuffer.append("\">\n\t\t<jqbh>");
+            stringBuffer.append(jqbh);
+            stringBuffer.append("</jqbh>");
+            stringBuffer.append("\n\t\t<kpddm>");
+            stringBuffer.append(kpddm);
+            stringBuffer.append("</kpddm>");
+            stringBuffer.append("\n\t</body>\n</business>");
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "json转xml，转换失败！";
+        }
+    }
+    /**
+     * 向税控服务器发送xml，并返回结果
+     * @param xml
+     * @return
+     */
+    String sendXml(String xml){
+        return "";
+    }
+    /**
+     * xml 转 json
+     * @param receiveXml
+     * @return
+     */
+    String xml2Json(String receiveXml){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

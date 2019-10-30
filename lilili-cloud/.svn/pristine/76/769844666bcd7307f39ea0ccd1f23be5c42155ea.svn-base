@@ -1,0 +1,394 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-09 15:11:23
+ */
+@Table(name = "pj_jsfp_fpmxzb")
+public class PjJsfpFpmxzb implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+    @Id
+    private String id;
+	
+    @Column(name = "mxid")
+    private String mxid;
+	
+	    /**发票代码*/
+    @Column(name = "fpdm")
+    private String fpdm;
+	
+	    /**发票号码*/
+    @Column(name = "fphm")
+    private String fphm;
+	
+	    /**发票明细序号*/
+    @Column(name = "fpmxxh")
+    private int fpmxxh;
+	
+	    /**销售单据编号*/
+    @Column(name = "xsdjbh")
+    private String xsdjbh;
+	
+	    /**金额*/
+    @Column(name = "je")
+	@JSONField(name = "bhsje")
+    private BigDecimal je;
+	
+	    /**税率*/
+    @Column(name = "sl")
+	@JSONField(name = "zsl")
+    private BigDecimal sl;
+	
+	    /**税额*/
+    @Column(name = "se")
+    private BigDecimal se;
+	
+	    /**商品名称*/
+    @Column(name = "spmc")
+	@JSONField(name = "xm")
+    private String spmc;
+
+	/**商品数量*/
+    @Column(name = "spsl")
+	@JSONField(name = "sl")
+    private BigDecimal spsl;
+	
+	    /**单价*/
+    @Column(name = "spdj")
+	@JSONField(name = "bhsdj")
+    private BigDecimal spdj;
+
+	/**商品编码*/
+    @Column(name = "spbm")
+    private String spbm;
+	
+	    /**单据明细序号*/
+    @Column(name = "djmxxh")
+    private BigDecimal djmxxh;
+	
+	    /**含税金额*/
+    @Column(name = "hsje")
+    private BigDecimal hsje;
+	
+	    /**含税单价*/
+    @Column(name = "hsdj")
+    private BigDecimal hsdj;
+	
+	    /**纳税人自行编码*/
+    @Column(name = "zxbm")
+    private String zxbm;
+	
+	    /**优惠政策标识*/
+    @Column(name = "yhzcbs")
+    private String yhzcbs;
+	
+	    /**零税率标识*/
+    @Column(name = "lslbs")
+    private String lslbs;
+	
+	    /**增值税特殊管理*/
+    @Column(name = "zzstsgl")
+    private String zzstsgl;
+	
+	    /**发票行性质*/
+    @Column(name = "fphxz")
+    private BigDecimal fphxz;
+	
+	    /**开票日期*/
+    @Column(name = "kprq")
+    private String kprq;
+	
+	    /**机器编号*/
+    @Column(name = "jqbh")
+    private String jqbh;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setMxid(String mxid) {
+		this.mxid = mxid;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getMxid() {
+		return mxid;
+	}
+	/**
+	 * 设置：发票代码
+	 */
+	public void setFpdm(String fpdm) {
+		this.fpdm = fpdm;
+	}
+	/**
+	 * 获取：发票代码
+	 */
+	public String getFpdm() {
+		return fpdm;
+	}
+	/**
+	 * 设置：发票号码
+	 */
+	public void setFphm(String fphm) {
+		this.fphm = fphm;
+	}
+	/**
+	 * 获取：发票号码
+	 */
+	public String getFphm() {
+		return fphm;
+	}
+	/**
+	 * 设置：发票明细序号
+	 */
+	public void setFpmxxh(int fpmxxh) {
+		this.fpmxxh = fpmxxh;
+	}
+	/**
+	 * 获取：发票明细序号
+	 */
+	public int getFpmxxh() {
+		return fpmxxh;
+	}
+	/**
+	 * 设置：销售单据编号
+	 */
+	public void setXsdjbh(String xsdjbh) {
+		this.xsdjbh = xsdjbh;
+	}
+	/**
+	 * 获取：销售单据编号
+	 */
+	public String getXsdjbh() {
+		return xsdjbh;
+	}
+	/**
+	 * 设置：金额
+	 */
+	public void setJe(BigDecimal je) {
+		this.je = je;
+	}
+	/**
+	 * 获取：金额
+	 */
+	public BigDecimal getJe() {
+		return je;
+	}
+	/**
+	 * 设置：税率
+	 */
+	public void setSl(BigDecimal sl) {
+		this.sl = sl;
+	}
+	/**
+	 * 获取：税率
+	 */
+	public BigDecimal getSl() {
+		return sl;
+	}
+	/**
+	 * 设置：税额
+	 */
+	public void setSe(BigDecimal se) {
+		this.se = se;
+	}
+	/**
+	 * 获取：税额
+	 */
+	public BigDecimal getSe() {
+		return se;
+	}
+	/**
+	 * 设置：商品名称
+	 */
+	public void setSpmc(String spmc) {
+		this.spmc = spmc;
+	}
+	/**
+	 * 获取：商品名称
+	 */
+	public String getSpmc() {
+		return spmc;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setSpsl(BigDecimal spsl) {
+		this.spsl = spsl;
+	}
+	/**
+	 * 获取：
+	 */
+	public BigDecimal getSpsl() {
+		return spsl;
+	}
+	/**
+	 * 设置：单价
+	 */
+	public void setSpdj(BigDecimal spdj) {
+		this.spdj = spdj;
+	}
+	/**
+	 * 获取：单价
+	 */
+	public BigDecimal getSpdj() {
+		return spdj;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setSpbm(String spbm) {
+		this.spbm = spbm;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getSpbm() {
+		return spbm;
+	}
+	/**
+	 * 设置：单据明细序号
+	 */
+	public void setDjmxxh(BigDecimal djmxxh) {
+		this.djmxxh = djmxxh;
+	}
+	/**
+	 * 获取：单据明细序号
+	 */
+	public BigDecimal getDjmxxh() {
+		return djmxxh;
+	}
+	/**
+	 * 设置：含税金额
+	 */
+	public void setHsje(BigDecimal hsje) {
+		this.hsje = hsje;
+	}
+	/**
+	 * 获取：含税金额
+	 */
+	public BigDecimal getHsje() {
+		return hsje;
+	}
+	/**
+	 * 设置：含税单价
+	 */
+	public void setHsdj(BigDecimal hsdj) {
+		this.hsdj = hsdj;
+	}
+	/**
+	 * 获取：含税单价
+	 */
+	public BigDecimal getHsdj() {
+		return hsdj;
+	}
+	/**
+	 * 设置：纳税人自行编码
+	 */
+	public void setZxbm(String zxbm) {
+		this.zxbm = zxbm;
+	}
+	/**
+	 * 获取：纳税人自行编码
+	 */
+	public String getZxbm() {
+		return zxbm;
+	}
+	/**
+	 * 设置：优惠政策标识
+	 */
+	public void setYhzcbs(String yhzcbs) {
+		this.yhzcbs = yhzcbs;
+	}
+	/**
+	 * 获取：优惠政策标识
+	 */
+	public String getYhzcbs() {
+		return yhzcbs;
+	}
+	/**
+	 * 设置：零税率标识
+	 */
+	public void setLslbs(String lslbs) {
+		this.lslbs = lslbs;
+	}
+	/**
+	 * 获取：零税率标识
+	 */
+	public String getLslbs() {
+		return lslbs;
+	}
+	/**
+	 * 设置：增值税特殊管理
+	 */
+	public void setZzstsgl(String zzstsgl) {
+		this.zzstsgl = zzstsgl;
+	}
+	/**
+	 * 获取：增值税特殊管理
+	 */
+	public String getZzstsgl() {
+		return zzstsgl;
+	}
+	/**
+	 * 设置：发票行性质
+	 */
+	public void setFphxz(BigDecimal fphxz) {
+		this.fphxz = fphxz;
+	}
+	/**
+	 * 获取：发票行性质
+	 */
+	public BigDecimal getFphxz() {
+		return fphxz;
+	}
+	/**
+	 * 设置：开票日期
+	 */
+	public void setKprq(String kprq) {
+		this.kprq = kprq;
+	}
+	/**
+	 * 获取：开票日期
+	 */
+	public String getKprq() {
+		return kprq;
+	}
+	/**
+	 * 设置：机器编号
+	 */
+	public void setJqbh(String jqbh) {
+		this.jqbh = jqbh;
+	}
+	/**
+	 * 获取：机器编号
+	 */
+	public String getJqbh() {
+		return jqbh;
+	}
+}

@@ -1,0 +1,292 @@
+package com.bwcloud.finance.loan.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+@Table(name = "tax_deal_info")
+public class TaxDealInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //统计年月
+    @Column(name = "data_month")
+    private String dataMonth;
+	
+	    //是否有效标识
+    @Column(name = "value_flag")
+    private String valueFlag;
+	
+	    //开票张数
+    @Column(name = "inv_num")
+    private String invNum;
+	
+	    //开票金额
+    @Column(name = "inv_amt")
+    private String invAmt;
+	
+	    //进项张数
+    @Column(name = "input_num")
+    private String inputNum;
+	
+	    //进项金额
+    @Column(name = "input_amt")
+    private String inputAmt;
+	
+	    //应税销售收入
+    @Column(name = "tax_amt")
+    private String taxAmt;
+	
+	    //企业客户数量
+    @Column(name = "cust_num")
+    private String custNum;
+	
+	    //主要客户销售额合计
+    @Column(name = "top_amt")
+    private String topAmt;
+	
+	    //前五客户销售额占比
+    @Column(name = "top_amt_rate")
+    private String topAmtRate;
+	
+	    //前五客户交易次数
+    @Column(name = "top_cnt")
+    private String topCnt;
+	
+	    //前五客户交易次数占比
+    @Column(name = "top_cnt_rate")
+    private String topCntRate;
+	
+	    //当月开票张数最多的前五日平均开票张数
+    @Column(name = "top_avg_cnt")
+    private String topAvgCnt;
+	
+	    //创建时间
+    @Column(name = "create_time")
+    private String createTime;
+	
+	    //百旺ID
+    @Column(name = "sup_id")
+    private String supId;
+	
+	    //修改时间
+    @Column(name = "update_time")
+    private String updateTime;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：统计年月
+	 */
+	public void setDataMonth(String dataMonth) {
+		this.dataMonth = dataMonth;
+	}
+	/**
+	 * 获取：统计年月
+	 */
+	public String getDataMonth() {
+		return dataMonth;
+	}
+	/**
+	 * 设置：是否有效标识
+	 */
+	public void setValueFlag(String valueFlag) {
+		this.valueFlag = valueFlag;
+	}
+	/**
+	 * 获取：是否有效标识
+	 */
+	public String getValueFlag() {
+		return valueFlag;
+	}
+	/**
+	 * 设置：开票张数
+	 */
+	public void setInvNum(String invNum) {
+		this.invNum = invNum;
+	}
+	/**
+	 * 获取：开票张数
+	 */
+	public String getInvNum() {
+		return invNum;
+	}
+	/**
+	 * 设置：开票金额
+	 */
+	public void setInvAmt(String invAmt) {
+		this.invAmt = invAmt;
+	}
+	/**
+	 * 获取：开票金额
+	 */
+	public String getInvAmt() {
+		return invAmt;
+	}
+	/**
+	 * 设置：进项张数
+	 */
+	public void setInputNum(String inputNum) {
+		this.inputNum = inputNum;
+	}
+	/**
+	 * 获取：进项张数
+	 */
+	public String getInputNum() {
+		return inputNum;
+	}
+	/**
+	 * 设置：进项金额
+	 */
+	public void setInputAmt(String inputAmt) {
+		this.inputAmt = inputAmt;
+	}
+	/**
+	 * 获取：进项金额
+	 */
+	public String getInputAmt() {
+		return inputAmt;
+	}
+	/**
+	 * 设置：应税销售收入
+	 */
+	public void setTaxAmt(String taxAmt) {
+		this.taxAmt = taxAmt;
+	}
+	/**
+	 * 获取：应税销售收入
+	 */
+	public String getTaxAmt() {
+		return taxAmt;
+	}
+	/**
+	 * 设置：企业客户数量
+	 */
+	public void setCustNum(String custNum) {
+		this.custNum = custNum;
+	}
+	/**
+	 * 获取：企业客户数量
+	 */
+	public String getCustNum() {
+		return custNum;
+	}
+	/**
+	 * 设置：主要客户销售额合计
+	 */
+	public void setTopAmt(String topAmt) {
+		this.topAmt = topAmt;
+	}
+	/**
+	 * 获取：主要客户销售额合计
+	 */
+	public String getTopAmt() {
+		return topAmt;
+	}
+	/**
+	 * 设置：前五客户销售额占比
+	 */
+	public void setTopAmtRate(String topAmtRate) {
+		this.topAmtRate = topAmtRate;
+	}
+	/**
+	 * 获取：前五客户销售额占比
+	 */
+	public String getTopAmtRate() {
+		return topAmtRate;
+	}
+	/**
+	 * 设置：前五客户交易次数
+	 */
+	public void setTopCnt(String topCnt) {
+		this.topCnt = topCnt;
+	}
+	/**
+	 * 获取：前五客户交易次数
+	 */
+	public String getTopCnt() {
+		return topCnt;
+	}
+	/**
+	 * 设置：前五客户交易次数占比
+	 */
+	public void setTopCntRate(String topCntRate) {
+		this.topCntRate = topCntRate;
+	}
+	/**
+	 * 获取：前五客户交易次数占比
+	 */
+	public String getTopCntRate() {
+		return topCntRate;
+	}
+	/**
+	 * 设置：当月开票张数最多的前五日平均开票张数
+	 */
+	public void setTopAvgCnt(String topAvgCnt) {
+		this.topAvgCnt = topAvgCnt;
+	}
+	/**
+	 * 获取：当月开票张数最多的前五日平均开票张数
+	 */
+	public String getTopAvgCnt() {
+		return topAvgCnt;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：百旺ID
+	 */
+	public void setSupId(String supId) {
+		this.supId = supId;
+	}
+	/**
+	 * 获取：百旺ID
+	 */
+	public String getSupId() {
+		return supId;
+	}
+	/**
+	 * 设置：修改时间
+	 */
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	/**
+	 * 获取：修改时间
+	 */
+	public String getUpdateTime() {
+		return updateTime;
+	}
+}

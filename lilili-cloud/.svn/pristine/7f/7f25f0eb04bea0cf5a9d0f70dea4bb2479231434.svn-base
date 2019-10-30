@@ -1,0 +1,46 @@
+package com.bwcloud.billingCenter.netWorkApply.interfacesImpl;
+
+import com.bwcloud.billingCenter.netWorkApply.interfaces.NetWorkApplys;
+import com.bwcloud.billingCenter.netWorkApply.utlis.ConversionApplys;
+import org.springframework.stereotype.Service;
+
+import static com.bwcloud.billingCenter.netWorkApply.utlis.ConversionApplys.xmltoJson;
+
+/**
+ * lilili  2018/4/3.
+ */
+@Service
+public class NetWorkApplysImpl implements NetWorkApplys {
+
+
+    @Override
+    public String applyReadyInfoQuery(String info) {
+
+        return xmltoJson(ConversionApplys.jsonToXmlapplyReadyInfoQuery(info)) ;
+    }
+
+
+    @Override
+    public String apply(String info) {
+
+        return xmltoJson(ConversionApplys.jsonToXmlapply(info));
+    }
+
+    @Override
+    public String applyStateQuery(String info) {
+
+        return xmltoJson(ConversionApplys.jsonToXmlApplyStateQuery(info));
+    }
+
+    @Override
+    public String paperInoviceConfirmReception(String info) {
+
+        return xmltoJson(ConversionApplys.jsonToXmlPaperInoviceConfirmReception(info));
+    }
+
+    @Override
+    public String revokeApply(String info) {
+
+        return xmltoJson(ConversionApplys.jsonToXmlRevokeApply(info));
+    }
+}

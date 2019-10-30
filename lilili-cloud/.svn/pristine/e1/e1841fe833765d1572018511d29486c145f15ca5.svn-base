@@ -1,0 +1,14 @@
+package com.bwcloud.finance.loan.utils;
+
+import com.alibaba.fastjson.JSONObject;
+
+/**
+ * Created by Administrator on 2018/3/27.
+ */
+public class InvoiceLoanUtil {
+
+    public JSONObject resultJson(String ver,String req,String ts,String signKey,JSONObject jsonObject){
+
+        return jsonObject;
+    }
+}

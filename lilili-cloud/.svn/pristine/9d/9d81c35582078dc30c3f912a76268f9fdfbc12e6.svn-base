@@ -1,0 +1,89 @@
+package com.bwcloud.billingCenter.invoiceQuery.invoiceQueryService.impl;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoiceQuery.invoiceQueryService.InvoiceQueryService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+import org.springframework.stereotype.Service;
+
+/**
+ * Created by bs on 2018/3/29.
+ *
+ * 该类为发票查询（QueryService）的实现类
+ */
+@Service
+public class InvoiceQueryServiceImpl implements InvoiceQueryService{
+
+    /**
+     * @param json 接收发票查询传来的json字符串
+     * @return 返回发票查询的json
+     */
+    @Override
+    public String invoiceQuery(String json) {
+        String xml = invoiceQuery2Xml(json);
+        String recevieXml = sendXml(xml);
+        String sendJson = xml2Json(recevieXml);
+        return sendJson;
+    }
+    /**
+     * json 转 xml
+     * @param string
+     * @return
+     */
+    String invoiceQuery2Xml(String string){
+       try {
+           JSONObject json = JSONObject.parseObject(string);
+           JSONObject bussinse = json.getJSONObject("business");
+           String id = bussinse.getString("id");
+           String comment = bussinse.getString("comment");
+           JSONObject body = bussinse.getJSONObject("body");
+           String yylxdm = body.getString("yylxdm");
+           String kpzdbs = body.getString("kpzdbs");
+           String fplxdm = body.getString("fplxdm");
+           String cxfs = body.getString("cxfs");
+           String cxtj = body.getString("cxtj");
+           StringBuffer stringBuffer = new StringBuffer();
+           stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+           stringBuffer.append("<business id=\"");
+           stringBuffer.append(id);
+           stringBuffer.append("\" comment=\"");
+           stringBuffer.append(comment);
+           stringBuffer.append("\">\n\t<body yylxdm=\"");
+           stringBuffer.append(yylxdm);
+           stringBuffer.append("\">\n\t\t<kpzdbs>");
+           stringBuffer.append(kpzdbs);
+           stringBuffer.append("</kpzdbs>");
+           stringBuffer.append("\n\t\t<fplxdm>");
+           stringBuffer.append(fplxdm);
+           stringBuffer.append("</fplxdm>");
+           stringBuffer.append("\n\t\t<cxfs>");
+           stringBuffer.append(cxfs);
+           stringBuffer.append("</cxfs>");
+           stringBuffer.append("\n\t\t<cxtj>");
+           stringBuffer.append(cxtj);
+           stringBuffer.append("</cxtj>\n\t</body>\n</business>");
+           return stringBuffer.toString();
+       }catch (Exception e){
+           return "json转xml，转换失败！";
+       }
+    }
+    /**
+     * 向税控服务器发送xml，并返回结果
+     * @param xml
+     * @return
+     */
+    String sendXml(String xml){
+        return "";
+    }
+    /**
+     * xml 转 json
+     * @param receiveXml
+     * @return
+     */
+    String xml2Json(String receiveXml){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

@@ -1,0 +1,56 @@
+package com.bwcloud.finance.center.utils;
+
+import com.alibaba.fastjson.JSON;
+import com.bwcloud.finance.center.entity.TaxDataDetailUploadReq;
+import com.bwcloud.finance.center.entity.TaxDataUploadRequest;
+import com.bwcloud.finance.center.entity.TaxInvoice;
+import com.bwcloud.finance.center.entity.TaxInvoiceDetail;
+import com.github.wxiaoqi.security.common.util.DateUtils;
+import com.github.wxiaoqi.security.common.util.MD5Util;
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
+
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
+
+/**
+ * @author dz
+ *         Created by Administrator on 2018/3/27.
+ */
+public class InvoiceLoanUtil {
+
+    public static String resultJson(String ver, String req, String signKey,
+                                    TaxDataDetailUploadReq taxDataDetailUploadReq) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+        TaxDataUploadRequest<TaxDataDetailUploadReq> taxDataUploadRequest = new TaxDataUploadRequest<>();
+        String ts = DateUtils.formatSfmStamp(new Date());
+        taxDataUploadRequest.setVer(ver);
+        taxDataUploadRequest.setReq(req);
+        taxDataUploadRequest.setTs(ts);
+        taxDataUploadRequest.setMsg(taxDataDetailUploadReq);
+        StringBuffer md5Buffer = new StringBuffer();
+        md5Buffer.append(MD5Util.HongHaoSignMd5(JSON.toJSONString(taxDataUploadRequest)));
+        md5Buffer.append(MD5Util.HongHaoSignMd5(signKey));
+        String sign = MD5Util.HongHaoSignMd5(md5Buffer.toString());
+        taxDataUploadRequest.setSign(sign);
+        return JSON.toJSONString(taxDataUploadRequest);
+    }
+
+    public static String fpzt(String fpzt) {
+        String invStatus = "";
+        if ("00".equals(fpzt)) {
+            invStatus = "0";
+        } else if ("01".equals(fpzt)) {
+            invStatus = "1";
+        } else if ("02".equals(fpzt)) {
+            invStatus = "2";
+        } else if ("03".equals(fpzt)) {
+            invStatus = "3";
+        } else if ("04".equals(fpzt)) {
+            invStatus = "4";
+        }
+
+        return invStatus;
+    }
+
+}

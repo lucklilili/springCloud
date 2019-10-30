@@ -1,0 +1,17 @@
+package com.bwcloud.device.center.rest;
+
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import com.bwcloud.device.center.biz.DeviceInfoBiz;
+import com.bwcloud.device.center.entity.DeviceInfo;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+
+@RestController
+@RequestMapping("deviceInfo")
+@CheckClientToken
+@CheckUserToken
+public class DeviceInfoController extends BaseController<DeviceInfoBiz,DeviceInfo> {
+
+}

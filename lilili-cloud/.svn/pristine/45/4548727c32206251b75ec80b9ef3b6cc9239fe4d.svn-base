@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.loan.mapper.TaxBaseInfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.loan.entity.TaxBaseInfo" id="taxBaseInfoMap">
+        <result property="id" column="id"/>
+        <result property="dataDate" column="data_date"/>
+        <result property="supId" column="sup_id"/>
+        <result property="taxCode" column="tax_code"/>
+        <result property="taxName" column="tax_name"/>
+        <result property="invAddr" column="inv_addr"/>
+        <result property="invHisMonths" column="inv_his_months"/>
+        <result property="invSumNum" column="inv_sum_num"/>
+        <result property="invSumAmt" column="inv_sum_amt"/>
+        <result property="taxSumAmt" column="tax_sum_amt"/>
+        <result property="invAvgNum" column="inv_avg_num"/>
+        <result property="invAvgAmt" column="inv_avg_amt"/>
+        <result property="invNoDays" column="inv_no_days"/>
+        <result property="creditAmt" column="credit_amt"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+</mapper>

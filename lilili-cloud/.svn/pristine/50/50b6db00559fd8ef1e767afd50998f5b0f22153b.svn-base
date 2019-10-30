@@ -1,0 +1,19 @@
+package com.bwcloud.billingCenter.onlineTicketInfoSynchronizationQuery;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 主要根据开票终端来查询相应税号的分机（核心版）
+ * 企业从税局领购信息查询的请求并同步网上购票写入税控服务器，
+ * Created by bs on 2018/4/14.
+ */
+@Service
+public interface SynchronizationQueryService {
+
+    /**
+     * 主要根据开票终端来查询相应税号的分机（核心版）
+     * @param json
+     * @return
+     */
+    String onlineTicketInfoSynchronizationQuery(String json);
+}

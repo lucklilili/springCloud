@@ -1,0 +1,259 @@
+package com.bwcloud.finance.center.entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+@Table(name = "loan_repay_plan")
+public class LoanRepayPlan implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //客户姓名
+    @Column(name = "cust_name")
+    private String custName;
+	
+	    //起息时间
+    @Column(name = "loan_start_date")
+    private String loanStartDate;
+	
+	    //到期日期
+    @Column(name = "loan_end_date")
+    private String loanEndDate;
+	
+	    //发放金额
+    @Column(name = "loan_amt")
+    private String loanAmt;
+	
+	    //剩余本金
+    @Column(name = "rest_amt")
+    private String restAmt;
+	
+	    //还款账号
+    @Column(name = "reapy_card_no")
+    private String reapyCardNo;
+	
+	    //贷款利率
+    @Column(name = "exec_rate")
+    private String execRate;
+	
+	    //本期还款日期
+    @Column(name = "term_date")
+    private String termDate;
+	
+	    //本期期数
+    @Column(name = "term_num")
+    private String termNum;
+	
+	    //本期应还本金
+    @Column(name = "term_princ")
+    private String termPrinc;
+	
+	    //本期应还利息
+    @Column(name = "term_inter")
+    private String termInter;
+	
+	    //本期应还金额
+    @Column(name = "tem_amt")
+    private String temAmt;
+	
+	    //创建时间
+    @Column(name = "create_time")
+    private String createTime;
+	
+	    //修改日期
+    @Column(name = "update_time")
+    private String updateTime;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：客户姓名
+	 */
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+	/**
+	 * 获取：客户姓名
+	 */
+	public String getCustName() {
+		return custName;
+	}
+	/**
+	 * 设置：起息时间
+	 */
+	public void setLoanStartDate(String loanStartDate) {
+		this.loanStartDate = loanStartDate;
+	}
+	/**
+	 * 获取：起息时间
+	 */
+	public String getLoanStartDate() {
+		return loanStartDate;
+	}
+	/**
+	 * 设置：到期日期
+	 */
+	public void setLoanEndDate(String loanEndDate) {
+		this.loanEndDate = loanEndDate;
+	}
+	/**
+	 * 获取：到期日期
+	 */
+	public String getLoanEndDate() {
+		return loanEndDate;
+	}
+	/**
+	 * 设置：发放金额
+	 */
+	public void setLoanAmt(String loanAmt) {
+		this.loanAmt = loanAmt;
+	}
+	/**
+	 * 获取：发放金额
+	 */
+	public String getLoanAmt() {
+		return loanAmt;
+	}
+	/**
+	 * 设置：剩余本金
+	 */
+	public void setRestAmt(String restAmt) {
+		this.restAmt = restAmt;
+	}
+	/**
+	 * 获取：剩余本金
+	 */
+	public String getRestAmt() {
+		return restAmt;
+	}
+	/**
+	 * 设置：还款账号
+	 */
+	public void setReapyCardNo(String reapyCardNo) {
+		this.reapyCardNo = reapyCardNo;
+	}
+	/**
+	 * 获取：还款账号
+	 */
+	public String getReapyCardNo() {
+		return reapyCardNo;
+	}
+	/**
+	 * 设置：贷款利率
+	 */
+	public void setExecRate(String execRate) {
+		this.execRate = execRate;
+	}
+	/**
+	 * 获取：贷款利率
+	 */
+	public String getExecRate() {
+		return execRate;
+	}
+	/**
+	 * 设置：本期还款日期
+	 */
+	public void setTermDate(String termDate) {
+		this.termDate = termDate;
+	}
+	/**
+	 * 获取：本期还款日期
+	 */
+	public String getTermDate() {
+		return termDate;
+	}
+	/**
+	 * 设置：本期期数
+	 */
+	public void setTermNum(String termNum) {
+		this.termNum = termNum;
+	}
+	/**
+	 * 获取：本期期数
+	 */
+	public String getTermNum() {
+		return termNum;
+	}
+	/**
+	 * 设置：本期应还本金
+	 */
+	public void setTermPrinc(String termPrinc) {
+		this.termPrinc = termPrinc;
+	}
+	/**
+	 * 获取：本期应还本金
+	 */
+	public String getTermPrinc() {
+		return termPrinc;
+	}
+	/**
+	 * 设置：本期应还利息
+	 */
+	public void setTermInter(String termInter) {
+		this.termInter = termInter;
+	}
+	/**
+	 * 获取：本期应还利息
+	 */
+	public String getTermInter() {
+		return termInter;
+	}
+	/**
+	 * 设置：本期应还金额
+	 */
+	public void setTemAmt(String temAmt) {
+		this.temAmt = temAmt;
+	}
+	/**
+	 * 获取：本期应还金额
+	 */
+	public String getTemAmt() {
+		return temAmt;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：修改日期
+	 */
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	/**
+	 * 获取：修改日期
+	 */
+	public String getUpdateTime() {
+		return updateTime;
+	}
+}

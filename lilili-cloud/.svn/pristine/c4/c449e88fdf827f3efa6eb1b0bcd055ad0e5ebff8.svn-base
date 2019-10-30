@@ -1,0 +1,18 @@
+package com.bwcloud.device.center.biz;
+
+import org.springframework.stereotype.Service;
+
+import com.bwcloud.device.center.entity.TerminalInfo;
+import com.bwcloud.device.center.mapper.TerminalInfoMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+/**
+ * 
+ *
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-11 19:53:12
+ */
+@Service
+public class TerminalInfoBiz extends BusinessBiz<TerminalInfoMapper,TerminalInfo> {
+}

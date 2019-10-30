@@ -1,0 +1,33 @@
+package com.bwcloud.billingCenter.netWorkApply.interfaces;
+
+/**
+ * lilili 2018/4/3.
+ * 发票申领接口
+ */
+public interface NetWorkApplys {
+
+    /**
+     * 发票领购准备信息查询
+     */
+     String applyReadyInfoQuery(String info);
+
+    /**
+     * 申领
+     */
+     String apply(String info);
+
+    /**
+     * 申领状态查询
+     */
+     String applyStateQuery(String info);
+
+    /**
+     *纸质票确认接收
+     */
+     String paperInoviceConfirmReception(String info);
+
+    /**
+     * 撤销申领
+     */
+     String revokeApply(String info);
+}

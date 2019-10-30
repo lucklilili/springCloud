@@ -1,0 +1,14 @@
+package com.bwcloud.billingCenter.invoiceQuery.customCommodityCodingService;
+
+/**
+ * 通过该接口查询用户自定义的商品编码
+ * Created by bs on 2018/4/13.
+ */
+public interface CustomCommodityCodingService {
+    /**
+     * 通过该接口查询用户自定义的商品编码
+     * @param json
+     * @return
+     */
+    String customCommodityCoding(String json);
+}

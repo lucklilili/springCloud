@@ -1,0 +1,949 @@
+package com.bwcloud.billingCenter.module.entity;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 主要是存储业务系统单据主表的数据
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-04-09 10:23:16
+ */
+@Table(name = "yw_dj")
+public class YwDj implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //编号
+    @Id
+    private String id;
+	
+	    //发票请求流水号
+    @Column(name = "FPQQLSH")
+    private String fpqqlsh;
+	
+	    //用户信息
+    @Column(name = "YHXX")
+    private String yhxx;
+	
+	    //税控设备编号
+    @Column(name = "SKSBBH")
+    private String sksbbh;
+	
+	    //发票类型代码
+    @Column(name = "FPLXDM")
+    private String fplxdm;
+	
+	    //开票类型
+    @Column(name = "KPLX")
+    private String kplx;
+	
+	    //特殊票种
+    @Column(name = "TSPZ")
+    private String tspz;
+	
+	    //发票票样
+    @Column(name = "FPPY")
+    private String fppy;
+	
+	    //销货单位识别号
+    @Column(name = "XHDWSBH")
+    private String xhdwsbh;
+	
+	    //销货单位名称
+    @Column(name = "XHDWMC")
+    private String xhdwmc;
+	
+	    //销货单位地址电话
+    @Column(name = "XHDWDZDH")
+    private String xhdwdzdh;
+	
+	    //销货单位银行账号
+    @Column(name = "XHDWYHZH")
+    private String xhdwyhzh;
+	
+	    //购方名称
+    @Column(name = "GHDWMC")
+    private String ghdwmc;
+	
+	    //购方税号
+    @Column(name = "GHDWSBH")
+    private String ghdwsbh;
+	
+	    //购方地址电话
+    @Column(name = "GHDWDZDH")
+    private String ghdwdzdh;
+	
+	    //购方银行账号
+    @Column(name = "GHDWYHZH")
+    private String ghdwyhzh;
+	
+	    //清单标志
+    @Column(name = "QDBZ")
+    private String qdbz;
+	
+	    //征税方式
+    @Column(name = "ZSFS")
+    private String zsfs;
+	
+	    //合计金额
+    @Column(name = "HJJE")
+    private BigDecimal hjje;
+	
+	    //合计税额
+    @Column(name = "HJSE")
+    private BigDecimal hjse;
+	
+	    //价税合计
+    @Column(name = "JSHJ")
+    private BigDecimal jshj;
+	
+	    //扣除额（主要是用于差额增税用）
+    @Column(name = "KCE")
+    private BigDecimal kce;
+	
+	    //备注
+    @Column(name = "BZ")
+    private String bz;
+	
+	    //复核人
+    @Column(name = "FHR")
+    private String fhr;
+	
+	    //收款人
+    @Column(name = "SKR")
+    private String skr;
+	
+	    //开票人
+    @Column(name = "KPR")
+    private String kpr;
+	
+	    //红字信息表编号
+    @Column(name = "XXBBH")
+    private String xxbbh;
+	
+	    //原发票代码
+    @Column(name = "YFPDM")
+    private String yfpdm;
+	
+	    //原发票号码
+    @Column(name = "YFPHM")
+    private String yfphm;
+	
+	    //单据日期(格式为YYYYMMDD)
+    @Column(name = "DJRQ")
+    private String djrq;
+	
+	    //操作员
+    @Column(name = "CZY")
+    private String czy;
+	
+	    //0：初始状态 1：已开票 2：已开票但已作废 3：隐藏
+    @Column(name = "DJZT")
+    private String djzt;
+	
+	    //机器编号即款机编号（000000000000或888888888888）
+    @Column(name = "JQBH")
+    private String jqbh;
+	
+	    //开票失败原因
+    @Column(name = "SBYY")
+    private String sbyy;
+	
+	    //00：未处理；01：可开具；02：扫开票已扫；03：已开具成功；04：已开具失败;05：扫开票;06 开票超时
+    @Column(name = "KPZT")
+    private String kpzt;
+	
+	    //微信中唯一识别号
+    @Column(name = "OPENID")
+    private String openid;
+	
+	    //1:发票开具。2：发票作废。3：发票打印
+    @Column(name = "YWLX")
+    private String ywlx;
+	
+	    //发票代码
+    @Column(name = "FPDM")
+    private String fpdm;
+	
+	    //发票号码
+    @Column(name = "FPHM")
+    private String fphm;
+	
+	    //1:发票开具。2：发票作废。3：发票打印
+    @Column(name = "ZFLX")
+    private String zflx;
+	
+	    //作废人
+    @Column(name = "ZFR")
+    private String zfr;
+	
+	    //预留1
+    @Column(name = "YL1")
+    private String yl1;
+	
+	    //预留2
+    @Column(name = "YL2")
+    private String yl2;
+	
+	    //预留3
+    @Column(name = "YL3")
+    private String yl3;
+	
+	    //预留4
+    @Column(name = "YL4")
+    private String yl4;
+	
+	    //预留6
+    @Column(name = "YL6")
+    private String yl6;
+	
+	    //预留7
+    @Column(name = "YL7")
+    private String yl7;
+	
+	    //预留8
+    @Column(name = "YL8")
+    private String yl8;
+	
+	    //预留10（数字类型）
+    @Column(name = "YL10")
+    private String yl10;
+	
+	    //预留9（数字类型）
+    @Column(name = "YL9")
+    private String yl9;
+	
+	    //预留5
+    @Column(name = "YL5")
+    private String yl5;
+	
+	    //收票人手机号
+    @Column(name = "sprsjh")
+    private String sprsjh;
+	
+	    //编码表版本号
+    @Column(name = "bmbbbh")
+    private String bmbbbh;
+	
+	    //机身编号
+    @Column(name = "jsbh")
+    private String jsbh;
+	
+	    //
+    @Column(name = "forwardstatus")
+    private String forwardstatus;
+	
+	    //扫开票使用 开票截至时间
+    @Column(name = "kpjzsj")
+    private String kpjzsj;
+	
+	    //消息发送至阿里时间
+    @Column(name = "fssj")
+    private String fssj;
+	
+	    //开票来源
+    @Column(name = "source")
+    private String source;
+	
+
+	/**
+	 * 设置：编号
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：编号
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：发票请求流水号
+	 */
+	public void setFpqqlsh(String fpqqlsh) {
+		this.fpqqlsh = fpqqlsh;
+	}
+	/**
+	 * 获取：发票请求流水号
+	 */
+	public String getFpqqlsh() {
+		return fpqqlsh;
+	}
+	/**
+	 * 设置：用户信息
+	 */
+	public void setYhxx(String yhxx) {
+		this.yhxx = yhxx;
+	}
+	/**
+	 * 获取：用户信息
+	 */
+	public String getYhxx() {
+		return yhxx;
+	}
+	/**
+	 * 设置：税控设备编号
+	 */
+	public void setSksbbh(String sksbbh) {
+		this.sksbbh = sksbbh;
+	}
+	/**
+	 * 获取：税控设备编号
+	 */
+	public String getSksbbh() {
+		return sksbbh;
+	}
+	/**
+	 * 设置：发票类型代码
+	 */
+	public void setFplxdm(String fplxdm) {
+		this.fplxdm = fplxdm;
+	}
+	/**
+	 * 获取：发票类型代码
+	 */
+	public String getFplxdm() {
+		return fplxdm;
+	}
+	/**
+	 * 设置：开票类型
+	 */
+	public void setKplx(String kplx) {
+		this.kplx = kplx;
+	}
+	/**
+	 * 获取：开票类型
+	 */
+	public String getKplx() {
+		return kplx;
+	}
+	/**
+	 * 设置：特殊票种
+	 */
+	public void setTspz(String tspz) {
+		this.tspz = tspz;
+	}
+	/**
+	 * 获取：特殊票种
+	 */
+	public String getTspz() {
+		return tspz;
+	}
+	/**
+	 * 设置：发票票样
+	 */
+	public void setFppy(String fppy) {
+		this.fppy = fppy;
+	}
+	/**
+	 * 获取：发票票样
+	 */
+	public String getFppy() {
+		return fppy;
+	}
+	/**
+	 * 设置：销货单位识别号
+	 */
+	public void setXhdwsbh(String xhdwsbh) {
+		this.xhdwsbh = xhdwsbh;
+	}
+	/**
+	 * 获取：销货单位识别号
+	 */
+	public String getXhdwsbh() {
+		return xhdwsbh;
+	}
+	/**
+	 * 设置：销货单位名称
+	 */
+	public void setXhdwmc(String xhdwmc) {
+		this.xhdwmc = xhdwmc;
+	}
+	/**
+	 * 获取：销货单位名称
+	 */
+	public String getXhdwmc() {
+		return xhdwmc;
+	}
+	/**
+	 * 设置：销货单位地址电话
+	 */
+	public void setXhdwdzdh(String xhdwdzdh) {
+		this.xhdwdzdh = xhdwdzdh;
+	}
+	/**
+	 * 获取：销货单位地址电话
+	 */
+	public String getXhdwdzdh() {
+		return xhdwdzdh;
+	}
+	/**
+	 * 设置：销货单位银行账号
+	 */
+	public void setXhdwyhzh(String xhdwyhzh) {
+		this.xhdwyhzh = xhdwyhzh;
+	}
+	/**
+	 * 获取：销货单位银行账号
+	 */
+	public String getXhdwyhzh() {
+		return xhdwyhzh;
+	}
+	/**
+	 * 设置：购方名称
+	 */
+	public void setGhdwmc(String ghdwmc) {
+		this.ghdwmc = ghdwmc;
+	}
+	/**
+	 * 获取：购方名称
+	 */
+	public String getGhdwmc() {
+		return ghdwmc;
+	}
+	/**
+	 * 设置：购方税号
+	 */
+	public void setGhdwsbh(String ghdwsbh) {
+		this.ghdwsbh = ghdwsbh;
+	}
+	/**
+	 * 获取：购方税号
+	 */
+	public String getGhdwsbh() {
+		return ghdwsbh;
+	}
+	/**
+	 * 设置：购方地址电话
+	 */
+	public void setGhdwdzdh(String ghdwdzdh) {
+		this.ghdwdzdh = ghdwdzdh;
+	}
+	/**
+	 * 获取：购方地址电话
+	 */
+	public String getGhdwdzdh() {
+		return ghdwdzdh;
+	}
+	/**
+	 * 设置：购方银行账号
+	 */
+	public void setGhdwyhzh(String ghdwyhzh) {
+		this.ghdwyhzh = ghdwyhzh;
+	}
+	/**
+	 * 获取：购方银行账号
+	 */
+	public String getGhdwyhzh() {
+		return ghdwyhzh;
+	}
+	/**
+	 * 设置：清单标志
+	 */
+	public void setQdbz(String qdbz) {
+		this.qdbz = qdbz;
+	}
+	/**
+	 * 获取：清单标志
+	 */
+	public String getQdbz() {
+		return qdbz;
+	}
+	/**
+	 * 设置：征税方式
+	 */
+	public void setZsfs(String zsfs) {
+		this.zsfs = zsfs;
+	}
+	/**
+	 * 获取：征税方式
+	 */
+	public String getZsfs() {
+		return zsfs;
+	}
+	/**
+	 * 设置：合计金额
+	 */
+	public void setHjje(BigDecimal hjje) {
+		this.hjje = hjje;
+	}
+	/**
+	 * 获取：合计金额
+	 */
+	public BigDecimal getHjje() {
+		return hjje;
+	}
+	/**
+	 * 设置：合计税额
+	 */
+	public void setHjse(BigDecimal hjse) {
+		this.hjse = hjse;
+	}
+	/**
+	 * 获取：合计税额
+	 */
+	public BigDecimal getHjse() {
+		return hjse;
+	}
+	/**
+	 * 设置：价税合计
+	 */
+	public void setJshj(BigDecimal jshj) {
+		this.jshj = jshj;
+	}
+	/**
+	 * 获取：价税合计
+	 */
+	public BigDecimal getJshj() {
+		return jshj;
+	}
+	/**
+	 * 设置：扣除额（主要是用于差额增税用）
+	 */
+	public void setKce(BigDecimal kce) {
+		this.kce = kce;
+	}
+	/**
+	 * 获取：扣除额（主要是用于差额增税用）
+	 */
+	public BigDecimal getKce() {
+		return kce;
+	}
+	/**
+	 * 设置：备注
+	 */
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
+	/**
+	 * 获取：备注
+	 */
+	public String getBz() {
+		return bz;
+	}
+	/**
+	 * 设置：复核人
+	 */
+	public void setFhr(String fhr) {
+		this.fhr = fhr;
+	}
+	/**
+	 * 获取：复核人
+	 */
+	public String getFhr() {
+		return fhr;
+	}
+	/**
+	 * 设置：收款人
+	 */
+	public void setSkr(String skr) {
+		this.skr = skr;
+	}
+	/**
+	 * 获取：收款人
+	 */
+	public String getSkr() {
+		return skr;
+	}
+	/**
+	 * 设置：开票人
+	 */
+	public void setKpr(String kpr) {
+		this.kpr = kpr;
+	}
+	/**
+	 * 获取：开票人
+	 */
+	public String getKpr() {
+		return kpr;
+	}
+	/**
+	 * 设置：红字信息表编号
+	 */
+	public void setXxbbh(String xxbbh) {
+		this.xxbbh = xxbbh;
+	}
+	/**
+	 * 获取：红字信息表编号
+	 */
+	public String getXxbbh() {
+		return xxbbh;
+	}
+	/**
+	 * 设置：原发票代码
+	 */
+	public void setYfpdm(String yfpdm) {
+		this.yfpdm = yfpdm;
+	}
+	/**
+	 * 获取：原发票代码
+	 */
+	public String getYfpdm() {
+		return yfpdm;
+	}
+	/**
+	 * 设置：原发票号码
+	 */
+	public void setYfphm(String yfphm) {
+		this.yfphm = yfphm;
+	}
+	/**
+	 * 获取：原发票号码
+	 */
+	public String getYfphm() {
+		return yfphm;
+	}
+	/**
+	 * 设置：单据日期(格式为YYYYMMDD)
+	 */
+	public void setDjrq(String djrq) {
+		this.djrq = djrq;
+	}
+	/**
+	 * 获取：单据日期(格式为YYYYMMDD)
+	 */
+	public String getDjrq() {
+		return djrq;
+	}
+	/**
+	 * 设置：操作员
+	 */
+	public void setCzy(String czy) {
+		this.czy = czy;
+	}
+	/**
+	 * 获取：操作员
+	 */
+	public String getCzy() {
+		return czy;
+	}
+	/**
+	 * 设置：0：初始状态 1：已开票 2：已开票但已作废 3：隐藏
+	 */
+	public void setDjzt(String djzt) {
+		this.djzt = djzt;
+	}
+	/**
+	 * 获取：0：初始状态 1：已开票 2：已开票但已作废 3：隐藏
+	 */
+	public String getDjzt() {
+		return djzt;
+	}
+	/**
+	 * 设置：机器编号即款机编号（000000000000或888888888888）
+	 */
+	public void setJqbh(String jqbh) {
+		this.jqbh = jqbh;
+	}
+	/**
+	 * 获取：机器编号即款机编号（000000000000或888888888888）
+	 */
+	public String getJqbh() {
+		return jqbh;
+	}
+	/**
+	 * 设置：开票失败原因
+	 */
+	public void setSbyy(String sbyy) {
+		this.sbyy = sbyy;
+	}
+	/**
+	 * 获取：开票失败原因
+	 */
+	public String getSbyy() {
+		return sbyy;
+	}
+	/**
+	 * 设置：00：未处理；01：可开具；02：扫开票已扫；03：已开具成功；04：已开具失败;05：扫开票;06 开票超时
+	 */
+	public void setKpzt(String kpzt) {
+		this.kpzt = kpzt;
+	}
+	/**
+	 * 获取：00：未处理；01：可开具；02：扫开票已扫；03：已开具成功；04：已开具失败;05：扫开票;06 开票超时
+	 */
+	public String getKpzt() {
+		return kpzt;
+	}
+	/**
+	 * 设置：微信中唯一识别号
+	 */
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+	/**
+	 * 获取：微信中唯一识别号
+	 */
+	public String getOpenid() {
+		return openid;
+	}
+	/**
+	 * 设置：1:发票开具。2：发票作废。3：发票打印
+	 */
+	public void setYwlx(String ywlx) {
+		this.ywlx = ywlx;
+	}
+	/**
+	 * 获取：1:发票开具。2：发票作废。3：发票打印
+	 */
+	public String getYwlx() {
+		return ywlx;
+	}
+	/**
+	 * 设置：发票代码
+	 */
+	public void setFpdm(String fpdm) {
+		this.fpdm = fpdm;
+	}
+	/**
+	 * 获取：发票代码
+	 */
+	public String getFpdm() {
+		return fpdm;
+	}
+	/**
+	 * 设置：发票号码
+	 */
+	public void setFphm(String fphm) {
+		this.fphm = fphm;
+	}
+	/**
+	 * 获取：发票号码
+	 */
+	public String getFphm() {
+		return fphm;
+	}
+	/**
+	 * 设置：1:发票开具。2：发票作废。3：发票打印
+	 */
+	public void setZflx(String zflx) {
+		this.zflx = zflx;
+	}
+	/**
+	 * 获取：1:发票开具。2：发票作废。3：发票打印
+	 */
+	public String getZflx() {
+		return zflx;
+	}
+	/**
+	 * 设置：作废人
+	 */
+	public void setZfr(String zfr) {
+		this.zfr = zfr;
+	}
+	/**
+	 * 获取：作废人
+	 */
+	public String getZfr() {
+		return zfr;
+	}
+	/**
+	 * 设置：预留1
+	 */
+	public void setYl1(String yl1) {
+		this.yl1 = yl1;
+	}
+	/**
+	 * 获取：预留1
+	 */
+	public String getYl1() {
+		return yl1;
+	}
+	/**
+	 * 设置：预留2
+	 */
+	public void setYl2(String yl2) {
+		this.yl2 = yl2;
+	}
+	/**
+	 * 获取：预留2
+	 */
+	public String getYl2() {
+		return yl2;
+	}
+	/**
+	 * 设置：预留3
+	 */
+	public void setYl3(String yl3) {
+		this.yl3 = yl3;
+	}
+	/**
+	 * 获取：预留3
+	 */
+	public String getYl3() {
+		return yl3;
+	}
+	/**
+	 * 设置：预留4
+	 */
+	public void setYl4(String yl4) {
+		this.yl4 = yl4;
+	}
+	/**
+	 * 获取：预留4
+	 */
+	public String getYl4() {
+		return yl4;
+	}
+	/**
+	 * 设置：预留6
+	 */
+	public void setYl6(String yl6) {
+		this.yl6 = yl6;
+	}
+	/**
+	 * 获取：预留6
+	 */
+	public String getYl6() {
+		return yl6;
+	}
+	/**
+	 * 设置：预留7
+	 */
+	public void setYl7(String yl7) {
+		this.yl7 = yl7;
+	}
+	/**
+	 * 获取：预留7
+	 */
+	public String getYl7() {
+		return yl7;
+	}
+	/**
+	 * 设置：预留8
+	 */
+	public void setYl8(String yl8) {
+		this.yl8 = yl8;
+	}
+	/**
+	 * 获取：预留8
+	 */
+	public String getYl8() {
+		return yl8;
+	}
+	/**
+	 * 设置：预留10（数字类型）
+	 */
+	public void setYl10(String yl10) {
+		this.yl10 = yl10;
+	}
+	/**
+	 * 获取：预留10（数字类型）
+	 */
+	public String getYl10() {
+		return yl10;
+	}
+	/**
+	 * 设置：预留9（数字类型）
+	 */
+	public void setYl9(String yl9) {
+		this.yl9 = yl9;
+	}
+	/**
+	 * 获取：预留9（数字类型）
+	 */
+	public String getYl9() {
+		return yl9;
+	}
+	/**
+	 * 设置：预留5
+	 */
+	public void setYl5(String yl5) {
+		this.yl5 = yl5;
+	}
+	/**
+	 * 获取：预留5
+	 */
+	public String getYl5() {
+		return yl5;
+	}
+	/**
+	 * 设置：收票人手机号
+	 */
+	public void setSprsjh(String sprsjh) {
+		this.sprsjh = sprsjh;
+	}
+	/**
+	 * 获取：收票人手机号
+	 */
+	public String getSprsjh() {
+		return sprsjh;
+	}
+	/**
+	 * 设置：编码表版本号
+	 */
+	public void setBmbbbh(String bmbbbh) {
+		this.bmbbbh = bmbbbh;
+	}
+	/**
+	 * 获取：编码表版本号
+	 */
+	public String getBmbbbh() {
+		return bmbbbh;
+	}
+	/**
+	 * 设置：机身编号
+	 */
+	public void setJsbh(String jsbh) {
+		this.jsbh = jsbh;
+	}
+	/**
+	 * 获取：机身编号
+	 */
+	public String getJsbh() {
+		return jsbh;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setForwardstatus(String forwardstatus) {
+		this.forwardstatus = forwardstatus;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getForwardstatus() {
+		return forwardstatus;
+	}
+	/**
+	 * 设置：扫开票使用 开票截至时间
+	 */
+	public void setKpjzsj(String kpjzsj) {
+		this.kpjzsj = kpjzsj;
+	}
+	/**
+	 * 获取：扫开票使用 开票截至时间
+	 */
+	public String getKpjzsj() {
+		return kpjzsj;
+	}
+	/**
+	 * 设置：消息发送至阿里时间
+	 */
+	public void setFssj(String fssj) {
+		this.fssj = fssj;
+	}
+	/**
+	 * 获取：消息发送至阿里时间
+	 */
+	public String getFssj() {
+		return fssj;
+	}
+	/**
+	 * 设置：开票来源
+	 */
+	public void setSource(String source) {
+		this.source = source;
+	}
+	/**
+	 * 获取：开票来源
+	 */
+	public String getSource() {
+		return source;
+	}
+}

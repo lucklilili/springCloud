@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.LoanRepayPlanMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.LoanRepayPlan" id="loanRepayPlanMap">
+        <result property="id" column="id"/>
+        <result property="custName" column="cust_name"/>
+        <result property="loanStartDate" column="loan_start_date"/>
+        <result property="loanEndDate" column="loan_end_date"/>
+        <result property="loanAmt" column="loan_amt"/>
+        <result property="restAmt" column="rest_amt"/>
+        <result property="reapyCardNo" column="reapy_card_no"/>
+        <result property="execRate" column="exec_rate"/>
+        <result property="termDate" column="term_date"/>
+        <result property="termNum" column="term_num"/>
+        <result property="termPrinc" column="term_princ"/>
+        <result property="termInter" column="term_inter"/>
+        <result property="temAmt" column="tem_amt"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+</mapper>

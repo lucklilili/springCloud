@@ -1,0 +1,112 @@
+package com.bwcloud.finance.center.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ */
+@Table(name = "loan_merchant_info")
+public class LoanMerchantInfo implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private String id;
+
+    /**
+     * 统计年月
+     */
+    @Column(name = "nsrsbh")
+    private String nsrsbh;
+
+    /**
+     * 是否有效标识
+     */
+    @Column(name = "nsrmc")
+    private String nsrmc;
+
+    /**
+     * 商户id
+     */
+    @Column(name = "merchantid")
+    private String merchantid;
+
+    /**
+     * 销方地址
+     */
+    @Column(name = "xfdz")
+    private String xfdz;
+
+    /**
+     * 发票上传截止日期
+     */
+    @Column(name = "fpsc_jzrq")
+    private String fpsc_jzrq;
+
+    /**
+     * 协议授权标志
+     */
+    @Column(name = "xysqbz")
+    private String xysqbz;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNsrsbh() {
+        return nsrsbh;
+    }
+
+    public void setNsrsbh(String nsrsbh) {
+        this.nsrsbh = nsrsbh;
+    }
+
+    public String getNsrmc() {
+        return nsrmc;
+    }
+
+    public void setNsrmc(String nsrmc) {
+        this.nsrmc = nsrmc;
+    }
+
+    public String getMerchantid() {
+        return merchantid;
+    }
+
+    public void setMerchantid(String merchantid) {
+        this.merchantid = merchantid;
+    }
+
+    public String getXfdz() {
+        return xfdz;
+    }
+
+    public void setXfdz(String xfdz) {
+        this.xfdz = xfdz;
+    }
+
+    public String getFpsc_jzrq() {
+        return fpsc_jzrq;
+    }
+
+    public void setFpsc_jzrq(String fpsc_jzrq) {
+        this.fpsc_jzrq = fpsc_jzrq;
+    }
+
+    public String getXysqbz() {
+        return xysqbz;
+    }
+
+    public void setXysqbz(String xysqbz) {
+        this.xysqbz = xysqbz;
+    }
+}

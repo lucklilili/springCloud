@@ -1,0 +1,22 @@
+package com.bwcloud.billingCenter.invoiceOpening.abstractClassImpl;
+
+import com.bwcloud.billingCenter.invoiceOpening.abstractClass.InoviceOpening;
+
+/**
+ * lilili 2018/3/29.
+ */
+public abstract class InoviceOpeningImpl extends InoviceOpening {
+
+
+    public abstract String  jsonToXml(String json) ;
+
+    public abstract String  xmlTojson(String xml) ;
+
+
+    @Override
+    public String Opening(String json){
+        String afterConversionXml= jsonToXml(json);
+        String afterConversionJson=xmlTojson(afterConversionXml);
+        return afterConversionJson;
+    }
+}

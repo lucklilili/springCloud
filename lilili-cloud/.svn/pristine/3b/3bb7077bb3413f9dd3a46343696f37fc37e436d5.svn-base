@@ -1,0 +1,12 @@
+package com.bwcloud.finance.loan.constant;
+
+/**
+ * 发票贷接口返回错误码
+ * @author dz
+ * Created by Administrator on 2018/3/26.
+ */
+public class LoanCodeConstants {
+    /**用户token异常*/
+    public static final String EX_USER_INVALID_CODE = "40101";
+
+}

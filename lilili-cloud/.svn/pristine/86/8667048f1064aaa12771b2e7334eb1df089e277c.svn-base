@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.device.center.mapper.TaxDeviceInfoMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.device.center.entity.TaxDeviceInfo" id="taxDeviceInfoMap">
+        <result property="id" column="id"/>
+        <result property="deviceId" column="device_id"/>
+        <result property="taxDeviceType" column="tax_device_type"/>
+        <result property="nsrsbh" column="nsrsbh"/>
+        <result property="nsrmc" column="nsrmc"/>
+        <result property="sbbh" column="sbbh"/>
+        <result property="jqbh" column="jqbh"/>
+        <result property="swjgdm" column="swjgdm"/>
+        <result property="swjgmc" column="swjgmc"/>
+        <result property="fplxdm" column="fplxdm"/>
+        <result property="sl" column="sl"/>
+        <result property="fppy" column="fppy"/>
+        <result property="dqsz" column="dqsz"/>
+        <result property="qysj" column="qysj"/>
+        <result property="bbh" column="bbh"/>
+        <result property="kpjh" column="kpjh"/>
+        <result property="qylx" column="qylx"/>
+        <result property="blxx" column="blxx"/>
+        <result property="qtkzxx" column="qtkzxx"/>
+        <result property="gxjmc" column="gxjmc"/>
+        <result property="zblx" column="zblx"/>
+        <result property="zbbh" column="zbbh"/>
+        <result property="uarth" column="uarth"/>
+        <result property="usbrl" column="usbrl"/>
+        <result property="usbbh" column="usbbh"/>
+        <result property="kzxx1" column="kzxx1"/>
+        <result property="kzxx2" column="kzxx2"/>
+        <result property="kzxx3" column="kzxx3"/>
+        <result property="kzxx4" column="kzxx4"/>
+        <result property="kzxx5" column="kzxx5"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+</mapper>

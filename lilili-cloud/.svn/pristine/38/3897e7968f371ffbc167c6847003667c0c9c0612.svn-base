@@ -1,0 +1,15 @@
+package com.bwcloud.finance.loan.mapper;
+
+import com.bwcloud.finance.loan.entity.TaxDealInfo;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+
+/**
+ * 
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+public interface TaxDealInfoMapper extends CommonMapper<TaxDealInfo> {
+	
+}

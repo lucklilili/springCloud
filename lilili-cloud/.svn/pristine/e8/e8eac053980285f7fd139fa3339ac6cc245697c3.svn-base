@@ -1,0 +1,29 @@
+package com.bwcloud.finance.center.biz;
+
+import com.bwcloud.finance.center.entity.LoanDeviceInfo;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.bwcloud.finance.center.mapper.LoanDeviceMapper;
+import com.bwcloud.finance.center.mapper.LoanMerchantMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+@Service
+@Slf4j
+public class LoanDeviceBiz extends BusinessBiz<LoanDeviceMapper, LoanDeviceInfo> {
+    @Autowired
+    LoanDeviceMapper loanDeviceMapper;
+
+    public LoanDeviceInfo getLoanDeviceInfo(String sksbbh) {
+        return loanDeviceMapper.selectDeviceInfo(sksbbh);
+    }
+
+    ;
+}

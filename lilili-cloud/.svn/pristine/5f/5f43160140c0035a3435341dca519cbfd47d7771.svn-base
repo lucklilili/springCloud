@@ -1,0 +1,215 @@
+package com.bwcloud.billingCenter.rubricInfoTable.applyService.impl;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.rubricInfoTable.applyService.InfoTableApplyService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ * ApplyService 接口的实现类
+ * Created by bs on 2018/4/12.
+ */
+public class InfoTableApplyServieImpl implements InfoTableApplyService {
+    /**
+     * 申请购方或销方的红字信息表.
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String informationApply(String string) {
+        String xml = informationApply2Xml(string);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+    /**
+     * json 转 xml
+     * @param string
+     * @return
+     */
+    String informationApply2Xml(String string){
+        try {
+            JSONObject json = JSONObject.parseObject(string);
+            JSONObject business = json.getJSONObject("business");
+            String id = business.getString("id");
+            String comment = business.getString("comment");
+            JSONObject body = business.getJSONObject("body");
+            String yylxdm = body.getString("yylxdm");
+            String sqlsh = body.getString("sqlsh");
+            String xhdwsbh = body.getString("xhdwsbh");
+            String xhdwmc = body.getString("xhdwmc");
+            String ghdwsbh = body.getString("ghdwsbh");
+            String ghdwmc = body.getString("ghdwmc");
+            String sqly = body.getString("sqly");
+            String sqfs = body.getString("sqfs");
+            String zsfs = body.getString("zsfs");
+            String zdbz = body.getString("zdbz");
+
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"");
+            stringBuffer.append(id);
+            stringBuffer.append("\" comment=\"");
+            stringBuffer.append(comment);
+            stringBuffer.append("\">\n\t<body yylxdm=\"");
+            stringBuffer.append(yylxdm);
+            stringBuffer.append("\">\n\t\t<sqlsh>");
+            stringBuffer.append(sqlsh);
+            stringBuffer.append("</sqlsh>");
+            stringBuffer.append("\n\t\t<xhdwsbh>");
+            stringBuffer.append(xhdwsbh);
+            stringBuffer.append("</xhdwsbh>");
+
+            stringBuffer.append("\n\t\t<xhdwmc>");
+            stringBuffer.append(xhdwmc);
+            stringBuffer.append("</xhdwmc>");
+            stringBuffer.append("\n\t\t<ghdwsbh>");
+            stringBuffer.append(ghdwsbh);
+            stringBuffer.append("</ghdwsbh>");
+            stringBuffer.append("\n\t\t<ghdwmc>");
+            stringBuffer.append(ghdwmc);
+            stringBuffer.append("</ghdwmc>");
+            stringBuffer.append("\n\t\t<sqly>");
+            stringBuffer.append(sqly);
+            stringBuffer.append("</sqly>");
+            stringBuffer.append("\n\t\t<sqfs>");
+            stringBuffer.append(sqfs);
+            stringBuffer.append("</sqfs>");
+            stringBuffer.append("\n\t\t<zsfs>");
+            stringBuffer.append(zsfs);
+            stringBuffer.append("</zsfs>");
+            stringBuffer.append("\n\t\t<zdbz>");
+            stringBuffer.append(zdbz);
+            stringBuffer.append("</zdbz>");
+
+            JSONObject fyxm = body.getJSONObject("fyxm");
+            String count = fyxm.getString("count");
+
+            stringBuffer.append("\n\t\t<fyxm count=\"");
+            stringBuffer.append(count);
+            stringBuffer.append("\">");
+
+            JSONArray groups = fyxm.getJSONArray("group");
+            for (int i = 0; i < groups.size(); i++) {
+                JSONObject group = groups.getJSONObject(i);
+                String xh = group.getString("xh");
+                String fphxz = group.getString("fphxz");
+                String spmc = group.getString("spmc");
+                String spsm = group.getString("spsm");
+                String ggxh = group.getString("ggxh");
+                String dw = group.getString("dw");
+                String spsl = group.getString("spsl");
+                String dj = group.getString("dj");
+                String je = group.getString("je");
+                String sl = group.getString("sl");
+                String se = group.getString("se");
+                String hsbz = group.getString("hsbz");
+                String spbm = group.getString("spbm");
+                String zxbm = group.getString("zxbm");
+                String yhzcbs = group.getString("yhzcbs");
+                String lslbs = group.getString("lslbs");
+                String zzstsgl = group.getString("zzstsgl");
+
+                stringBuffer.append("\n\t\t\t<group xh=\"");
+                stringBuffer.append(xh);
+                stringBuffer.append("\">");
+                stringBuffer.append("\n\t\t\t\t<fphxz>");
+                stringBuffer.append(fphxz);
+                stringBuffer.append("</fphxz>");
+
+                stringBuffer.append("\n\t\t\t\t<spmc>");
+                stringBuffer.append(spmc);
+                stringBuffer.append("</spmc>");
+                stringBuffer.append("\n\t\t\t\t<spsm>");
+                stringBuffer.append(spsm);
+                stringBuffer.append("</spsm>");
+                stringBuffer.append("\n\t\t\t\t<ggxh>");
+                stringBuffer.append(ggxh);
+                stringBuffer.append("</ggxh>");
+                stringBuffer.append("\n\t\t\t\t<dw>");
+                stringBuffer.append(dw);
+                stringBuffer.append("</dw>");
+                stringBuffer.append("\n\t\t\t\t<spsl>");
+                stringBuffer.append(spsl);
+                stringBuffer.append("</spsl>");
+                stringBuffer.append("\n\t\t\t\t<dj>");
+                stringBuffer.append(dj);
+                stringBuffer.append("</dj>");
+                stringBuffer.append("\n\t\t\t\t<je>");
+                stringBuffer.append(je);
+                stringBuffer.append("</je>");
+                stringBuffer.append("\n\t\t\t\t<sl>");
+                stringBuffer.append(sl);
+                stringBuffer.append("</sl>");
+                stringBuffer.append("\n\t\t\t\t<se>");
+                stringBuffer.append(se);
+                stringBuffer.append("</se>");
+                stringBuffer.append("\n\t\t\t\t<hsbz>");
+                stringBuffer.append(hsbz);
+                stringBuffer.append("</hsbz>");
+                stringBuffer.append("\n\t\t\t\t<spbm>");
+                stringBuffer.append(spbm);
+                stringBuffer.append("</spbm>");
+                stringBuffer.append("\n\t\t\t\t<zxbm>");
+                stringBuffer.append(zxbm);
+                stringBuffer.append("</zxbm>");
+                stringBuffer.append("\n\t\t\t\t<yhzcbs>");
+                stringBuffer.append(yhzcbs);
+                stringBuffer.append("</yhzcbs>");
+                stringBuffer.append("\n\t\t\t\t<lslbs>");
+                stringBuffer.append(lslbs);
+                stringBuffer.append("</lslbs>");
+                stringBuffer.append("\n\t\t\t\t<zzstsgl>");
+                stringBuffer.append(zzstsgl);
+                stringBuffer.append("</zzstsgl>");
+                stringBuffer.append("\n\t\t\t</group>");
+            }
+            stringBuffer.append("\n\t\t</fyxm>");
+            String hjje = body.getString("hjje");
+            String hjse = body.getString("hjse");
+            String yfpdm = body.getString("yfpdm");
+            String yfphm = body.getString("yfphm");
+            stringBuffer.append("\n\t\t<hjje>");
+            stringBuffer.append(hjje);
+            stringBuffer.append("</hjje>");
+            stringBuffer.append("\n\t\t<hjse>");
+            stringBuffer.append(hjse);
+            stringBuffer.append("</hjse>");
+            stringBuffer.append("\n\t\t<yfpdm>");
+            stringBuffer.append(yfpdm);
+            stringBuffer.append("</yfpdm>");
+            stringBuffer.append("\n\t\t<yfphm>");
+            stringBuffer.append(yfphm);
+            stringBuffer.append("</yfphm>");
+            stringBuffer.append("\n\t</body>");
+            stringBuffer.append("\n</business>");
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "json转xml，转换失败！";
+        }
+    }
+
+    /**
+     * 向税控服务器发送xml
+     * @param string
+     * @return
+     */
+    String sendXml(String string){
+        return "";
+    }
+
+    /**
+     * xml 转 json
+     * @param receiveXml
+     * @return
+     */
+    String xml2Json(String receiveXml){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

@@ -1,0 +1,100 @@
+package com.bwcloud.finance.center.biz;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.bwcloud.finance.center.entity.*;
+import com.bwcloud.finance.center.mapper.PjJsfpFpmxzbMapper;
+import com.bwcloud.finance.center.utils.InvoiceLoanUtil;
+import com.github.wxiaoqi.security.common.constant.BwCloudConstants;
+import com.github.wxiaoqi.security.common.util.StringHelper;
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bwcloud.finance.center.mapper.PjJsfpFpmxMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-09 15:11:22
+ * @email 463540703@qq.com
+ */
+@Service
+public class PjJsfpFpmxBiz extends BusinessBiz<PjJsfpFpmxMapper, PjJsfpFpmx> {
+
+    @Autowired
+    PjJsfpFpmxMapper pjJsfpFpmxMapper;
+    @Autowired
+    PjJsfpFpmxzbMapper pjJsfpFpmxzbMapper;
+
+    public void insertInvoice(Map invoiceMaps) {
+        Map invoiceMap = (Map) invoiceMaps.get("group");
+        invoiceMap.put("fplxdm", BwCloudConstants.JS_FP);
+        String fpdm = (String) invoiceMap.get("fpdm");
+        String fphm = (String) invoiceMap.get("fphm");
+        PjJsfpFpmx pjJsfpFpmx = pjJsfpFpmxMapper.queryInvoiceInfo(fpdm, fphm);
+        if (StringHelper.isEmpty(pjJsfpFpmx)) {
+            pjJsfpFpmx = JSON.parseObject(JSON.toJSONString(invoiceMap), new TypeReference<PjJsfpFpmx>() {
+            });
+            String id = UUIDUtils.generateUuid();
+            pjJsfpFpmx.setId(id);
+            Object obj = ((Map) invoiceMap.get("fyxm")).get("group");
+            List<Map> invoiceDetailList = new ArrayList<>();
+            if (obj instanceof Map) {
+                invoiceDetailList.add((Map) obj);
+            } else {
+                invoiceDetailList.addAll((List<Map>) obj);
+            }
+            List<PjJsfpFpmxzb> pjJsfpFpmxzbList = new ArrayList<>();
+            for (int i = 0; i < invoiceDetailList.size(); i++) {
+                Map invoiceDetailMap = invoiceDetailList.get(i);
+                PjJsfpFpmxzb pjJsfpFpmxzb = JSON.parseObject(JSON.toJSONString(invoiceDetailMap), new TypeReference<PjJsfpFpmxzb>() {
+                });
+                pjJsfpFpmxzb.setId(UUIDUtils.generateUuid());
+                pjJsfpFpmxzb.setMxid(id);
+                pjJsfpFpmxzb.setFphm(pjJsfpFpmx.getFphm());
+                pjJsfpFpmxzb.setFpdm(pjJsfpFpmx.getFpdm());
+                pjJsfpFpmxzb.setJqbh(pjJsfpFpmx.getJqbh());
+                pjJsfpFpmxzb.setFpmxxh(i + 1);
+                pjJsfpFpmxzb.setKprq(pjJsfpFpmx.getKprq());
+                pjJsfpFpmxzbList.add(pjJsfpFpmxzb);
+            }
+            pjJsfpFpmxMapper.insert(pjJsfpFpmx);
+            pjJsfpFpmxzbMapper.insertInvoiceDetailList(pjJsfpFpmxzbList);
+        }
+    }
+
+    public List<PjJsfpFpmx> queryInvoiceList(ArrayList<TaxDataUploadTranInfo> taxDataUploadTranInfos, String nsrsbh, String start_date, String sksbbh) {
+        List<PjJsfpFpmx> pjJsfpFpmxList = pjJsfpFpmxMapper.queryInvoiceList(nsrsbh, start_date, sksbbh);
+        if (pjJsfpFpmxList.size() > 0) {
+            for (PjJsfpFpmx pjJsfpFpmx : pjJsfpFpmxList) {
+                TaxDataUploadTranInfo taxDataUploadTranInfo = new TaxDataUploadTranInfo();
+                taxDataUploadTranInfo.setInvType(pjJsfpFpmx.getFplxdm());
+                taxDataUploadTranInfo.setInvStatus(InvoiceLoanUtil.fpzt(pjJsfpFpmx.getFpzt()));
+                taxDataUploadTranInfo.setInvCode(pjJsfpFpmx.getFphm());
+                taxDataUploadTranInfo.setInvNo(pjJsfpFpmx.getFpdm());
+                taxDataUploadTranInfo.setTaxAmt(String.valueOf(pjJsfpFpmx.getSe()));
+                taxDataUploadTranInfo.setInvAmt(String.valueOf(pjJsfpFpmx.getHjje()));
+                taxDataUploadTranInfo.setTranAmt(String.valueOf(pjJsfpFpmx.getJshj()));
+                taxDataUploadTranInfo.setOriInvCode(StringHelper.getObjectValue(pjJsfpFpmx.getYfpdm()));
+                taxDataUploadTranInfo.setOriInvNo(StringHelper.getObjectValue(pjJsfpFpmx.getYfphm()));
+                taxDataUploadTranInfo.setNotifyNo("");
+                taxDataUploadTranInfo.setInvDate(pjJsfpFpmx.getKprq().substring(0, 8));
+                taxDataUploadTranInfo.setInvalDate((pjJsfpFpmx.getZfrq() == null || pjJsfpFpmx.getZfrq().equals("")) ? "" : pjJsfpFpmx.getZfrq().substring(0, 8));
+                taxDataUploadTranInfo.setCustName(StringHelper.getObjectValue(pjJsfpFpmx.getGhdwmc()));
+                taxDataUploadTranInfo.setCustId(StringHelper.getObjectValue(pjJsfpFpmx.getGhdwdm()));
+                taxDataUploadTranInfos.add(taxDataUploadTranInfo);
+            }
+        }
+        return pjJsfpFpmxList;
+    }
+
+    public PjJsfpFpmx getPjJsfpFpmx(String nsrsbh, String sksbbh, String fplxdm) {
+        PjJsfpFpmx pjJsfpFpmx = pjJsfpFpmxMapper.getPjJsfpFpmx(nsrsbh, sksbbh, fplxdm);
+        return pjJsfpFpmx;
+    }
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.loan.mapper.TaxInvoiceMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.loan.entity.TaxInvoice" id="taxInvoiceMap">
+        <result property="id" column="id"/>
+        <result property="fplxdm" column="fplxdm"/>
+        <result property="fpdm" column="fpdm"/>
+        <result property="fphm" column="fphm"/>
+        <result property="tspz" column="tspz"/>
+        <result property="kprq" column="kprq"/>
+        <result property="dqsj" column="dqsj"/>
+        <result property="jqbh" column="jqbh"/>
+        <result property="skm" column="skm"/>
+        <result property="ghdwmc" column="ghdwmc"/>
+        <result property="ghdwdm" column="ghdwdm"/>
+        <result property="ghdwdzdh" column="ghdwdzdh"/>
+        <result property="ghdwyhzh" column="ghdwyhzh"/>
+        <result property="xhdwmc" column="xhdwmc"/>
+        <result property="xhdwdm" column="xhdwdm"/>
+        <result property="xhdwdzdh" column="xhdwdzdh"/>
+        <result property="xhdwyhzh" column="xhdwyhzh"/>
+        <result property="swjgdm" column="swjgdm"/>
+        <result property="swjgmc" column="swjgmc"/>
+        <result property="spsm" column="spsm"/>
+        <result property="zhsl" column="zhsl"/>
+        <result property="hjje" column="hjje"/>
+        <result property="se" column="se"/>
+        <result property="jshj" column="jshj"/>
+        <result property="bz" column="bz"/>
+        <result property="skr" column="skr"/>
+        <result property="fhr" column="fhr"/>
+        <result property="kpr" column="kpr"/>
+        <result property="tzdh" column="tzdh"/>
+        <result property="kpjh" column="kpjh"/>
+        <result property="fpzt" column="fpzt"/>
+        <result property="qdbz" column="qdbz"/>
+        <result property="zkbz" column="zkbz"/>
+        <result property="hjzkje" column="hjzkje"/>
+        <result property="hjzkse" column="hjzkse"/>
+        <result property="ssyf" column="ssyf"/>
+        <result property="zfrq" column="zfrq"/>
+        <result property="zfdqsj" column="zfdqsj"/>
+        <result property="zfr" column="zfr"/>
+        <result property="zfyy" column="zfyy"/>
+        <result property="yfpdm" column="yfpdm"/>
+        <result property="yfphm" column="yfphm"/>
+        <result property="bbh" column="bbh"/>
+        <result property="jym" column="jym"/>
+        <result property="czydm" column="czydm"/>
+        <result property="zfrdm" column="zfrdm"/>
+        <result property="kpddm" column="kpddm"/>
+        <result property="fpcbh" column="fpcbh"/>
+        <result property="qmcs" column="qmcs"/>
+        <result property="qmbz" column="qmbz"/>
+        <result property="qmz" column="qmz"/>
+        <result property="scbz" column="scbz"/>
+        <result property="yqbz" column="yqbz"/>
+        <result property="hzxxb" column="hzxxb"/>
+        <result property="fpqqlsh" column="fpqqlsh"/>
+        <result property="bmbbbh" column="bmbbbh"/>
+        <result property="hsslbs" column="hsslbs"/>
+        <result property="zsfs" column="zsfs"/>
+        <result property="kce" column="kce"/>
+        <result property="dybz" column="dybz"/>
+    </resultMap>
+
+
+
+</mapper>

@@ -1,0 +1,26 @@
+package com.bwcloud.finance.center.mapper;
+
+import com.bwcloud.finance.center.entity.PjJsfpFpmxzb;
+import com.bwcloud.finance.center.entity.PjZzspdzFpmxzb;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-09 15:11:23
+ */
+public interface PjJsfpFpmxzbMapper extends CommonMapper<PjJsfpFpmxzb> {
+
+    /**
+     * 批量插入发票明细数据
+     *
+     * @param invoiceDetailList
+     * @return
+     */
+    public int insertInvoiceDetailList(@Param("invoiceDetailList") List<PjJsfpFpmxzb> invoiceDetailList);
+}

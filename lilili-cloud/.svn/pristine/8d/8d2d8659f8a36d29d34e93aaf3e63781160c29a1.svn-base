@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.billingCenter.module.mapper.YwDjmxMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.billingCenter.module.entity.YwDjmx" id="ywDjmxMap">
+        <result property="id" column="ID"/>
+        <result property="ywid" column="YWID"/>
+        <result property="hh" column="HH"/>
+        <result property="fphxz" column="FPHXZ"/>
+        <result property="spmc" column="SPMC"/>
+        <result property="spsm" column="SPSM"/>
+        <result property="ggxh" column="GGXH"/>
+        <result property="dw" column="DW"/>
+        <result property="spsl" column="SPSL"/>
+        <result property="dj" column="DJ"/>
+        <result property="je" column="JE"/>
+        <result property="sl" column="SL"/>
+        <result property="se" column="SE"/>
+        <result property="hsdj" column="HSDJ"/>
+        <result property="hsje" column="HSJE"/>
+        <result property="hsbz" column="HSBZ"/>
+        <result property="spbm" column="SPBM"/>
+        <result property="zxbm" column="ZXBM"/>
+        <result property="yhzcbs" column="YHZCBS"/>
+        <result property="lslbs" column="LSLBS"/>
+        <result property="zzstsgl" column="ZZSTSGL"/>
+        <result property="yl1" column="YL1"/>
+        <result property="yl2" column="YL2"/>
+        <result property="yl3" column="YL3"/>
+        <result property="yl4" column="YL4"/>
+        <result property="yl6" column="YL6"/>
+        <result property="yl7" column="YL7"/>
+        <result property="yl8" column="YL8"/>
+        <result property="yl10" column="YL10"/>
+        <result property="yl9" column="YL9"/>
+        <result property="yl5" column="YL5"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,26 @@
+package com.bwcloud.billingCenter.utlis;
+
+import com.alibaba.fastjson.JSON;
+import org.json.JSONObject;
+import org.json.XML;
+
+import java.util.Map;
+
+
+/**
+ * Created by guodong on 2018/3/27.
+ */
+public class UniversalUtils {
+    /**
+     * xml报文转化为json
+     *
+     * @param xml
+     * @return
+     */
+    public static String xmlToJson(String xml) {
+        JSONObject jsonObject = XML.toJSONObject(xml);
+        return jsonObject.toString();
+
+    }
+
+}

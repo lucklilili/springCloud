@@ -1,0 +1,218 @@
+package com.github.wxiaoqi.security.common.util;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.zip.*;
+
+/**
+ * @author dongzhen
+ */
+public class GZipUtils {
+
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        // StringBuffer dataBuffer = new StringBuffer();
+        // for (int i = 0; i < 1000; i++) {
+        // dataBuffer.append("1234567890");
+        // }
+        // System.out.println(dataBuffer.toString().getBytes().length);
+        // String gzipRet = GZipUtils.gzip(dataBuffer.toString());
+        // String zipRet = GZipUtils.zip(dataBuffer.toString());
+        // System.out.println(gzipRet.getBytes().length);
+        // System.out.println(zipRet.getBytes().length);
+        String gzipBase64 = "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";
+        System.out.println(gzipBase64.getBytes().length);
+        String ungzipStr = GZipUtils.gunzip(gzipBase64);
+        System.out.println("ungzipStr=====" + ungzipStr);
+        System.out.println("ungzipStr.length=====" + ungzipStr.length());
+        // System.out.println("ungzipStr====="+new
+        // String(ungzipStr.getBytes("gb2312"),"utf-8"));
+    }
+
+    /**
+     * 使用gzip进行压缩
+     */
+
+    @SuppressWarnings("restriction")
+    public static String gzip(String primStr) {
+        if (primStr == null || primStr.length() == 0) {
+            return primStr;
+        }
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        GZIPOutputStream gzip = null;
+        try {
+            gzip = new GZIPOutputStream(out);
+            gzip.write(primStr.getBytes("UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (gzip != null) {
+                try {
+                    gzip.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return new sun.misc.BASE64Encoder().encode(out.toByteArray());
+    }
+
+    /**
+     * <p>
+     * Description:使用gzip进行解压缩
+     * </p>
+     *
+     * @param compressedStr
+     * @return
+     */
+    @SuppressWarnings("restriction")
+    public static String gunzip(String compressedStr) {
+        if (compressedStr == null) {
+            return null;
+        }
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ByteArrayInputStream in = null;
+        GZIPInputStream ginzip = null;
+        byte[] compressed = null;
+        String decompressed = null;
+        try {
+            compressed = new sun.misc.BASE64Decoder()
+                    .decodeBuffer(compressedStr);
+            in = new ByteArrayInputStream(compressed);
+            ginzip = new GZIPInputStream(in);
+
+            byte[] buffer = new byte[1024];
+            int offset = -1;
+            while ((offset = ginzip.read(buffer)) != -1) {
+                out.write(buffer, 0, offset);
+            }
+            //decompressed = out.toString();
+            decompressed = out.toString("UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (ginzip != null) {
+                try {
+                    ginzip.close();
+                } catch (IOException e) {
+                }
+            }
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+
+        return decompressed;
+    }
+
+    /**
+     * 使用zip进行压缩
+     *
+     * @param str 压缩前的文本
+     * @return 返回压缩后的文本
+     */
+    @SuppressWarnings("restriction")
+    public static final String zip(String str) {
+        if (str == null) {
+            return null;
+        }
+        byte[] compressed;
+        ByteArrayOutputStream out = null;
+        ZipOutputStream zout = null;
+        String compressedStr = null;
+        try {
+            out = new ByteArrayOutputStream();
+            zout = new ZipOutputStream(out);
+            zout.putNextEntry(new ZipEntry("0"));
+            zout.write(str.getBytes());
+            zout.closeEntry();
+            compressed = out.toByteArray();
+            compressedStr = new sun.misc.BASE64Encoder()
+                    .encodeBuffer(compressed);
+        } catch (IOException e) {
+            compressed = null;
+        } finally {
+            if (zout != null) {
+                try {
+                    zout.close();
+                } catch (IOException e) {
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return compressedStr;
+    }
+
+    /**
+     * 使用zip进行解压缩
+     *
+     * @param compressedStr 压缩后的文本
+     * @return 解压后的字符串
+     */
+    @SuppressWarnings("restriction")
+    public static final String unzip(String compressedStr) {
+        if (compressedStr == null) {
+            return null;
+        }
+
+        ByteArrayOutputStream out = null;
+        ByteArrayInputStream in = null;
+        ZipInputStream zin = null;
+        String decompressed = null;
+        try {
+            byte[] compressed = new sun.misc.BASE64Decoder()
+                    .decodeBuffer(compressedStr);
+            out = new ByteArrayOutputStream();
+            in = new ByteArrayInputStream(compressed);
+            zin = new ZipInputStream(in);
+            zin.getNextEntry();
+            byte[] buffer = new byte[1024];
+            int offset = -1;
+            while ((offset = zin.read(buffer)) != -1) {
+                out.write(buffer, 0, offset);
+            }
+            decompressed = out.toString();
+        } catch (IOException e) {
+            decompressed = null;
+        } finally {
+            if (zin != null) {
+                try {
+                    zin.close();
+                } catch (IOException e) {
+                }
+            }
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return decompressed;
+    }
+}

@@ -1,0 +1,31 @@
+package com.bwcloud.finance.center.rest;
+
+import com.alibaba.fastjson.JSON;
+import com.bwcloud.finance.center.biz.LoanDetailBiz;
+import com.bwcloud.finance.center.biz.LoanDeviceBiz;
+import com.bwcloud.finance.center.entity.LoanDetail;
+import com.bwcloud.finance.center.entity.LoanDeviceInfo;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+import com.github.wxiaoqi.security.common.msg.ResultModel;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("deviceInfo")
+@CheckClientToken
+@CheckUserToken
+public class LoanDeviceController extends BaseController<LoanDeviceBiz, LoanDeviceInfo> {
+
+    @Autowired
+    LoanDeviceBiz loanDeviceBiz;
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String deviceInfoUpload(@RequestBody String deviceInfo) {
+        ResultModel resultModel = loanDeviceBiz.insertDeviceInfo(deviceInfo);
+        return JSON.toJSONString(resultModel);
+    }
+
+}

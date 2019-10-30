@@ -1,0 +1,53 @@
+package com.bwcloud.finance.center.biz;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.entity.LoanDeviceInfo;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.bwcloud.finance.center.mapper.LoanDeviceMapper;
+import com.bwcloud.finance.center.mapper.LoanMerchantMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+import com.github.wxiaoqi.security.common.msg.ResultModel;
+import com.github.wxiaoqi.security.common.util.StringHelper;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+@Service
+@Slf4j
+public class LoanDeviceBiz extends BusinessBiz<LoanDeviceMapper, LoanDeviceInfo> {
+    @Autowired
+    LoanDeviceMapper loanDeviceMapper;
+
+    public LoanDeviceInfo getLoanDeviceInfo(String nsrsbh, String sksbbh) {
+        return loanDeviceMapper.selectDeviceInfo(nsrsbh, sksbbh);
+    }
+
+    public ResultModel queryInvoiceUploadDate(String merchantInfo) {
+        JSONObject merchantJson = JSONObject.parseObject(merchantInfo);
+        ResultModel<JSONObject> resultModel = new ResultModel<>();
+        try {
+            String nsrsbh = (String) merchantJson.get("nsrsbh");
+            String sksbbh = merchantJson.getString("sksbbh");
+            LoanDeviceInfo loanDeviceInfo = loanDeviceMapper.selectDeviceInfo(nsrsbh, sksbbh);
+            if (StringHelper.isEmpty(loanDeviceInfo)) {
+                resultModel.setCode(100013);
+                resultModel.setMsg("发票上传日期查询失败，无此商户信息!");
+            } else {
+                JSONObject data = new JSONObject();
+                data.put("fpsc_jzrq", loanDeviceInfo.getFpscJlrq());
+                resultModel.setData(data);
+            }
+        } catch (Exception e) {
+            resultModel.setCode(9999);
+            resultModel.setMsg("服务器异常!" + e);
+            log.info("设备查询发票上传日期，服务器异常：" + e);
+        }
+        return resultModel;
+    }
+}

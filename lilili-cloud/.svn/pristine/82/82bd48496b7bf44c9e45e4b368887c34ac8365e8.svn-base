@@ -1,0 +1,292 @@
+package com.bwcloud.device.center.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-11 19:53:12
+ */
+@Table(name = "terminal_info")
+public class TerminalInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //机身编号
+    @Column(name = "jsbh")
+    private String jsbh;
+	
+	    //税控设备编号
+    @Column(name = "sbbh")
+    private String sbbh;
+	
+	    //纳税人识别号
+    @Column(name = "nsrsbh")
+    private String nsrsbh;
+	
+	    //纳税人名称
+    @Column(name = "nsrmc")
+    private String nsrmc;
+	
+	    //允许的开票类型代码
+    @Column(name = "fplxdm")
+    private String fplxdm;
+	
+	    //开票终端代码
+    @Column(name = "kpddm")
+    private String kpddm;
+	
+	    //开票终端名称
+    @Column(name = "kpdmc")
+    private String kpdmc;
+	
+	    //销方联系方式
+    @Column(name = "xflxfs")
+    private String xflxfs;
+	
+	    //销方地址
+    @Column(name = "xfdz")
+    private String xfdz;
+	
+	    //销方银行名称
+    @Column(name = "xfyhmc")
+    private String xfyhmc;
+	
+	    //销方银行账号
+    @Column(name = "xfyhzh")
+    private String xfyhzh;
+	
+	    //销方地址电话
+    @Column(name = "xfdzdh")
+    private String xfdzdh;
+	
+	    //开户行地址电话
+    @Column(name = "khhyhzh")
+    private String khhyhzh;
+	
+	    //IP地址
+    @Column(name = "ipdz")
+    private String ipdz;
+	
+	    //端口号
+    @Column(name = "dkh")
+    private String dkh;
+	
+	    //创建时间
+    @Column(name = "create_date")
+    private String createDate;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：机身编号
+	 */
+	public void setJsbh(String jsbh) {
+		this.jsbh = jsbh;
+	}
+	/**
+	 * 获取：机身编号
+	 */
+	public String getJsbh() {
+		return jsbh;
+	}
+	/**
+	 * 设置：税控设备编号
+	 */
+	public void setSbbh(String sbbh) {
+		this.sbbh = sbbh;
+	}
+	/**
+	 * 获取：税控设备编号
+	 */
+	public String getSbbh() {
+		return sbbh;
+	}
+	/**
+	 * 设置：纳税人识别号
+	 */
+	public void setNsrsbh(String nsrsbh) {
+		this.nsrsbh = nsrsbh;
+	}
+	/**
+	 * 获取：纳税人识别号
+	 */
+	public String getNsrsbh() {
+		return nsrsbh;
+	}
+	/**
+	 * 设置：纳税人名称
+	 */
+	public void setNsrmc(String nsrmc) {
+		this.nsrmc = nsrmc;
+	}
+	/**
+	 * 获取：纳税人名称
+	 */
+	public String getNsrmc() {
+		return nsrmc;
+	}
+	/**
+	 * 设置：允许的开票类型代码
+	 */
+	public void setFplxdm(String fplxdm) {
+		this.fplxdm = fplxdm;
+	}
+	/**
+	 * 获取：允许的开票类型代码
+	 */
+	public String getFplxdm() {
+		return fplxdm;
+	}
+	/**
+	 * 设置：开票终端代码
+	 */
+	public void setKpddm(String kpddm) {
+		this.kpddm = kpddm;
+	}
+	/**
+	 * 获取：开票终端代码
+	 */
+	public String getKpddm() {
+		return kpddm;
+	}
+	/**
+	 * 设置：开票终端名称
+	 */
+	public void setKpdmc(String kpdmc) {
+		this.kpdmc = kpdmc;
+	}
+	/**
+	 * 获取：开票终端名称
+	 */
+	public String getKpdmc() {
+		return kpdmc;
+	}
+	/**
+	 * 设置：销方联系方式
+	 */
+	public void setXflxfs(String xflxfs) {
+		this.xflxfs = xflxfs;
+	}
+	/**
+	 * 获取：销方联系方式
+	 */
+	public String getXflxfs() {
+		return xflxfs;
+	}
+	/**
+	 * 设置：销方地址
+	 */
+	public void setXfdz(String xfdz) {
+		this.xfdz = xfdz;
+	}
+	/**
+	 * 获取：销方地址
+	 */
+	public String getXfdz() {
+		return xfdz;
+	}
+	/**
+	 * 设置：销方银行名称
+	 */
+	public void setXfyhmc(String xfyhmc) {
+		this.xfyhmc = xfyhmc;
+	}
+	/**
+	 * 获取：销方银行名称
+	 */
+	public String getXfyhmc() {
+		return xfyhmc;
+	}
+	/**
+	 * 设置：销方银行账号
+	 */
+	public void setXfyhzh(String xfyhzh) {
+		this.xfyhzh = xfyhzh;
+	}
+	/**
+	 * 获取：销方银行账号
+	 */
+	public String getXfyhzh() {
+		return xfyhzh;
+	}
+	/**
+	 * 设置：销方地址电话
+	 */
+	public void setXfdzdh(String xfdzdh) {
+		this.xfdzdh = xfdzdh;
+	}
+	/**
+	 * 获取：销方地址电话
+	 */
+	public String getXfdzdh() {
+		return xfdzdh;
+	}
+	/**
+	 * 设置：开户行地址电话
+	 */
+	public void setKhhyhzh(String khhyhzh) {
+		this.khhyhzh = khhyhzh;
+	}
+	/**
+	 * 获取：开户行地址电话
+	 */
+	public String getKhhyhzh() {
+		return khhyhzh;
+	}
+	/**
+	 * 设置：IP地址
+	 */
+	public void setIpdz(String ipdz) {
+		this.ipdz = ipdz;
+	}
+	/**
+	 * 获取：IP地址
+	 */
+	public String getIpdz() {
+		return ipdz;
+	}
+	/**
+	 * 设置：端口号
+	 */
+	public void setDkh(String dkh) {
+		this.dkh = dkh;
+	}
+	/**
+	 * 获取：端口号
+	 */
+	public String getDkh() {
+		return dkh;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateDate() {
+		return createDate;
+	}
+}

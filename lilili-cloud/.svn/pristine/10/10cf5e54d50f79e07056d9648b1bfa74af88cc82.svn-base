@@ -1,0 +1,102 @@
+package com.bwcloud.finance.center;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.biz.LoanDeviceBiz;
+import com.bwcloud.finance.center.biz.TaxInvoiceBiz;
+import com.github.wxiaoqi.security.common.msg.ResultModel;
+
+/**
+ * Created by Administrator on 2018/4/9.
+ */
+public class TestClient {
+
+    public static void main(String[] args) throws Exception {
+        String str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                "<business>" +
+                "<kpxx xh=\"3\">" +
+                "<group xh=\"3\">" +
+                "<fpdm>150003528888</fpdm>" +
+                "<fphm>18032437</fphm>" +
+                "<fpzt>00</fpzt>" +
+                "<scbz>1</scbz>" +
+                "<kprq>20180309161314</kprq>" +
+                "<jqbh>499000150830</jqbh>" +
+                "<skm>03/187/9495/6552857-//57-62&lt;&gt;90+181&gt;8/+59&lt;&gt;8091&lt;026123015/464+6-3&gt;/&gt;25446+-8250&gt;67-4/71&gt;29&lt;&lt;72011841197864714&lt;3-</skm>" +
+                "<jym>12072502848193275212</jym>" +
+                "<bbh>03</bbh>" +
+                "<tspz>00</tspz>" +
+                "<xhdwsbh>110101201701010027</xhdwsbh>" +
+                "<xhdwmc>云票测试二十七</xhdwmc>" +
+                "<xhdwdzdh>北京市海淀区黄瓜路25号15997207217</xhdwdzdh>" +
+                "<xhdwyhzh>建设银行88888888888888</xhdwyhzh>" +
+                "<ghdwsbh>811101083067716130</ghdwsbh>" +
+                "<ghdwmc>百望金赋科技有限公司</ghdwmc>" +
+                "<ghdwdzdh>北京市海淀区北三环西99院1号楼21层2101 010-82208323</ghdwdzdh>" +
+                "<ghdwyhzh>中国建设银行北京苏州桥支行 11001079800053013338</ghdwyhzh>" +
+                "<bmbbbh>19.0</bmbbbh>" +
+                "<zsfs>0</zsfs>" +
+                "<fyxm count=\"1\">" +
+                "<group xh=\"1\">" +
+                "<fphxz>0</fphxz>" +
+                "<spmc>*预付卡销售*预付卡销售和充值</spmc>" +
+                "<spsm />" +
+                "<ggxh />" +
+                "<dw>斤</dw>" +
+                "<spsl>1</spsl>" +
+                "<dj>60.40</dj>" +
+                "<je>60.40</je>" +
+                "<sl>0</sl>" +
+                "<se>0</se>" +
+                "<hsbz>0</hsbz>" +
+                "<spbm>6010000000000000000</spbm>" +
+                "<zxbm>01</zxbm>" +
+                "<yhzcbs>0</yhzcbs>" +
+                "<lslbs />" +
+                "<zzstsgl />" +
+                "</group>" +
+                "</fyxm>" +
+                "<qdxm count=\"0\" />" +
+                "<qtxm count=\"0\" />" +
+                "<zhsl>0</zhsl>" +
+                "<hjje>60.40</hjje>" +
+                "<hjse>0.00</hjse>" +
+                "<jshj>60.40</jshj>" +
+                "<bz>定时开票测试</bz>" +
+                "<skr>收款人</skr>" +
+                "<fhr>复核人</fhr>" +
+                "<kpr>开票人</kpr>" +
+                "<jmbbh>50521920180309161349</jmbbh>" +
+                "<zyspmc>*预付卡销售*预付卡销售和充值</zyspmc>" +
+                "<spsm />" +
+                "<qdbz>0</qdbz>" +
+                "<ssyf>201803</ssyf>" +
+                "<kpjh>0</kpjh>" +
+                "<tzdbh />" +
+                "<yfpdm />" +
+                "<yfphm />" +
+                "<zfrq />" +
+                "<zfr />" +
+                "<qmcs>01A8000000000000</qmcs>" +
+                "<qmz>MIIBOgYJKoZIhvcNAQcCoIIBKzCCAScCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAQYwggECAgEBMGAwVTELMAkGA1UEBhMCY24xDTALBgNVBAseBABDAEExDTALBgNVBAgeBFMXTqwxGTAXBgNVBAMeEE4tVv16DlKhi6SLwU4tX8MxDTALBgNVBAceBFMXTqwCBwIBAAABsDEwCQYFKw4DAhoFADANBgkqhkiG9w0BAQEFAASBgIKdt/4KasueFJ8RbSIXrYsYPdq8BC2akQPJKkzZytAb670SI/ub93BA88iuvEFcCinHhnL6h+CJrnMkGrHmEbd6otal1+G49bTVGrVWuaAEsa9pAKBLIU8xwu/YsFUG0MOfMVXF1DaGVbNeHfx2vL646z0Vg5NqHFw2/Xz8mrfR</qmz>\n" +
+                "<ykfsje>0.00</ykfsje>" +
+                "<yqjg>1</yqjg>" +
+                "</group>" +
+                "</kpxx></business>";
+        JSONObject json = new JSONObject();
+//        json.put("sksbbh", "499000150830");
+//        json.put("fpsc_jzrq", "20180331");
+//        json.put("fplxdm", "004");
+//        json.put("upload_data", str);
+        TaxInvoiceBiz tax = new TaxInvoiceBiz();
+        tax.invoiceUpload(json.toJSONString());
+        LoanDeviceBiz loanDeviceBiz = new LoanDeviceBiz();
+        json.put("sksbbh", "499000148916");
+        json.put("nsrsbh", "500102010004573");
+        json.put("fplxdm", "");
+        ResultModel resultModel=loanDeviceBiz.queryInvoiceUploadDate(json.toJSONString());
+        String stre = JSON.toJSONString(resultModel);
+        System.out.println(stre);
+
+    }
+}

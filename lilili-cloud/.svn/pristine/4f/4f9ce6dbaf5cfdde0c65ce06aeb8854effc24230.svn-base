@@ -1,0 +1,43 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+/**
+ * @author dz
+ */
+public class TaxDataUploadInputInfo {
+	
+	@JSONField(name = "data_month", ordinal = 1)
+	private String dataMonth;
+
+	@JSONField(name = "input_num", ordinal = 2)
+	private String inputNum;
+
+	@JSONField(name = "input_amt", ordinal = 3)
+	private String inputAmt;
+
+	public String getDataMonth() {
+		return dataMonth;
+	}
+
+	public void setDataMonth(String dataMonth) {
+		this.dataMonth = dataMonth;
+	}
+
+	public String getInputNum() {
+		return inputNum;
+	}
+
+	public void setInputNum(String inputNum) {
+		this.inputNum = inputNum;
+	}
+
+	public String getInputAmt() {
+		return inputAmt;
+	}
+
+	public void setInputAmt(String inputAmt) {
+		this.inputAmt = inputAmt;
+	}
+
+}

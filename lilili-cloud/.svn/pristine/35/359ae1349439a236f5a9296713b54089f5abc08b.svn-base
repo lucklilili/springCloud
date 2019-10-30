@@ -1,0 +1,100 @@
+package com.bwcloud.finance.center.biz;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.entity.LoanMerchantInfo;
+import com.bwcloud.finance.center.mapper.LoanMerchantMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * @author dz
+ * @version 2018-03-22 11:39:56
+ * @email 463540703@qq.com
+ */
+@Service
+@Slf4j
+public class LoanMerchantBiz extends BusinessBiz<LoanMerchantMapper, LoanMerchantInfo> {
+    @Autowired
+    LoanMerchantMapper loanMerchantMapper;
+
+    public JSONObject insertMerchantInfo(String agreementInfo) {
+        JSONObject invoiceJson = JSONObject.parseObject(agreementInfo);
+        LoanMerchantInfo loanMerchantInfo = new LoanMerchantInfo();
+        JSONObject jsonMsg = new JSONObject();
+        try {
+            loanMerchantInfo.setNsrsbh((String) invoiceJson.get("nsrsbh"));
+            loanMerchantInfo.setNsrmc((String) invoiceJson.get("nsrmc"));
+            loanMerchantInfo.setMerchantid((String) invoiceJson.get("merchantid"));
+            loanMerchantInfo.setXfdz(invoiceJson.getString("xfdz"));
+            loanMerchantInfo.setXysqbz((String) invoiceJson.get("xysqbz"));
+            loanMerchantInfo.setId(UUIDUtils.generateUuid());
+            super.insertSelective(loanMerchantInfo);
+            jsonMsg.put("code", "0");
+            jsonMsg.put("msg", "商户协议授权成功");
+        } catch (Exception e) {
+            log.info("商户协议授权失败:" + e);
+            jsonMsg.put("code", "10010");
+            jsonMsg.put("msg", "商户协议授权失败:" + e.getMessage());
+        }
+        return jsonMsg;
+    }
+
+    public JSONObject merchantAgreementInfo(String agreementInfo) {
+        JSONObject invoiceJson = JSONObject.parseObject(agreementInfo);
+        JSONObject jsonMsg = new JSONObject();
+        try {
+            String nsrsbh = (String) invoiceJson.get("nsrsbh");
+            String merchantid = invoiceJson.getString("merchantid");
+            LoanMerchantInfo loanMerchantInfo = loanMerchantMapper.selectMerchantAgreement(nsrsbh, merchantid);
+            if (loanMerchantInfo == null) {
+                jsonMsg.put("code", "10011");
+                jsonMsg.put("msg", "商户授权查询失败,无此商户信息!");
+            } else {
+                jsonMsg.put("code", "0");
+                jsonMsg.put("msg", "商户授权查询成功");
+                JSONObject data = new JSONObject();
+                data.put("xysqbz", loanMerchantInfo.getXysqbz());
+                jsonMsg.put("data", data);
+            }
+        } catch (Exception e) {
+            jsonMsg.put("code", "10012");
+            jsonMsg.put("msg", "商户授权查询失败,服务器异常");
+            log.info("--商户授权查询失败！！！--" + e);
+        }
+        return jsonMsg;
+    }
+
+    public JSONObject queryInvoiceUploadDate(String merchantInfo){
+        JSONObject merchantJson = JSONObject.parseObject(merchantInfo);
+        JSONObject jsonMsg = new JSONObject();
+        try {
+            String nsrsbh = (String) merchantJson.get("nsrsbh");
+            String merchantid = merchantJson.getString("merchantid");
+            LoanMerchantInfo loanMerchantInfo = loanMerchantMapper.selectMerchantAgreement(nsrsbh, merchantid);
+            if (loanMerchantInfo == null) {
+                jsonMsg.put("code", "10013");
+                jsonMsg.put("msg", "发票上传日期查询失败，无此商户信息!");
+            } else {
+                jsonMsg.put("code", "0");
+                jsonMsg.put("msg", "发票上传日期查询成功");
+                JSONObject data = new JSONObject();
+                data.put("fpsc_jzrq", loanMerchantInfo.getFpsc_jzrq());
+                jsonMsg.put("data", data);
+            }
+        } catch (Exception e) {
+            jsonMsg.put("code", "10014");
+            jsonMsg.put("msg", "发票上传日期失败,服务器异常");
+            log.info("--商户授权查询失败！！！--" + e);
+        }
+        return jsonMsg;
+    }
+    public List queryMerchantList(String merchantinfo) {
+        JSONObject merchantJson = JSONObject.parseObject(merchantinfo);
+        return loanMerchantMapper.selectMerchantList((String) merchantJson.get("nsrsbh"), (String) merchantJson.get("merchantid"));
+    }
+}

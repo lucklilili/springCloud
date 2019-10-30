@@ -1,0 +1,483 @@
+package com.bwcloud.finance.center.entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author dz
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+@Table(name = "loan_detail")
+public class LoanDetail implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //借据号
+    @Column(name = "bill_no")
+    private String billNo;
+	
+	    //申请日期
+    @Column(name = "plat_data")
+    private String platData;
+	
+	    //申请时间
+    @Column(name = "plat_time")
+    private String platTime;
+	
+	    //申请流水号
+    @Column(name = "apply_no")
+    private String applyNo;
+	
+	    //百旺ID
+    @Column(name = "sup_id")
+    private String supId;
+	
+	    //纳税人名称
+    @Column(name = "tax_name")
+    private String taxName;
+	
+	    //纳税人识别号
+    @Column(name = "tax_code")
+    private String taxCode;
+	
+	    //注册地址
+    @Column(name = "reg_addr")
+    private String regAddr;
+	
+	    //经营地址
+    @Column(name = "biz_addr")
+    private String bizAddr;
+	
+	    //法人证件类型
+    @Column(name = "cert_type")
+    private String certType;
+	
+	    //法人证件号码
+    @Column(name = "cert_coe")
+    private String certCoe;
+	
+	    //法人名称
+    @Column(name = "cust_name")
+    private String custName;
+	
+	    //法人手机号
+    @Column(name = "cuset_mobile")
+    private String cusetMobile;
+	
+	    //贷款发放金额
+    @Column(name = "loan_amt")
+    private String loanAmt;
+	
+	    //贷款余额
+    @Column(name = "loan_bal")
+    private String loanBal;
+	
+	    //贷款利率
+    @Column(name = "exec_rate")
+    private String execRate;
+	
+	    //贷款期限
+    @Column(name = "loan_term")
+    private String loanTerm;
+	
+	    //贷款起始日期
+    @Column(name = "loan_start_date")
+    private String loanStartDate;
+	
+	    //贷款到期日期
+    @Column(name = "loan_end_date")
+    private String loanEndDate;
+	
+	    //贷款状态
+    @Column(name = "cont_status")
+    private String contStatus;
+	
+	    //贷款结清日期
+    @Column(name = "loan_clear_date")
+    private String loanClearDate;
+	
+	    //放款银行行号
+    @Column(name = "lend_bank_no")
+    private String lendBankNo;
+	
+	    //放款卡号
+    @Column(name = "lend_card_no")
+    private String lendCardNo;
+	
+	    //还款银行行号
+    @Column(name = "repay_bank_no")
+    private String repayBankNo;
+	
+	    //还款卡号
+    @Column(name = "repay_card_no")
+    private String repayCardNo;
+	
+	    //还款方式
+    @Column(name = "repay_type")
+    private String repayType;
+	
+	    //创建时间
+    @Column(name = "create_time")
+    private String createTime;
+	
+	    //修改时间
+    @Column(name = "update_time")
+    private String updateTime;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：借据号
+	 */
+	public void setBillNo(String billNo) {
+		this.billNo = billNo;
+	}
+	/**
+	 * 获取：借据号
+	 */
+	public String getBillNo() {
+		return billNo;
+	}
+	/**
+	 * 设置：申请日期
+	 */
+	public void setPlatData(String platData) {
+		this.platData = platData;
+	}
+	/**
+	 * 获取：申请日期
+	 */
+	public String getPlatData() {
+		return platData;
+	}
+	/**
+	 * 设置：申请时间
+	 */
+	public void setPlatTime(String platTime) {
+		this.platTime = platTime;
+	}
+	/**
+	 * 获取：申请时间
+	 */
+	public String getPlatTime() {
+		return platTime;
+	}
+	/**
+	 * 设置：申请流水号
+	 */
+	public void setApplyNo(String applyNo) {
+		this.applyNo = applyNo;
+	}
+	/**
+	 * 获取：申请流水号
+	 */
+	public String getApplyNo() {
+		return applyNo;
+	}
+	/**
+	 * 设置：百旺ID
+	 */
+	public void setSupId(String supId) {
+		this.supId = supId;
+	}
+	/**
+	 * 获取：百旺ID
+	 */
+	public String getSupId() {
+		return supId;
+	}
+	/**
+	 * 设置：纳税人名称
+	 */
+	public void setTaxName(String taxName) {
+		this.taxName = taxName;
+	}
+	/**
+	 * 获取：纳税人名称
+	 */
+	public String getTaxName() {
+		return taxName;
+	}
+	/**
+	 * 设置：纳税人识别号
+	 */
+	public void setTaxCode(String taxCode) {
+		this.taxCode = taxCode;
+	}
+	/**
+	 * 获取：纳税人识别号
+	 */
+	public String getTaxCode() {
+		return taxCode;
+	}
+	/**
+	 * 设置：注册地址
+	 */
+	public void setRegAddr(String regAddr) {
+		this.regAddr = regAddr;
+	}
+	/**
+	 * 获取：注册地址
+	 */
+	public String getRegAddr() {
+		return regAddr;
+	}
+	/**
+	 * 设置：经营地址
+	 */
+	public void setBizAddr(String bizAddr) {
+		this.bizAddr = bizAddr;
+	}
+	/**
+	 * 获取：经营地址
+	 */
+	public String getBizAddr() {
+		return bizAddr;
+	}
+	/**
+	 * 设置：法人证件类型
+	 */
+	public void setCertType(String certType) {
+		this.certType = certType;
+	}
+	/**
+	 * 获取：法人证件类型
+	 */
+	public String getCertType() {
+		return certType;
+	}
+	/**
+	 * 设置：法人证件号码
+	 */
+	public void setCertCoe(String certCoe) {
+		this.certCoe = certCoe;
+	}
+	/**
+	 * 获取：法人证件号码
+	 */
+	public String getCertCoe() {
+		return certCoe;
+	}
+	/**
+	 * 设置：法人名称
+	 */
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+	/**
+	 * 获取：法人名称
+	 */
+	public String getCustName() {
+		return custName;
+	}
+	/**
+	 * 设置：法人手机号
+	 */
+	public void setCusetMobile(String cusetMobile) {
+		this.cusetMobile = cusetMobile;
+	}
+	/**
+	 * 获取：法人手机号
+	 */
+	public String getCusetMobile() {
+		return cusetMobile;
+	}
+	/**
+	 * 设置：贷款发放金额
+	 */
+	public void setLoanAmt(String loanAmt) {
+		this.loanAmt = loanAmt;
+	}
+	/**
+	 * 获取：贷款发放金额
+	 */
+	public String getLoanAmt() {
+		return loanAmt;
+	}
+	/**
+	 * 设置：贷款余额
+	 */
+	public void setLoanBal(String loanBal) {
+		this.loanBal = loanBal;
+	}
+	/**
+	 * 获取：贷款余额
+	 */
+	public String getLoanBal() {
+		return loanBal;
+	}
+	/**
+	 * 设置：贷款利率
+	 */
+	public void setExecRate(String execRate) {
+		this.execRate = execRate;
+	}
+	/**
+	 * 获取：贷款利率
+	 */
+	public String getExecRate() {
+		return execRate;
+	}
+	/**
+	 * 设置：贷款期限
+	 */
+	public void setLoanTerm(String loanTerm) {
+		this.loanTerm = loanTerm;
+	}
+	/**
+	 * 获取：贷款期限
+	 */
+	public String getLoanTerm() {
+		return loanTerm;
+	}
+	/**
+	 * 设置：贷款起始日期
+	 */
+	public void setLoanStartDate(String loanStartDate) {
+		this.loanStartDate = loanStartDate;
+	}
+	/**
+	 * 获取：贷款起始日期
+	 */
+	public String getLoanStartDate() {
+		return loanStartDate;
+	}
+	/**
+	 * 设置：贷款到期日期
+	 */
+	public void setLoanEndDate(String loanEndDate) {
+		this.loanEndDate = loanEndDate;
+	}
+	/**
+	 * 获取：贷款到期日期
+	 */
+	public String getLoanEndDate() {
+		return loanEndDate;
+	}
+	/**
+	 * 设置：贷款状态
+	 */
+	public void setContStatus(String contStatus) {
+		this.contStatus = contStatus;
+	}
+	/**
+	 * 获取：贷款状态
+	 */
+	public String getContStatus() {
+		return contStatus;
+	}
+	/**
+	 * 设置：贷款结清日期
+	 */
+	public void setLoanClearDate(String loanClearDate) {
+		this.loanClearDate = loanClearDate;
+	}
+	/**
+	 * 获取：贷款结清日期
+	 */
+	public String getLoanClearDate() {
+		return loanClearDate;
+	}
+	/**
+	 * 设置：放款银行行号
+	 */
+	public void setLendBankNo(String lendBankNo) {
+		this.lendBankNo = lendBankNo;
+	}
+	/**
+	 * 获取：放款银行行号
+	 */
+	public String getLendBankNo() {
+		return lendBankNo;
+	}
+	/**
+	 * 设置：放款卡号
+	 */
+	public void setLendCardNo(String lendCardNo) {
+		this.lendCardNo = lendCardNo;
+	}
+	/**
+	 * 获取：放款卡号
+	 */
+	public String getLendCardNo() {
+		return lendCardNo;
+	}
+	/**
+	 * 设置：还款银行行号
+	 */
+	public void setRepayBankNo(String repayBankNo) {
+		this.repayBankNo = repayBankNo;
+	}
+	/**
+	 * 获取：还款银行行号
+	 */
+	public String getRepayBankNo() {
+		return repayBankNo;
+	}
+	/**
+	 * 设置：还款卡号
+	 */
+	public void setRepayCardNo(String repayCardNo) {
+		this.repayCardNo = repayCardNo;
+	}
+	/**
+	 * 获取：还款卡号
+	 */
+	public String getRepayCardNo() {
+		return repayCardNo;
+	}
+	/**
+	 * 设置：还款方式
+	 */
+	public void setRepayType(String repayType) {
+		this.repayType = repayType;
+	}
+	/**
+	 * 获取：还款方式
+	 */
+	public String getRepayType() {
+		return repayType;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：修改时间
+	 */
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+	/**
+	 * 获取：修改时间
+	 */
+	public String getUpdateTime() {
+		return updateTime;
+	}
+}

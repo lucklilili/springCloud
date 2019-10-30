@@ -1,0 +1,14 @@
+package com.bwcloud.billingCenter.invoicingInterfaces.abstractBean;
+
+import com.alibaba.fastjson.JSONObject;
+
+/**
+ * 桥接类子类
+ * Created by guodong on 2018/3/27.
+ */
+public class RefinedAbstraction extends Abstraction {
+    @Override
+    public JSONObject invoicing(JSONObject jsonObject) {
+        return super.invoicing(jsonObject);
+    }
+}

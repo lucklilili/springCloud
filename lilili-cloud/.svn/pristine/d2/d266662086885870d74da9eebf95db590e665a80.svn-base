@@ -1,0 +1,112 @@
+package com.bwcloud.billingCenter.obtainData.obtainServiceImpl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.obtainData.obtaionService.ObtainDataService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+import com.github.wxiaoqi.security.common.util.HttpUtil;
+
+/**
+ * Created by bs on 2018/4/8.
+ */
+public class ObtainDataServiceImpl implements ObtainDataService {
+
+    /**
+     * 获取服务器基本信息
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String obtainSrver(String string) {
+        String xml = obtainData(string);
+        String reveiceXml = sendXml(xml);
+        String sendJson = xml2Json(reveiceXml);
+        return sendJson;
+    }
+
+    /**
+     * 获取监控管理数据接
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String obtainSupervision(String string) {
+        String xml = obtainData(string);
+        String reveiceXml = sendXml(xml);
+        String sendJson = xml2Json(reveiceXml);
+        return sendJson;
+    }
+
+    /**
+     * 获取税种税目信息
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String obtainTaxCategory(String string) {
+        String xml = obtainData(string);
+        String reveiceXml = sendXml(xml);
+        String sendJson = xml2Json(reveiceXml);
+        return sendJson;
+    }
+
+    /**
+     * 查询当前未开票号
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String obtainCurrentNoTicket(String string) {
+        String xml = obtainData(string);
+        String reveiceXml = sendXml(xml);
+        String sendJson = xml2Json(reveiceXml);
+        return sendJson;
+    }
+
+    /**
+     * 接收json字符串
+     * 接收 服务器基本信息、监控管理数据接、税种税目信息、查询当前未开票号 四个中的一个
+     *
+     * @param string
+     * @return
+     */
+    String obtainData(String string) {
+        JSONObject json = JSONObject.parseObject(string);
+        JSONObject business = json.getJSONObject("business");
+        String id = business.getString("id");
+        String comment = business.getString("comment");
+        JSONObject body = business.getJSONObject("body");
+        String yylxdm = body.getString("yylxdm");
+        String kpzdbs = body.getString("kpzdbs");
+        String fplxdm = body.getString("fplxdm");
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+        stringBuffer.append("<business id=\"");
+        stringBuffer.append(id);
+        stringBuffer.append("\" comment=\"");
+        stringBuffer.append(comment);
+        stringBuffer.append("\">\n\t<body yylxdm=\"");
+        stringBuffer.append(yylxdm);
+        stringBuffer.append("\">\n\t\t<kpzdbs>");
+        stringBuffer.append(kpzdbs);
+        stringBuffer.append("</kpzdbs>");
+        stringBuffer.append("\n\t\t<fplxdm>");
+        stringBuffer.append(fplxdm);
+        stringBuffer.append("</fplxdm>");
+        stringBuffer.append("\n\t</body>\n</business>");
+        return stringBuffer.toString();
+    }
+
+    String sendXml(String xml){
+        String url = "";
+        String reveiceXml = HttpUtil.httpSendPostNingbo(url, xml);
+        return reveiceXml;
+    }
+    String xml2Json(String xml){
+        String sendJson = UniversalUtils.xmlToJson(xml);
+        return sendJson;
+    }
+}

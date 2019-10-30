@@ -1,0 +1,18 @@
+package com.bwcloud.billingCenter.invoicePurchase.informationUntreadService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 发票领购信息退回接口
+ * Created by Administrator on 2018/4/9.
+ */
+@Service
+public interface UntreadService {
+    /**
+     * 实现税控服务器的发票领购信息由开票终端退回到发票库存,
+     * 要求退回整段发票领购信息剩余全部未开发票
+     * @param json
+     * @return
+     */
+    String informatinUntread(String json);
+}

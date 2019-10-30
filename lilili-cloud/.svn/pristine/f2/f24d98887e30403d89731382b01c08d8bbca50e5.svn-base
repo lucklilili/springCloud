@@ -1,0 +1,70 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.Valid;
+
+public class TaxDataUploadRequest<T> {
+	
+	@NotEmpty(message="ver不能空")
+	@JSONField(name = "ver", ordinal = 1)
+	private String ver;
+
+	@NotEmpty(message="req不能空")
+	@JSONField(name = "req", ordinal = 2)
+	private String req;
+
+	@NotEmpty(message="ts不能空")
+	@JSONField(name = "ts", ordinal = 3)
+	private String ts;
+
+	@Valid
+	@JSONField(name = "msg", ordinal = 4)
+	private T msg;
+
+	@NotEmpty(message="sign不能空")
+	@JSONField(name = "sign", ordinal = 5)
+	private String sign;
+	
+	public String getVer() {
+		return ver;
+	}
+
+	public void setVer(String ver) {
+		this.ver = ver;
+	}
+
+	public String getReq() {
+		return req;
+	}
+
+	public void setReq(String req) {
+		this.req = req;
+	}
+
+	public String getTs() {
+		return ts;
+	}
+
+	public void setTs(String ts) {
+		this.ts = ts;
+	}
+
+	public T getMsg() {
+		return msg;
+	}
+
+	public void setMsg(T msg) {
+		this.msg = msg;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+}

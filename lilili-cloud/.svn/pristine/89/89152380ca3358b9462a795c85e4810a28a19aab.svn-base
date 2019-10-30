@@ -1,0 +1,82 @@
+package com.bwcloud.billingCenter.invoiceQuery.serverCoreBoardInfoQueryService.impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoiceQuery.serverCoreBoardInfoQueryService.ServerCoreBoardInfoQuery;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ * 通过该接口可以查询税控管理系统中的核心板信息和单个核心板信息
+ * Created by bs on 2018/4/13.
+ */
+public class ServerCoreBoardInfoQueryImpl implements ServerCoreBoardInfoQuery {
+    /**
+     * 查询一个税号下所有加入到税控管理系统中的核心板信息，
+     * 也可查询单个核心板信息
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String serverCoreBoardInfoQuery(String string) {
+        String xml = serverCoreBoardInfoQuery2Xml(string);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+    String serverCoreBoardInfoQuery2Xml(String string) {
+            try {
+                JSONObject json = JSONObject.parseObject(string);
+                JSONObject bussinse = json.getJSONObject("business");
+                String id = bussinse.getString("id");
+                String comment = bussinse.getString("comment");
+                JSONObject body = bussinse.getJSONObject("body");
+                String yylxdm = body.getString("yylxdm");
+                String ip = body.getString("ip");
+                String nsrsbh = body.getString("nsrsbh");
+                String jqbh = body.getString("jqbh");
+
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+                stringBuffer.append("<business id=\"");
+                stringBuffer.append(id);
+                stringBuffer.append("\" comment=\"");
+                stringBuffer.append(comment);
+                stringBuffer.append("\">\n\t<body yylxdm=\"");
+                stringBuffer.append(yylxdm);
+                stringBuffer.append("\">\n\t\t<ip>");
+                stringBuffer.append(ip);
+                stringBuffer.append("</ip>");
+                stringBuffer.append("\n\t\t<nsrsbh>");
+                stringBuffer.append(nsrsbh);
+                stringBuffer.append("</nsrsbh>");
+                stringBuffer.append("\n\t\t<jqbh>");
+                stringBuffer.append(jqbh);
+                stringBuffer.append("</jqbh>");
+                stringBuffer.append("\n\t</body>\n</business>");
+                return stringBuffer.toString();
+            }catch (Exception e){
+                return "json转xml，转换失败！";
+            }
+    }
+    /**
+     * 向税控服务器发送xml，并返回结果
+     * @param xml
+     * @return
+     */
+    String sendXml(String xml){
+        return "";
+    }
+    /**
+     * xml 转 json
+     * @param receiveXml
+     * @return
+     */
+    String xml2Json(String receiveXml){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(receiveXml);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

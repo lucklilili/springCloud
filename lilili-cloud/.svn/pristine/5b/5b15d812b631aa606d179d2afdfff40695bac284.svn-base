@@ -1,0 +1,25 @@
+package com.bwcloud.billingCenter.invoiceOpening.serviceExample;
+
+import com.bwcloud.billingCenter.invoiceOpening.utils.Conversion;
+import com.bwcloud.billingCenter.invoiceOpening.abstractClassImpl.InoviceOpeningImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * lilili 2018/3/29.
+ * 卷式发票025
+ */
+@Service
+public class RollInvoice extends InoviceOpeningImpl {
+
+
+    @Override
+    public String jsonToXml(String json) { return Conversion.jsonToXmlRollInvoice(json);}
+
+    @Override
+    public String xmlTojson(String xml) {return Conversion.xmltoJson(xml); }
+
+
+
+}
+
+

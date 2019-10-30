@@ -1,0 +1,17 @@
+package com.bwcloud.finance.loan.rest;
+
+import com.bwcloud.finance.loan.biz.TaxRiskInfoBiz;
+import com.bwcloud.finance.loan.entity.TaxRiskInfo;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+
+@RestController
+@RequestMapping("taxRiskInfo")
+@CheckClientToken
+@CheckUserToken
+public class TaxRiskInfoController extends BaseController<TaxRiskInfoBiz,TaxRiskInfo> {
+
+}

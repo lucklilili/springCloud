@@ -1,0 +1,21 @@
+package com.bwcloud.billingCenter.module.rest;
+
+import com.bwcloud.billingCenter.module.biz.YwDjBiz;
+import com.bwcloud.billingCenter.module.entity.YwDj;
+import com.github.wxiaoqi.security.common.rest.BaseController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckClientToken;
+import com.github.wxiaoqi.security.auth.client.annotation.CheckUserToken;
+
+@RestController
+@RequestMapping("ywDj")
+@CheckClientToken
+@CheckUserToken
+public class YwDjController extends BaseController<YwDjBiz,YwDj> {
+    @Autowired
+    YwDjBiz ywDjBiz;
+
+
+}

@@ -1,0 +1,37 @@
+package com.bwcloud.finance.center.biz;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.finance.center.abstractClass.abstractClassImpl.AbstractInvoiceUploadImpl;
+import com.bwcloud.finance.center.entity.PjZzspFpmx;
+import com.bwcloud.finance.center.entity.TaxInvoice;
+import com.bwcloud.finance.center.entity.TaxInvoiceDetail;
+import com.bwcloud.finance.center.mapper.PjZzspFpmxMapper;
+import com.bwcloud.finance.center.utils.InvoiceLoanUtil;
+import com.github.wxiaoqi.security.common.util.UUIDUtils;
+import org.springframework.stereotype.Service;
+
+import com.bwcloud.finance.center.entity.PjZzszFpmx;
+import com.bwcloud.finance.center.mapper.PjZzszFpmxMapper;
+import com.github.wxiaoqi.security.common.biz.BusinessBiz;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-02 14:21:14
+ * @email 463540703@qq.com
+ */
+@Service
+public class PjZzszFpmxBiz extends BusinessBiz<PjZzszFpmxMapper, PjZzszFpmx> {
+
+    public void insertInvoice(Map invoiceMaps) {
+        String fplxdm = (String) invoiceMaps.get("fplxdm");
+        Map invoiceMap = (Map) ((Map) invoiceMaps.get("kpxx")).get("group");
+        invoiceMap.put("fplxdm", fplxdm);
+        Map map = InvoiceLoanUtil.mapToInvoiceModel(invoiceMap);
+    }
+}

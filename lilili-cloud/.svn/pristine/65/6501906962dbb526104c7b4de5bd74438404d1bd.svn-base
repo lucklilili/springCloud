@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.LoanMerchantMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.LoanMerchantInfo" id="loanMerchantInfo">
+        <result property="id" column="id"/>
+        <result property="nsrsbh" column="nsrsbh"/>
+        <result property="nsrmc" column="nsrmc"/>
+        <result property="merchantid" column="merchantid"/>
+        <result property="xysqbz" column="xysqbz"/>
+        <result property="fpsc_jzrq" column="fpsc_jzrq"/>
+    </resultMap>
+
+
+
+</mapper>

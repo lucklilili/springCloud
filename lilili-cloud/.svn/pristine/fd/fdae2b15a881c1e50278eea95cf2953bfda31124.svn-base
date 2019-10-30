@@ -1,0 +1,25 @@
+package com.bwcloud.finance.center.mapper;
+
+import com.bwcloud.finance.center.entity.PjJsfpFpmx;
+import com.bwcloud.finance.center.entity.PjZzspFpmx;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-09 15:11:22
+ * @email 463540703@qq.com
+ */
+public interface PjJsfpFpmxMapper extends CommonMapper<PjJsfpFpmx> {
+    /**
+     * 查询发票信息
+     *
+     * @param nsrsbh
+     * @param start_date
+     * @param end_date
+     * @return
+     */
+    public List<PjJsfpFpmx> queryInvoiceList(@Param("xhdwdm") String nsrsbh, @Param("start_date") String start_date, @Param("end_date") String end_date);
+}

@@ -1,0 +1,19 @@
+package com.bwcloud.billingCenter.rubricInfoTable.applyQueryService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ * 红字信息表申请与查询接口
+ * Created by bs on 2018/4/10.
+ */
+@Service
+public interface ApplyQueryService {
+    /**
+     * 将需要开具的红字信息表内容传递给税控管理系统，
+     * 然后通过税控管理系统将红字信息表内容上传税务局端并获取反馈信息（跨省反馈滞后）,
+     * 再通过此接口从税控管理系统中提取税局反馈红字信息内容
+     * @param string
+     * @return
+     */
+    String rubricInfoTableApplyQuery(String string);
+}

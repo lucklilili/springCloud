@@ -1,0 +1,168 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+/**
+ * @author dz
+ */
+public class TaxDataUploadTranInfo {
+
+    @JSONField(name = "inv_type", ordinal = 1)
+    private String invType;
+
+    @JSONField(name = "inv_status", ordinal = 2)
+    private String invStatus;
+
+    @JSONField(name = "inv_code", ordinal = 3)
+    private String invCode;
+
+    @JSONField(name = "inv_no", ordinal = 4)
+    private String invNo;
+
+    @JSONField(name = "tax_amt", ordinal = 5)
+    private String taxAmt;
+
+    @JSONField(name = "inv_amt", ordinal = 6)
+    private String invAmt;
+
+    @JSONField(name = "tran_amt", ordinal = 7)
+    private String tranAmt;
+
+    @JSONField(name = "ori_inv_code", ordinal = 8)
+    private String oriInvCode;
+
+    @JSONField(name = "ori_inv_no", ordinal = 9)
+    private String oriInvNo;
+
+    @JSONField(name = "notify_no", ordinal = 10)
+    private String notifyNo;
+    /**
+     * 开票日期
+     */
+    @JSONField(name = "inv_date", ordinal = 11)
+    private String invDate;
+    /**
+     * 作废日期
+     */
+    @JSONField(name = "inval_date", ordinal = 12)
+    private String invalDate;
+
+    @JSONField(name = "cust_id", ordinal = 13)
+    private String custId;
+
+    @JSONField(name = "cust_name", ordinal = 14)
+    private String custName;
+
+    public String getInvType() {
+        return invType;
+    }
+
+    public void setInvType(String invType) {
+        this.invType = invType;
+    }
+
+    public String getInvStatus() {
+        return invStatus;
+    }
+
+    public void setInvStatus(String invStatus) {
+        this.invStatus = invStatus;
+    }
+
+    public String getInvCode() {
+        return invCode;
+    }
+
+    public void setInvCode(String invCode) {
+        this.invCode = invCode;
+    }
+
+    public String getInvNo() {
+        return invNo;
+    }
+
+    public void setInvNo(String invNo) {
+        this.invNo = invNo;
+    }
+
+    public String getTaxAmt() {
+        return taxAmt;
+    }
+
+    public void setTaxAmt(String taxAmt) {
+        this.taxAmt = taxAmt;
+    }
+
+    public String getInvAmt() {
+        return invAmt;
+    }
+
+    public void setInvAmt(String invAmt) {
+        this.invAmt = invAmt;
+    }
+
+    public String getTranAmt() {
+        return tranAmt;
+    }
+
+    public void setTranAmt(String tranAmt) {
+        this.tranAmt = tranAmt;
+    }
+
+    public String getOriInvCode() {
+        return oriInvCode;
+    }
+
+    public void setOriInvCode(String oriInvCode) {
+        this.oriInvCode = oriInvCode;
+    }
+
+    public String getOriInvNo() {
+        return oriInvNo;
+    }
+
+    public void setOriInvNo(String oriInvNo) {
+        this.oriInvNo = oriInvNo;
+    }
+
+    public String getNotifyNo() {
+        return notifyNo;
+    }
+
+    public void setNotifyNo(String notifyNo) {
+        this.notifyNo = notifyNo;
+    }
+
+    public String getInvDate() {
+        return invDate;
+    }
+
+    public void setInvDate(String invDate) {
+        this.invDate = invDate;
+    }
+
+    public String getInvalDate() {
+        return invalDate;
+    }
+
+    public void setInvalDate(String invalDate) {
+        this.invalDate = invalDate;
+    }
+
+    public String getCustId() {
+        return custId;
+    }
+
+    public void setCustId(String custId) {
+        this.custId = custId;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+}

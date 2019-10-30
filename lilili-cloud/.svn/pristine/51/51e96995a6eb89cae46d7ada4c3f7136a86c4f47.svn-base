@@ -1,0 +1,19 @@
+package com.bwcloud.billingCenter.module.mapper;
+
+import com.bwcloud.billingCenter.module.entity.YwDj;
+import com.github.wxiaoqi.security.common.data.Depart;
+import com.github.wxiaoqi.security.common.data.Tenant;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+
+/**
+ * 主要是存储业务系统单据主表的数据
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-04-09 10:23:16
+ */
+@Depart
+@Tenant
+public interface YwDjMapper extends CommonMapper<YwDj> {
+    public void insertYwDj(YwDj ywDj);
+}

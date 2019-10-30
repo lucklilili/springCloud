@@ -1,0 +1,29 @@
+package com.bwcloud.finance.center.mapper;
+
+
+import com.bwcloud.finance.center.entity.LoanDetail;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * 
+ * 
+ * @author Mr.AG
+ * @email 463540703@qq.com
+ * @version 2018-03-22 11:39:56
+ */
+public interface LoanDetailMapper extends CommonMapper<LoanDetail> {
+    /**
+     * 查询贷款信息
+     * @param taxCode
+     * @param taxName
+     * @param loanStartDate
+     * @param loanEndDate
+     * @param contStatus
+     * @return
+     */
+    public List<LoanDetail> selectLoanDetailList(@Param("tax_code") String taxCode, @Param("tax_name") String taxName, @Param("loan_start_date") String loanStartDate, @Param("loan_end_date") String loanEndDate, @Param("cont_status") String contStatus);
+	
+}

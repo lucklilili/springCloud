@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.finance.center.mapper.LoanMerchantMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.finance.center.entity.LoanMerchantInfo" id="loanMerchantInfo">
+        <result property="id" column="id"/>
+        <result property="nsrsbh" column="nsrsbh"/>
+        <result property="nsrmc" column="nsrmc"/>
+        <result property="merchantid" column="merchantid"/>
+        <result property="xysqbz" column="xysqbz"/>
+        <result property="fpsc_jzrq" column="fpsc_jzrq"/>
+    </resultMap>
+
+    <select id="selectMerchantAgreement" resultType="com.bwcloud.finance.center.entity.LoanMerchantInfo">
+        SELECT
+        *
+        FROM loan_merchant_info a
+        WHERE 1=1
+        <if test="nsrsbh != '' and nsrsbh != null">
+            and a.nsrsbh = #{nsrsbh}
+        </if>
+        <if test="merchantid != '' and merchantid != null">
+            and a.merchantid = #{merchantid}
+        </if>
+    </select>
+
+</mapper>

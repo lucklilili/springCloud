@@ -1,0 +1,43 @@
+package com.github.wxiaoqi.security.common.constant;
+
+/**
+ *
+ * @author dz
+ * @date 2018/4/2
+ */
+public class BwCloudConstants {
+    /**
+     * 增值税专用发票
+     */
+    public static final String ZZS_ZY_FP = "004";
+    /**
+     * 增值税普通发票
+     */
+    public static final String ZZS_PT_FP = "007";
+    /**
+     * 电子票
+     */
+    public static final String DZ_FP = "026";
+    /**
+     * 增值税普通发票（卷式）
+     */
+    public static final String JS_FP = "025";
+    /**
+     * 货用发票
+     */
+    public static final String HY_FP = "009";
+    /**
+     * 机动车发票
+     */
+    public static final String JDC_FP = "005";
+    /**
+     * 二手车发票
+     */
+    public static final String ESC_FP = "006";
+
+    /**
+     * 商超和石油行业发票发票
+     */
+    public static final String SCSY_FP = "027";
+
+}

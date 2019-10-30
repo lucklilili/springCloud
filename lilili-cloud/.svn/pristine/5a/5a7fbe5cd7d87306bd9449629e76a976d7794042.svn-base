@@ -1,0 +1,100 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * @author dz
+ * @param <T>
+ */
+public class TaxDataUploadResponse<T> {
+
+	@JSONField(name = "ver", ordinal = 1)
+	private String ver;
+
+	@JSONField(name = "req", ordinal = 2)
+	private String req;
+
+	@JSONField(name = "ts", ordinal = 3)
+	private String ts;
+
+	@JSONField(name = "rescd", ordinal = 4)
+	private String rescd;
+
+	@JSONField(name = "resmsg", ordinal = 5)
+	private String resmsg;
+
+	@JSONField(name = "msg", ordinal = 6)
+	private T msg;
+
+	@JSONField(name = "sign", ordinal = 7)
+	private String sign;
+
+	public TaxDataUploadResponse() {
+	}
+
+	public TaxDataUploadResponse(TaxDataUploadRequest<?> scfRequest) {
+		this.setVer(scfRequest.getVer());
+		this.setReq(scfRequest.getReq());
+		this.setTs(new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
+	}
+
+	public String getVer() {
+		return ver;
+	}
+
+	public void setVer(String ver) {
+		this.ver = ver;
+	}
+
+	public String getReq() {
+		return req;
+	}
+
+	public void setReq(String req) {
+		this.req = req;
+	}
+
+	public String getTs() {
+		return ts;
+	}
+
+	public void setTs(String ts) {
+		this.ts = ts;
+	}
+
+	public String getRescd() {
+		return rescd;
+	}
+
+	public void setRescd(String rescd) {
+		this.rescd = rescd;
+	}
+
+	public String getResmsg() {
+		return resmsg;
+	}
+
+	public void setResmsg(String resmsg) {
+		this.resmsg = resmsg;
+	}
+
+	public T getMsg() {
+		return msg;
+	}
+
+	public void setMsg(T msg) {
+		this.msg = msg;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+}

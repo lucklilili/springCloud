@@ -1,0 +1,808 @@
+package com.github.wxiaoqi.security.common.util;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.RequestEntity;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.net.ssl.*;
+import java.io.*;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.MessageDigest;
+import java.security.cert.X509Certificate;
+import java.util.Date;
+import java.util.LinkedHashMap;
+
+
+public class HttpUtil {
+
+    private static final Log log = LogFactory.getLog(HttpUtil.class);
+
+    /**
+     * 向指定URL发送GET方法的请求
+     *
+     * @param url 发送请求的URL
+     * @return URL 所代表远程资源的响应结果
+     */
+    public static JSONObject sendGet(String url) {
+        String result = "";
+        BufferedReader in = null;
+        JSONObject jsonObject = null;
+        try {
+            String urlNameString = url;
+            URL realUrl = new URL(urlNameString);
+            // 打开和URL之间的连接
+            HttpURLConnection connection = (HttpURLConnection) realUrl
+                    .openConnection();
+            // 设置通用的请求属性
+            connection.setRequestProperty("accept", "*/*");
+            connection.setRequestProperty("connection", "Keep-Alive");
+            // 建立实际的连接
+            connection.connect();
+            // 定义 BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            log.error("发送GET请求出现异常！" + e);
+        }
+        // 使用finally块来关闭输入流
+        finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        log.info(result);
+
+        try {
+            jsonObject = JSONObject.parseObject(result);
+        } catch (Exception e) {
+            jsonObject = new JSONObject();
+            jsonObject.put("result", result);
+            jsonObject.put(result.split(":")[0], result.split(":")[1]);
+        }
+        return jsonObject;
+    }
+
+
+    /**
+     * 向指定 URL 发送POST方法的请求
+     *
+     * @param url   发送请求的 URL
+     * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
+     * @return 所代表远程资源的响应结果
+     */
+
+    public static JSONObject sendPost(String url, String param) {
+        PrintWriter out = null;
+        BufferedReader in = null;
+        String result = "";
+        JSONObject jsonObject = null;
+
+        try {
+            URL realUrl = new URL(url);
+            // 打开和URL之间的连接
+            HttpURLConnection conn = (HttpURLConnection) realUrl
+                    .openConnection();
+            // 设置通用的请求属性
+//			conn.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+            conn.setRequestProperty("accept", "*/*");
+            conn.setRequestProperty("connection", "Keep-Alive");
+            // 发送POST请求必须设置如下两行
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            // 获取HttpURLConnection对象对应的输出流
+            out = new PrintWriter(conn.getOutputStream());
+            // 发送请求参数
+            out.print(param);
+            // flush输出流的缓冲
+            out.flush();
+            // 定义BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            log.error("发送 POST 请求出现异常！" + e);
+        }
+        // 使用finally块来关闭输出流、输入流
+        finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        jsonObject = JSONObject.parseObject(result);
+        return jsonObject;
+    }
+
+    /**
+     * 向微信服务器上传pdf文件
+     *
+     * @param url
+     * @param savePath
+     * @param dataBase
+     */
+    public static JSONObject uploadFile(String url, String savePath, String dataBase) {
+        DataOutputStream out = null;
+        BufferedReader reader = null;
+        String result = "";
+        JSONObject jsonObject = null;
+        byte[] pdfData = null;
+        try {
+            log.info("url：" + url);
+            log.info("savePath：" + savePath);
+            if (dataBase != null && !"".equals(dataBase)) {
+                pdfData = dataBase.getBytes("UTF-8");
+                log.info("dataBase获取：" + pdfData);
+            } else {
+                //从url获取
+                pdfData = downLoadByUrl(savePath);
+                log.info("url获取：" + pdfData.toString());
+            }
+
+            URL realUrl = new URL(url);
+            // 打开和URL之间的连接
+            HttpURLConnection conn = (HttpURLConnection) realUrl
+                    .openConnection();
+            // 设置通用的请求属性
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
+            conn.setRequestProperty("Accept", "*/*");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            // 设置边界
+            String BOUNDRY = "------------" + System.currentTimeMillis();
+            conn.setRequestProperty("Content-Type",
+                    "multipart/form-data;boundary=" + BOUNDRY);
+            // 获取HttpURLConnection对象对应的输出流
+            out = new DataOutputStream(conn.getOutputStream());
+            // 发送HTTP头
+            StringBuilder sb = new StringBuilder();
+            sb.append("--");
+            sb.append(BOUNDRY);
+            sb.append("\r\n");
+            sb.append("Content-Disposition: form-data; name=\"pdf\";filename=\""
+                    + System.currentTimeMillis() + ".pdf" + "\"\r\n");
+            sb.append("Content-type:application/pdf\r\n\r\n");
+            byte[] head = sb.toString().getBytes("UTF-8");
+            out.write(head);
+            // 读取文件到流中
+            //DataInputStream in = new DataInputStream(new FileInputStream(file));
+            // 发送文件
+//			int bytes = 0;
+//			byte[] buffer = new byte[1024];
+//			while ((bytes = in.read(buffer)) != -1) {
+//				out.write(buffer, 0, bytes);
+//			}
+//			in.close();
+            out.write(pdfData);
+            // flush输出流的缓冲
+            byte[] foot = ("\r\n--" + BOUNDRY + "--\r\n").getBytes("UTF-8");
+            out.write(foot);
+            out.flush();
+            // 定义BufferedReader输入流来读取URL的响应
+            reader = new BufferedReader(new InputStreamReader(conn
+                    .getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            log.error("上传微信平台电子票pdf，发送 POST 请求出现异常！" + e);
+        }
+        // 使用finally块来关闭输出流、输入流
+        finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        jsonObject = JSONObject.parseObject(result);
+        return jsonObject;
+    }
+
+    /**
+     * 向微信服务器上传文件
+     *
+     * @param url
+     * @param filePath
+     */
+    public static JSONObject wxUploadFile(String url, String filePath) {
+        DataOutputStream out = null;
+        BufferedReader reader = null;
+        String result = "";
+        JSONObject jsonObject = null;
+
+        try {
+            // 创建文件
+            File file = new File(filePath);
+            if (!file.exists() || !file.isFile()) {
+                throw new IOException("文件不存在");
+            }
+            //String url = SysConstant.ADD_MATERIAL.replace("ACCESS_TOKEN", accessToken).replace("TYPE", type);
+            URL realUrl = new URL(url);
+            // 打开和URL之间的连接
+            HttpURLConnection conn = (HttpURLConnection) realUrl
+                    .openConnection();
+            // 设置通用的请求属性
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
+            conn.setRequestProperty("Accept", "*/*");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            // 设置边界
+            String BOUNDRY = "------------" + System.currentTimeMillis();
+            conn.setRequestProperty("Content-Type",
+                    "multipart/form-data;boundary=" + BOUNDRY);
+            // 获取HttpURLConnection对象对应的输出流
+            out = new DataOutputStream(conn.getOutputStream());
+            // 发送HTTP头
+            StringBuilder sb = new StringBuilder();
+            sb.append("--");
+            sb.append(BOUNDRY);
+            sb.append("\r\n");
+            sb
+                    .append("Content-Disposition: form-data; name=\"media\";filename=\""
+                            + file.getName() + "\"\r\n");
+            sb.append("Content-type:application/octet-stream\r\n\r\n");
+            byte[] head = sb.toString().getBytes("UTF-8");
+            out.write(head);
+            // 读取文件到流中
+            DataInputStream in = new DataInputStream(new FileInputStream(file));
+            // 发送文件
+            int bytes = 0;
+            byte[] buffer = new byte[1024];
+            while ((bytes = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytes);
+            }
+            in.close();
+            // flush输出流的缓冲
+            byte[] foot = ("\r\n--" + BOUNDRY + "--\r\n").getBytes("UTF-8");
+            out.write(foot);
+            out.flush();
+            // 定义BufferedReader输入流来读取URL的响应
+            reader = new BufferedReader(new InputStreamReader(conn
+                    .getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            System.out.println("发送 POST 请求出现异常！" + e);
+            e.printStackTrace();
+        }
+        // 使用finally块来关闭输出流、输入流
+        finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        jsonObject = JSONObject.parseObject(result);
+        return jsonObject;
+    }
+
+    /**
+     * 发起https请求并获取结果
+     *
+     * @param requestUrl    请求地址
+     * @param requestMethod 请求方式（GET、POST）
+     * @param outputStr     提交的数据
+     * @return JSONObject(通过JSONObject.get(key)的方式获取json对象的属性值)
+     */
+    public static JSONObject httpRequest(String requestUrl, String requestMethod, String outputStr) {
+        JSONObject jsonObject = null;
+        StringBuffer buffer = new StringBuffer();
+        try {
+            // 创建SSLContext对象，并使用我们指定的信任管理器初始化
+            TrustManager[] tm = {new MyX509TrustManager()};
+            SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
+            sslContext.init(null, tm, new java.security.SecureRandom());
+            // 从上述SSLContext对象中得到SSLSocketFactory对象
+            SSLSocketFactory ssf = sslContext.getSocketFactory();
+
+            URL url = new URL(requestUrl);
+            HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
+            httpUrlConn.setSSLSocketFactory(ssf);
+
+            httpUrlConn.setDoOutput(true);
+            httpUrlConn.setDoInput(true);
+            httpUrlConn.setUseCaches(false);
+            // 设置请求方式（GET/POST）
+            httpUrlConn.setRequestMethod(requestMethod);
+
+            if ("GET".equalsIgnoreCase(requestMethod))
+                httpUrlConn.connect();
+
+            // 当有数据需要提交时
+            if (null != outputStr) {
+                OutputStream outputStream = httpUrlConn.getOutputStream();
+                // 注意编码格式，防止中文乱码
+                outputStream.write(outputStr.getBytes("UTF-8"));
+                outputStream.close();
+            }
+
+            // 将返回的输入流转换成字符串
+            InputStream inputStream = httpUrlConn.getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String str = null;
+            while ((str = bufferedReader.readLine()) != null) {
+                buffer.append(str);
+            }
+            bufferedReader.close();
+            inputStreamReader.close();
+            // 释放资源
+            inputStream.close();
+            inputStream = null;
+            httpUrlConn.disconnect();
+            jsonObject = JSONObject.parseObject(buffer.toString());
+        } catch (ConnectException ce) {
+            log.error("Weixin server connection timed out." + ce);
+        } catch (Exception e) {
+            log.error("https request error:{}" + e);
+        }
+        return jsonObject;
+    }
+
+    public static String md5(String str) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(str.getBytes());
+            byte[] b = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < b.length; i++) {
+                int v = (int) b[i];
+                v = v < 0 ? 0x100 + v : v;
+                String cc = Integer.toHexString(v);
+                if (cc.length() == 1) {
+                    sb.append('0');
+                }
+                sb.append(cc);
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            log.error("md5加密失败，原因：" + e.getMessage());
+        }
+        return "";
+    }
+
+    /**
+     * 向百望账户系统发送
+     * 向指定 URL 发送POST方法的请求
+     *
+     * @param url       发送请求的 URL
+     * @param xml       请求参数，传送的xml报文。
+     * @param timestamp 时间戳，拼进header中
+     * @param password  用户密码
+     * @return 所代表远程资源的响应结果
+     */
+
+    public static String httpSendPost(String url, String timestamp, String xml, String password) {
+        PrintWriter out = null;
+        BufferedReader in = null;
+        String result = "";
+
+        HttpURLConnection conn;
+        try {
+            trustAllHosts();
+            URL realUrl = new URL(url);
+            if (realUrl.getProtocol().toLowerCase().equals("https")) {
+                HttpsURLConnection https = (HttpsURLConnection) realUrl.openConnection();
+                https.setHostnameVerifier(DO_NOT_VERIFY);
+                conn = https;
+            } else {
+                conn = (HttpURLConnection) realUrl.openConnection();
+            }
+
+            // 设置通用的请求属性
+            //conn.setRequestProperty("Content-Type", "text/plain;charset=utf-8");
+            conn.setRequestProperty("accept", "*/*");
+            conn.setRequestProperty("connection", "Keep-Alive");
+            conn.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            conn.setRequestProperty("Content-Type", "text/plain;charset=utf-8");
+
+            if (timestamp != null) {
+                conn.setRequestProperty("timestamp", timestamp);
+            }
+            if (xml != null && password != null) {
+                password = md5(new StringBuilder(password).toString());
+                conn.setRequestProperty("authorization", md5(new StringBuilder(xml).append(password).append(timestamp).toString()));
+            }
+            // 发送POST请求必须设置如下两行
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            // 获取HttpURLConnection对象对应的输出流
+            out = new PrintWriter(new OutputStreamWriter(conn.getOutputStream(), "utf-8"));
+            // 发送请求参数
+            out.print(xml);
+            // flush输出流的缓冲
+            out.flush();
+            // 定义BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), "utf-8"));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("发送 POST 请求出现异常！" + e);
+        }
+        // 使用finally块来关闭输出流、输入流
+        finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 向宁波发送请求
+     * 向指定 URL 发送POST方法的请求
+     *
+     * @param url 发送请求的 URL
+     * @param xml 请求参数，传送的xml报文。
+     * @return 所代表远程资源的响应结果
+     */
+
+    public static String httpSendPostNingbo(String url, String xml) {
+        PrintWriter out = null;
+        BufferedReader in = null;
+        String result = "";
+
+        HttpURLConnection conn;
+        try {
+            trustAllHosts();
+            URL realUrl = new URL(url);
+            if (realUrl.getProtocol().toLowerCase().equals("https")) {
+                HttpsURLConnection https = (HttpsURLConnection) realUrl.openConnection();
+                https.setHostnameVerifier(DO_NOT_VERIFY);
+                conn = https;
+            } else {
+                conn = (HttpURLConnection) realUrl.openConnection();
+            }
+
+            // 设置通用的请求属性
+            //conn.setRequestProperty("Content-Type", "text/plain;charset=utf-8");
+            conn.setRequestProperty("accept", "*/*");
+            conn.setRequestProperty("connection", "Keep-Alive");
+            conn.setRequestProperty("user-agent",
+                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            conn.setRequestProperty("Content-Type", "text/plain;charset=utf-8");
+
+            // 发送POST请求必须设置如下两行
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            // 获取HttpURLConnection对象对应的输出流
+            out = new PrintWriter(new OutputStreamWriter(conn.getOutputStream(), "utf-8"));
+            // 发送请求参数
+            out.print(xml);
+            // flush输出流的缓冲
+            out.flush();
+            // 定义BufferedReader输入流来读取URL的响应
+            in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), "utf-8"));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("发送 POST 请求出现异常！" + e);
+        }
+        // 使用finally块来关闭输出流、输入流
+        finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    private final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
+        public boolean verify(String hostname, SSLSession session) {
+            return true;
+        }
+    };
+
+    private static void trustAllHosts() {
+        // Create a trust manager that does not validate certificate chains
+        TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                return new java.security.cert.X509Certificate[]{};
+            }
+
+            public void checkClientTrusted(X509Certificate[] chain, String authType) {
+            }
+
+            public void checkServerTrusted(X509Certificate[] chain, String authType) {
+            }
+        }};
+        // Install the all-trusting trust manager
+        try {
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static byte[] downLoadByUrl(String urlStr) throws IOException {
+        URL url = new URL(urlStr);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        //设置超时间为3秒
+        conn.setConnectTimeout(5 * 1000);
+        //防止屏蔽程序抓取而返回403错误
+        conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+        //得到输入流
+        InputStream inputStream = conn.getInputStream();
+        //获取自己数组
+        byte[] getData = readInputStream(inputStream);
+        if (inputStream != null) {
+            inputStream.close();
+        }
+        //文件保存位置
+//        File saveDir = new File(savePath);
+//        if(!saveDir.exists()){
+//            saveDir.mkdir();
+//        }
+//        File file = new File(saveDir+File.separator+fileName);
+//        FileOutputStream fos = new FileOutputStream(file);
+//        fos.write(getData);
+//        if(fos!=null){
+//            fos.close();
+//        }
+//        IOUtils.copy(conn.getInputStream(),fos);
+//        System.out.println("info:"+url+" download success");
+        return getData;
+    }
+
+    /**
+     * 从网络Url中下载文件
+     * @param urlStr
+     * @param fileName
+     * @param savePath
+     * @throws IOException
+     */
+//    public static void  downLoadByUrl(String urlStr,String fileName,String savePath) throws IOException{
+//        URL url = new URL(urlStr);
+//        HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+//        //设置超时间为3秒
+//        conn.setConnectTimeout(5*1000);
+//        //防止屏蔽程序抓取而返回403错误
+//        conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+//        //得到输入流
+//        InputStream inputStream = conn.getInputStream();
+//        //获取自己数组
+//        byte[] getData = readInputStream(inputStream);
+//        //文件保存位置
+//        File saveDir = new File(savePath);
+//        if(!saveDir.exists()){
+//            saveDir.mkdir();
+//        }
+//        File file = new File(saveDir+File.separator+fileName);
+//        FileOutputStream fos = new FileOutputStream(file);
+//        fos.write(getData);
+//        if(fos!=null){
+//            fos.close();
+//        }
+//        if(inputStream!=null){
+//            inputStream.close();
+//        }
+//        System.out.println("info:"+url+" download success");
+//
+//    }
+
+
+    /**
+     * 从输入流中获取字节数组
+     *
+     * @param inputStream
+     * @return
+     * @throws IOException
+     */
+    public static byte[] readInputStream(InputStream inputStream) throws IOException {
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        while ((len = inputStream.read(buffer)) != -1) {
+            bos.write(buffer, 0, len);
+        }
+        bos.close();
+        return bos.toByteArray();
+    }
+
+//    public static void main(String[] args) {
+//        try{
+//            downLoadByUrl("https://www.hnfapiao.com/api/dl.do?id=58E6DCE425FB0416E0530A0A0D33A338",
+//                    System.currentTimeMillis()+BwUtils.createICode(5)+".pdf","D:/upload");
+//        }catch (Exception e) {
+//            log.error(e);
+//        }
+//    }
+
+    /**
+     * 发起https请求给宏昊并获取结果
+     *
+     * @param requestUrl    请求地址
+     * @param requestMethod 请求方式（GET、POST）
+     * @param outputStr     提交的数据
+     * @return JSONObject(通过JSONObject.get(key)的方式获取json对象的属性值)
+     */
+    public static JSONObject httpRequestHonghao(String requestUrl, String requestMethod, String outputStr) throws Exception {
+        JSONObject jsonObject;
+        StringBuffer buffer = new StringBuffer();
+        // 创建SSLContext对象，并使用我们指定的信任管理器初始化
+        TrustManager[] tm = {new MyX509TrustManager()};
+        SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
+        sslContext.init(null, tm, new java.security.SecureRandom());
+        // 从上述SSLContext对象中得到SSLSocketFactory对象
+        SSLSocketFactory ssf = sslContext.getSocketFactory();
+        URL url = new URL(requestUrl);
+        HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
+        httpUrlConn.setSSLSocketFactory(ssf);
+        httpUrlConn.setDoOutput(true);
+        httpUrlConn.setDoInput(true);
+        httpUrlConn.setUseCaches(false);
+        // 设置请求方式（GET/POST）
+        httpUrlConn.setRequestMethod(requestMethod);
+        httpUrlConn.setRequestProperty("Content-Type", "application/json");
+        if ("GET".equalsIgnoreCase(requestMethod)) {
+            httpUrlConn.connect();
+        }
+        // 当有数据需要提交时
+        if (null != outputStr) {
+            OutputStream outputStream = httpUrlConn.getOutputStream();
+            // 注意编码格式，防止中文乱码
+            outputStream.write(outputStr.getBytes("UTF-8"));
+            outputStream.close();
+        }
+        // 将返回的输入流转换成字符串
+        InputStream inputStream = httpUrlConn.getInputStream();
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        String str;
+        while ((str = bufferedReader.readLine()) != null) {
+            buffer.append(str);
+        }
+        bufferedReader.close();
+        inputStreamReader.close();
+        // 释放资源
+        inputStream.close();
+        httpUrlConn.disconnect();
+        jsonObject = JSONObject.parseObject(buffer.toString());
+
+        return jsonObject;
+    }
+
+    public static String httpsRequestHonghao(String requestUrl, String outputStr) throws Exception {
+        HttpClient client = new HttpClient();
+        client.getParams().setContentCharset("UTF-8");
+        PostMethod postMethod = new PostMethod(requestUrl);
+        RequestEntity entity = new StringRequestEntity(outputStr, "application/json", "UTF-8");
+        postMethod.setRequestEntity(entity);
+        postMethod.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+        int code = client.executeMethod(postMethod);
+        String result = postMethod.getResponseBodyAsString();
+        postMethod.releaseConnection();
+        return result;
+    }
+
+
+    public static void main(String[] args) {
+//        String url = "https://www.shhonghao.cn/bwfpd.server/data/detail/upload";
+        String url = "https://www.honghaojinrong.com/bwfpd.server/data/detail/upload";
+        JSONObject json = new JSONObject(new LinkedHashMap<>());
+        JSONObject baseInfo = new JSONObject(new LinkedHashMap<>());
+        String dataDate = DateUtils.formatSfmFiles(new Date()).substring(0, 8);
+        baseInfo.put("data_date", dataDate);
+        baseInfo.put("sup_id", "9111010879851136XP");
+        baseInfo.put("tax_code", "9111010879851136XP");
+        baseInfo.put("tax_name", "北京百旺金赋科技有限公司");
+        baseInfo.put("inv_addr", "北京");
+        baseInfo.put("start_date", "20150201");
+        baseInfo.put("end_date", "20180228");
+        JSONArray tranList = new JSONArray();
+        JSONObject invoiceJson = new JSONObject(new LinkedHashMap<>());
+        invoiceJson.put("inv_type", "007");
+        invoiceJson.put("inv_status", "0");
+        invoiceJson.put("inv_code", "5000153650");
+        invoiceJson.put("inv_no", "06302425");
+        invoiceJson.put("tax_amt", "0");
+        invoiceJson.put("inv_amt", "10");
+        invoiceJson.put("tran_amt", "10");
+        invoiceJson.put("ori_inv_code", "");
+        invoiceJson.put("ori_inv_no", "");
+        invoiceJson.put("notify_no", "");
+        invoiceJson.put("inv_date", "20180206");
+        invoiceJson.put("inval_date", "");
+        invoiceJson.put("cust_id", "");
+        invoiceJson.put("cust_name", "11有限公司");
+        tranList.add(invoiceJson);
+        JSONArray inputList = new JSONArray();
+        JSONObject inputJson = new JSONObject(new LinkedHashMap<>());
+        inputJson.put("data_month", "201802");
+        inputJson.put("input_num", "1");
+        inputJson.put("input_amt", "10");
+        inputList.add(inputJson);
+        json.put("base_info", baseInfo);
+        json.put("tran_list", tranList);
+        json.put("input_list", inputList);
+        String ts = DateUtils.formatSfmStamp(new Date());
+        JSONObject json1 = new JSONObject(new LinkedHashMap<>());
+        json1.put("ver", "1.0.0");
+        json1.put("req", "HHFPD0110000BW01000000A0000A01");
+        json1.put("ts", ts);
+        json1.put("msg", json);
+        System.out.println(json1.toString());
+        StringBuffer md5Buffer = new StringBuffer();
+        try {
+            md5Buffer.append(MD5Util.HongHaoSignMd5(json1.toJSONString()));
+            md5Buffer.append(MD5Util.HongHaoSignMd5("e99a18c428cb38d5f260853678922e03"));
+            String sign = MD5Util.HongHaoSignMd5(md5Buffer.toString());
+            json1.put("sign", sign);
+            System.out.println(json1.toJSONString());
+            System.out.println(httpsRequestHonghao(url, GZipUtils.gzip(json1.toJSONString())));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}

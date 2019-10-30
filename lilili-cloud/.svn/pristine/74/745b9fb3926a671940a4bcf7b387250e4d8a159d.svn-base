@@ -1,0 +1,18 @@
+package com.bwcloud.billingCenter.rubricInfoTable.downloadService;
+
+import org.springframework.stereotype.Service;
+
+/**
+ *  红字信息表下载接口
+ * Created by bs on 2018/4/10.
+ */
+@Service
+public interface DownloadService {
+
+    /**
+     * 通过红字信息表下载接口下载开具红票时需要的红字信息表编号
+     * @param json
+     * @return
+     */
+    String rubricInfoTableDownload(String json);
+}

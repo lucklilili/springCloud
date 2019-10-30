@@ -1,0 +1,88 @@
+package com.bwcloud.finance.center.entity;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+/**
+ * @author dz
+ */
+public class TaxDataUploadBaseInfo {
+
+	@JSONField(name = "data_date", ordinal = 1)
+	private String dataDate;
+
+	@JSONField(name = "sup_id", ordinal = 2)
+	private String supId;
+
+	@JSONField(name = "tax_code", ordinal = 3)
+	private String taxCode;
+
+	@JSONField(name = "tax_name", ordinal = 4)
+	private String taxName;
+
+	@JSONField(name = "inv_addr", ordinal = 5)
+	private String invAddr;
+	
+	@JSONField(name = "start_date", ordinal = 6)
+	private String startDate;
+	
+	@JSONField(name = "end_date", ordinal = 7)
+	private String endDate;
+
+	public String getDataDate() {
+		return dataDate;
+	}
+
+	public void setDataDate(String dataDate) {
+		this.dataDate = dataDate;
+	}
+
+	public String getSupId() {
+		return supId;
+	}
+
+	public void setSupId(String supId) {
+		this.supId = supId;
+	}
+
+	public String getTaxCode() {
+		return taxCode;
+	}
+
+	public void setTaxCode(String taxCode) {
+		this.taxCode = taxCode;
+	}
+
+	public String getTaxName() {
+		return taxName;
+	}
+
+	public void setTaxName(String taxName) {
+		this.taxName = taxName;
+	}
+
+	public String getInvAddr() {
+		return invAddr;
+	}
+
+	public void setInvAddr(String invAddr) {
+		this.invAddr = invAddr;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	
+}

@@ -1,0 +1,23 @@
+package com.bwcloud.billingCenter.invoiceOpening.serviceExample;
+
+import com.bwcloud.billingCenter.invoiceOpening.utils.Conversion;
+import com.bwcloud.billingCenter.invoiceOpening.abstractClassImpl.InoviceOpeningImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * lilili on 2018/3/29.
+ * 专用发票004
+ */
+@Service
+public class SpecialInvoice extends InoviceOpeningImpl {
+
+    @Override
+    public String jsonToXml(String json) {
+        return Conversion.jsonToXmlGeneralInvoice(json);//专票和普票格式一下 so调用普票
+    }
+
+    @Override
+    public String xmlTojson(String xml) {
+        return Conversion.xmltoJson(xml);
+    }
+}

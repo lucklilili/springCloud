@@ -1,0 +1,85 @@
+package com.bwcloud.billingCenter.invoicePurchase.informationUntreadService.impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.bwcloud.billingCenter.invoicePurchase.informationUntreadService.UntreadService;
+import com.bwcloud.billingCenter.utlis.UniversalUtils;
+
+/**
+ * Created by bs on 2018/4/9.
+ */
+public class UntreadServiceImpl implements UntreadService {
+    /**
+     * 实现税控服务器的发票领购信息由开票终端退回到发票库存,
+     * 要求退回整段发票领购信息剩余全部未开发票
+     *
+     * @param string
+     * @return
+     */
+    @Override
+    public String informatinUntread(String string) {
+        String xml = informatinUntread2Xml(string);
+        String receiveXml = sendXml(xml);
+        String sendJson = xml2Json(receiveXml);
+        return sendJson;
+    }
+    /**
+     * 实现税控服务器的发票领购信息由开票终端退回到发票库存,
+     * 要求退回整段发票领购信息剩余全部未开发票
+     *  json 转 xml
+     * @param string
+     * @return
+     */
+    String informatinUntread2Xml(String string) {
+        try {
+            JSONObject json = JSONObject.parseObject(string);
+            JSONObject business = json.getJSONObject("business");
+            String id = business.getString("id");
+            String comment = business.getString("comment");
+            JSONObject body = business.getJSONObject("body");
+            String yylxdm = body.getString("yylxdm");
+            String kpzdbs = body.getString("kpzdbs");
+            String fplxdm = body.getString("fplxdm");
+            String fpdm = body.getString("fpdm");
+            String qshm = body.getString("qshm");
+            String zzhm = body.getString("zzhm");
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("<?xml version=\"1.0\" encoding=\"gbk\"?>\n");
+            stringBuffer.append("<business id=\"");
+            stringBuffer.append(id);
+            stringBuffer.append("\" comment=\"");
+            stringBuffer.append(comment);
+            stringBuffer.append("\">\n\t<body yylxdm=\"");
+            stringBuffer.append(yylxdm);
+            stringBuffer.append("\">\n\t\t<kpzdbs>");
+            stringBuffer.append(kpzdbs);
+            stringBuffer.append("</kpzdbs>");
+            stringBuffer.append("\n\t\t<fplxdm>");
+            stringBuffer.append(fplxdm);
+            stringBuffer.append("</fplxdm>");
+            stringBuffer.append("\n\t\t<fpdm>");
+            stringBuffer.append(fpdm);
+            stringBuffer.append("</fpdm>");
+            stringBuffer.append("\n\t\t<qshm>");
+            stringBuffer.append(qshm);
+            stringBuffer.append("</qshm>");
+            stringBuffer.append("\n\t\t<zzhm>");
+            stringBuffer.append(zzhm);
+            stringBuffer.append("</zzhm>");
+            stringBuffer.append("\n\t</body>\n</business>");
+            return stringBuffer.toString();
+        }catch (Exception e){
+            return "json转换xml，转换失败！";
+        }
+    }
+    String sendXml(String string){
+        return "";
+    }
+    String xml2Json(String string){
+        try {
+            String sendJson = UniversalUtils.xmlToJson(string);
+            return sendJson;
+        }catch (Exception e){
+            return "税控服务器发送xml，解析失败！";
+        }
+    }
+}

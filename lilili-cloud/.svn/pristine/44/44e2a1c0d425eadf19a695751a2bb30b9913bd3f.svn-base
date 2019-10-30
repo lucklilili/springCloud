@@ -1,0 +1,14 @@
+package com.bwcloud.billingCenter.generateClientAuthentication.clientAuthenticationVoucherService;
+
+/**
+ * 生成ClientAuth信息，用于身份认证流程。
+ * Created by bs on 2018/4/14.
+ */
+public interface ClientAuthenticationVoucherService {
+    /**
+     * 生成ClientAuth信息，用于身份认证流程。
+     * @param json
+     * @return
+     */
+    String clientAuthenticationVoucher(String json);
+}

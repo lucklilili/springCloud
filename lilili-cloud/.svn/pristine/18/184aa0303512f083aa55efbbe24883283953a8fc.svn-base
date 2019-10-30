@@ -1,0 +1,17 @@
+package com.bwcloud.finance.center.mapper;
+
+import com.bwcloud.finance.center.entity.PjZzspFpmx;
+import com.bwcloud.finance.center.entity.PjZzszFpmx;
+import com.github.wxiaoqi.security.common.mapper.CommonMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * @author Dong.Zhen
+ * @version 2018-04-02 14:21:14
+ * @email 463540703@qq.com
+ */
+public interface PjZzspFpmxMapper extends CommonMapper<PjZzspFpmx> {
+    public List<PjZzspFpmx> queryInvoiceList(@Param("xhdwdm") String nsrsbh, @Param("start_date") String start_date, @Param("end_date") String end_date);
+}

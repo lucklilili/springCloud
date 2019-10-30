@@ -1,0 +1,310 @@
+package com.bwcloud.device.center.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.*;
+
+
+/**
+ * 
+ * 
+ * @author Dong.Zhen
+ * @email 463540703@qq.com
+ * @version 2018-04-11 19:53:12
+ */
+@Table(name = "device_info")
+public class DeviceInfo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	    //
+    @Id
+    private String id;
+	
+	    //机身编号
+    @Column(name = "jsbh")
+    private String jsbh;
+	
+	    //设备名称
+    @Column(name = "device_name")
+    private String deviceName;
+	
+	    //设备类型
+    @Column(name = "sblx")
+    private String sblx;
+	
+	    //
+    @Column(name = "type")
+    private String type;
+	
+	    //状态
+    @Column(name = "state")
+    private String state;
+	
+	    //创建时间
+    @Column(name = "create_date")
+    private String createDate;
+	
+	    //最后上线时间
+    @Column(name = "last_line_date")
+    private String lastLineDate;
+	
+	    //设备IP地址
+    @Column(name = "ipdz")
+    private String ipdz;
+	
+	    //端口号
+    @Column(name = "dkh")
+    private String dkh;
+	
+	    //Mac
+    @Column(name = "mac")
+    private String mac;
+	
+	    //序列号
+    @Column(name = "sn")
+    private String sn;
+	
+	    //机身版本号
+    @Column(name = "jsbbh")
+    private String jsbbh;
+	
+
+	    //定位信息
+    @Column(name = "dwxx")
+    private String dwxx;
+	
+	    //经度
+    @Column(name = "longitude")
+    private String longitude;
+	
+	    //纬度
+    @Column(name = "latitude")
+    private String latitude;
+	
+	    //半径
+    @Column(name = "radius")
+    private String radius;
+	
+	    //定位地址
+    @Column(name = "address")
+    private String address;
+	
+
+	/**
+	 * 设置：
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * 设置：机身编号
+	 */
+	public void setJsbh(String jsbh) {
+		this.jsbh = jsbh;
+	}
+	/**
+	 * 获取：机身编号
+	 */
+	public String getJsbh() {
+		return jsbh;
+	}
+	/**
+	 * 设置：设备名称
+	 */
+	public void setDeviceName(String deviceName) {
+		this.deviceName = deviceName;
+	}
+	/**
+	 * 获取：设备名称
+	 */
+	public String getDeviceName() {
+		return deviceName;
+	}
+	/**
+	 * 设置：设备类型
+	 */
+	public void setSblx(String sblx) {
+		this.sblx = sblx;
+	}
+	/**
+	 * 获取：设备类型
+	 */
+	public String getSblx() {
+		return sblx;
+	}
+	/**
+	 * 设置：
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
+	/**
+	 * 获取：
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * 设置：状态
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
+	/**
+	 * 获取：状态
+	 */
+	public String getState() {
+		return state;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateDate() {
+		return createDate;
+	}
+	/**
+	 * 设置：最后上线时间
+	 */
+	public void setLastLineDate(String lastLineDate) {
+		this.lastLineDate = lastLineDate;
+	}
+	/**
+	 * 获取：最后上线时间
+	 */
+	public String getLastLineDate() {
+		return lastLineDate;
+	}
+	/**
+	 * 设置：设备IP地址
+	 */
+	public void setIpdz(String ipdz) {
+		this.ipdz = ipdz;
+	}
+	/**
+	 * 获取：设备IP地址
+	 */
+	public String getIpdz() {
+		return ipdz;
+	}
+	/**
+	 * 设置：端口号
+	 */
+	public void setDkh(String dkh) {
+		this.dkh = dkh;
+	}
+	/**
+	 * 获取：端口号
+	 */
+	public String getDkh() {
+		return dkh;
+	}
+	/**
+	 * 设置：Mac
+	 */
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+	/**
+	 * 获取：Mac
+	 */
+	public String getMac() {
+		return mac;
+	}
+	/**
+	 * 设置：序列号
+	 */
+	public void setSn(String sn) {
+		this.sn = sn;
+	}
+	/**
+	 * 获取：序列号
+	 */
+	public String getSn() {
+		return sn;
+	}
+	/**
+	 * 设置：机身版本号
+	 */
+	public void setJsbbh(String jsbbh) {
+		this.jsbbh = jsbbh;
+	}
+	/**
+	 * 获取：机身版本号
+	 */
+	public String getJsbbh() {
+		return jsbbh;
+	}
+
+	/**
+	 * 设置：定位信息
+	 */
+	public void setDwxx(String dwxx) {
+		this.dwxx = dwxx;
+	}
+	/**
+	 * 获取：定位信息
+	 */
+	public String getDwxx() {
+		return dwxx;
+	}
+	/**
+	 * 设置：经度
+	 */
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	/**
+	 * 获取：经度
+	 */
+	public String getLongitude() {
+		return longitude;
+	}
+	/**
+	 * 设置：纬度
+	 */
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	/**
+	 * 获取：纬度
+	 */
+	public String getLatitude() {
+		return latitude;
+	}
+	/**
+	 * 设置：半径
+	 */
+	public void setRadius(String radius) {
+		this.radius = radius;
+	}
+	/**
+	 * 获取：半径
+	 */
+	public String getRadius() {
+		return radius;
+	}
+	/**
+	 * 设置：定位地址
+	 */
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	/**
+	 * 获取：定位地址
+	 */
+	public String getAddress() {
+		return address;
+	}
+}

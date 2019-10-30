@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bwcloud.device.center.mapper.DeviceRegCodeMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.bwcloud.device.center.entity.DeviceRegCode" id="deviceRegCodeMap">
+        <result property="id" column="id"/>
+        <result property="zjmc" column="zjmc"/>
+        <result property="jsbh" column="jsbh"/>
+        <result property="wkmac" column="wkmac"/>
+        <result property="uuid" column="uuid"/>
+        <result property="nsrsbh" column="nsrsbh"/>
+        <result property="sbbh" column="sbbh"/>
+        <result property="sblx" column="sblx"/>
+        <result property="sqsj" column="sqsj"/>
+        <result property="sqqx" column="sqqx"/>
+        <result property="ysqrq" column="ysqrq"/>
+        <result property="sqjzrq" column="sqjzrq"/>
+        <result property="sqrq" column="sqrq"/>
+        <result property="clbz" column="clbz"/>
+        <result property="sfsq" column="sfsq"/>
+        <result property="sqbz" column="sqbz"/>
+        <result property="sqm" column="sqm"/>
+    </resultMap>
+
+</mapper>
