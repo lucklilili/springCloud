@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "ace-user", fallback = UserFeignFallback.class)
-//@FeignClient("ace-user") 开发期间使用
+//@FeignClient(name = "ace-user", fallback = UserFeignFallback.class)
+@FeignClient("ace-user")
 public interface UserFeignDao {
 
     @RequestMapping(method = RequestMethod.GET, value="/getUser/{id}")
